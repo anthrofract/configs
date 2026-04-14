@@ -1,0 +1,32 @@
+[
+  {
+    "context": "((vim_mode == helix_normal || vim_mode == helix_select) && !menu)",
+    "bindings": {
+      "space": null,
+      "space space": "file_finder::Toggle"
+    }
+  },
+  {
+    "context": "((vim_mode == helix_normal || vim_mode == helix_select) && !menu)",
+    "bindings": {
+      "space b b": "tab_switcher::ToggleAll"
+    }
+  },
+  {
+    "context": "((vim_mode == helix_normal || vim_mode == helix_select) && !menu)",
+    "bindings": {
+      "space b l": "pane::AlternateFile"
+    }
+  },
+  {
+    "context": "((vim_mode == helix_normal || vim_mode == helix_select) && !menu)",
+    "bindings": {
+      "space v": [
+        "task::Spawn",
+        {
+          "task_name": "jjdag"
+        }
+      ]
+    }
+  }
+]

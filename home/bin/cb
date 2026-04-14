@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+
+# Cross-platform clipboard utility. Copies stdin to clipboard when piped to,
+# pastes clipboard contents otherwise. Supports tee-like chaining.
+
+copy() {
+    case "$(uname -s)" in
+    Linux*) cat | wl-copy ;;
+    Darwin*) cat | pbcopy ;;
+    esac
+}
+
+paste() {
+    case "$(uname -s)" in
+    Linux*) wl-paste ;;
+    Darwin*) pbpaste ;;
+    esac
+}
+
+stdin_is_a_pipe() {
+    [[ -p /dev/stdin ]]
+}
+
+stdin_is_a_tty() {
+    [[ -t 0 ]]
+}
+
+stdin_is_pipe_like() {
+    stdin_is_a_pipe || ! stdin_is_a_tty
+}
+
+stdout_is_a_tty() {
+    [[ -t 1 ]]
+}
+
+stdout_is_pipe_like() {
+    ! stdout_is_a_tty
+}
+
+main() {
+    if stdin_is_pipe_like; then
+        copy
+        if stdout_is_pipe_like; then
+            paste
+        fi
+    else
+        paste
+    fi
+}
+
+main

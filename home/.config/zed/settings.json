@@ -1,0 +1,109 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "scroll_sensitivity": 3.0,
+  "edit_predictions": {
+    "provider": "copilot"
+  },
+  "agent": {
+    "default_profile": "ask",
+    "dock": "left",
+    "default_model": {
+      "provider": "copilot_chat",
+      "model": "gpt-5.3-codex"
+    },
+    "favorite_models": [],
+    "model_parameters": [],
+    "enable_feedback": false
+  },
+  "agent_servers": {
+    "OpenCode": {
+      "type": "custom",
+      "command": "opencode",
+      "args": ["acp", "--port", "0"]
+    }
+  },
+  "auto_install_extensions": {
+    "lua": true,
+    "nix": true,
+    "toml": true,
+    "bamboo-theme": true
+  },
+  "buffer_font_family": "JetBrains Mono",
+  "buffer_font_size": 15,
+  "current_line_highlight": "gutter",
+  "cursor_blink": false,
+  "disable_ai": false,
+  "experimental.theme_overrides": {
+    "terminal.background": "#141414ff",
+    "terminal.foreground": "#bab7b6ff",
+    "terminal.bright_foreground": "#dee3e4ff",
+    "terminal.ansi.black": "#000000ff",
+    "terminal.ansi.bright_black": "#817e7eff",
+    "terminal.ansi.red": "#cf494cff",
+    "terminal.ansi.bright_red": "#ff643bff",
+    "terminal.ansi.green": "#60b442ff",
+    "terminal.ansi.bright_green": "#37e57bff",
+    "terminal.ansi.yellow": "#db9c11ff",
+    "terminal.ansi.bright_yellow": "#fccd1aff",
+    "terminal.ansi.blue": "#0575d8ff",
+    "terminal.ansi.bright_blue": "#688dfdff",
+    "terminal.ansi.magenta": "#af5ed2ff",
+    "terminal.ansi.bright_magenta": "#ed6fe9ff",
+    "terminal.ansi.cyan": "#1db6bbff",
+    "terminal.ansi.bright_cyan": "#32e0fbff",
+    "terminal.ansi.white": "#bab7b6ff",
+    "terminal.ansi.bright_white": "#dee3e4ff"
+  },
+  "git": {
+    "inline_blame": {
+      "enabled": false
+    }
+  },
+  "helix_mode": true,
+  "indent_guides": {
+    "enabled": false
+  },
+  "languages": {
+    "Nix": {
+      "language_servers": ["nixd", "!nil"]
+    }
+  },
+  "lsp": {
+    "nixd": {
+      "binary": {
+        "path": "nixd"
+      }
+    }
+  },
+  "minimap": {
+    "max_width_columns": 80,
+    "thumb": "hover",
+    "show": "auto"
+  },
+  "preferred_line_length": 100,
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false
+  },
+  "theme": {
+    "dark": "Bamboo Vulgaris",
+    "light": "Ayu Light",
+    "mode": "system"
+  },
+  "title_bar": {
+    "show_sign_in": false
+  },
+  "ui_font_size": 16,
+  "vim_mode": false,
+  "which_key": {
+    "delay_ms": 100,
+    "enabled": true
+  }
+}
