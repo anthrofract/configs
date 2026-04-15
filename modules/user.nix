@@ -19,7 +19,14 @@ in
         shell = pkgs.nushell;
       };
 
-      security.sudo.wheelNeedsPassword = false;
+      security.sudo = {
+        extraConfig = ''
+          Defaults timestamp_timeout=480
+          Defaults pwfeedback
+          Defaults lecture=never
+          Defaults env_keep += "EDITOR PATH"
+        '';
+      };
 
       home-manager.users.${id.userName} = {
         home.preferXdgDirectories = true;
