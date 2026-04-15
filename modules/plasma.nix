@@ -20,6 +20,7 @@
         pkgs.kdePackages.plasma-browser-integration
         pkgs.kdePackages.plasma-workspace-wallpapers
         pkgs.kdePackages.sddm-kcm
+        pkgs.tail-tray
       ];
 
       home-manager.sharedModules = [
@@ -27,6 +28,9 @@
           { config, ... }:
           {
             imports = [ inputs.plasma-manager.homeModules.plasma-manager ];
+
+            xdg.configFile."autostart/tail-tray.desktop".source =
+              "${pkgs.tail-tray}/share/applications/tail-tray.desktop";
 
             programs.plasma = {
               enable = true;
