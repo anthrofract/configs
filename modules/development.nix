@@ -23,6 +23,10 @@ let
         pkgs.cargo-binstall
         pkgs.cargo-nextest
         pkgs.claude-code
+        pkgs.go
+        pkgs.golangci-lint
+        pkgs.golangci-lint-langserver
+        pkgs.gopls
         pkgs.kubectl
         pkgs.lua-language-server
         pkgs.marksman
