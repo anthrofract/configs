@@ -1,4 +1,4 @@
-{ ... }:
+{ config, ... }:
 let
   mod = {
     nixpkgs.config.allowUnfree = true;
@@ -24,6 +24,10 @@ let
       trusted-users = [
         "root"
         "@wheel"
+      ];
+
+      access-tokens = [
+        "github.com=${config.flake.secrets.tokens.github}"
       ];
 
       http-connections = 50;
