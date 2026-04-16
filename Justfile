@@ -30,13 +30,13 @@ update:
   nix flake update
 
 test: decrypt
-  sudo nixos-rebuild test --flake path:#{{host}}
+  sudo nixos-rebuild test --flake path:.#{{host}}
 
 switch: decrypt
-  sudo nixos-rebuild switch --flake path:#{{host}}
+  sudo nixos-rebuild switch --flake path:.#{{host}}
 
 boot: decrypt
-  sudo nixos-rebuild boot --flake path:#{{host}}
+  sudo nixos-rebuild boot --flake path:.#{{host}}
 
 update-test: update test
 
@@ -47,4 +47,4 @@ update-boot: update boot
 # TODO: we shouldn't need to specify the pipe-operators feature here.
 # Drop determinate nix?
 darwin-switch: decrypt
-  sudo darwin-rebuild switch --flake path:#{{host}} --option extra-experimental-features 'nix-command flakes pipe-operators'
+  sudo darwin-rebuild switch --flake path:.#{{host}} --option extra-experimental-features 'nix-command flakes pipe-operators'
