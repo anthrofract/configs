@@ -3,19 +3,15 @@ let
   mod =
     { pkgs, ... }:
     {
+      nixpkgs.overlays = [
+        inputs.fenix.overlays.default
+        inputs.opencode.overlays.default
+      ];
+
       environment.systemPackages = [
-        (inputs.fenix.packages.${pkgs.stdenv.hostPlatform.system}.stable.withComponents [
-          "cargo"
-          "clippy"
-          "rust-analyzer"
-          "rust-src"
-          "rustc"
-          "rustfmt"
-        ])
         (pkgs.google-cloud-sdk.withExtraComponents [
           pkgs.google-cloud-sdk.components.gke-gcloud-auth-plugin
         ])
-        inputs.opencode.packages.${pkgs.stdenv.hostPlatform.system}.default
         pkgs.bash-language-server
         pkgs.bitcoind
         pkgs.black
@@ -23,6 +19,7 @@ let
         pkgs.cargo-binstall
         pkgs.cargo-nextest
         pkgs.claude-code
+        pkgs.fenix.stable.toolchain
         pkgs.go
         pkgs.golangci-lint
         pkgs.golangci-lint-langserver
@@ -33,6 +30,7 @@ let
         pkgs.nixd
         pkgs.nixfmt
         pkgs.nodejs
+        pkgs.opencode
         pkgs.pnpm
         pkgs.poetry
         pkgs.python3

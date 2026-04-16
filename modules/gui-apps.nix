@@ -1,7 +1,7 @@
 { inputs, ... }:
 {
   flake.nixosModules.guiApps =
-    { pkgs, ... }:
+    { ... }:
     {
       # Zoom
       programs.zoom-us.enable = true;
