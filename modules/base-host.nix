@@ -7,6 +7,7 @@
         self.nixosModules.baseSettings
         self.nixosModules.cli
         self.nixosModules.docker
+        self.nixosModules.env
         self.nixosModules.homeManager
         self.nixosModules.homeSymlinks
         self.nixosModules.nixSettings

@@ -21,6 +21,7 @@ in
         inputs.home-manager.darwinModules.home-manager
         self.darwinModules.cli
         self.darwinModules.development
+        self.darwinModules.env
         self.darwinModules.homeSymlinks
         self.darwinModules.nixSettings
         self.darwinModules.vcs
