@@ -78,7 +78,7 @@ def lad [...pattern] {
 }
 
 def clc [] {
-    history | last 2 | get 0.command | c
+    history | last 2 | get 0.command | cb
 }
 
 # Need to run like this so opencode gets the proper PATH
