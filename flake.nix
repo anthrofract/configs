@@ -32,7 +32,7 @@
     };
 
     opencode = {
-      url = "github:anomalyco/opencode/v1.4.7";
+      url = "github:anomalyco/opencode/v1.4.10";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -54,8 +54,8 @@
             |> builtins.attrNames
             |> builtins.filter (name: builtins.match ".*\\.nix" name != null);
         in
-        (builtins.readDir ./modules |> builtins.attrNames |> map (name: ./modules/${name}))
-        ++ (builtins.readDir ./hosts |> builtins.attrNames |> map (name: ./hosts/${name}))
+        (builtins.readDir ./hosts |> builtins.attrNames |> map (name: ./hosts/${name}))
+        ++ map (name: ./modules/${name}) (nixFiles ./modules)
         ++ map (name: ./secrets/${name}) (nixFiles ./secrets);
     };
 }
