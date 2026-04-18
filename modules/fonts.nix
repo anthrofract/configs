@@ -4,6 +4,7 @@
     { pkgs, ... }:
     {
       fonts.packages = [
+        pkgs._0xproto
         pkgs.cascadia-code
         pkgs.commit-mono
         pkgs.dejavu_fonts
@@ -16,8 +17,11 @@
         pkgs.jetbrains-mono
         pkgs.libre-baskerville
         pkgs.lilex
+        pkgs.nerd-fonts.sauce-code-pro
         pkgs.nerd-fonts.symbols-only
         pkgs.noto-fonts
+        pkgs.noto-fonts-cjk-sans
+        pkgs.noto-fonts-cjk-serif
         pkgs.noto-fonts-color-emoji
         pkgs.roboto-mono
       ];
