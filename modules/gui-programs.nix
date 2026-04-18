@@ -1,6 +1,6 @@
 { inputs, ... }:
 {
-  flake.nixosModules.guiApps =
+  flake.nixosModules.guiPrograms =
     { ... }:
     {
       # Zoom
@@ -26,6 +26,7 @@
               pkgs.slack
               pkgs.sparrow
               pkgs.spotify
+              pkgs.timg
               pkgs.tor-browser
               pkgs.transmission_4-qt
               pkgs.vscodium-fhs

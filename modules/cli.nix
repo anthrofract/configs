@@ -5,6 +5,7 @@ let
     { pkgs, ... }:
     {
       environment.systemPackages = [
+        pkgs.asciinema
         pkgs.bc
         pkgs.btop
         pkgs.carapace
@@ -20,6 +21,7 @@ let
         pkgs.gnupg
         pkgs.hwatch
         pkgs.inetutils
+        pkgs.jc
         pkgs.jq
         pkgs.just
         pkgs.lazyjournal
@@ -31,10 +33,13 @@ let
         pkgs.mosh
         pkgs.neovim
         pkgs.nushell
+        pkgs.openssl
         pkgs.ouch
         pkgs.ov
         pkgs.rage
+        pkgs.rclone
         pkgs.ripgrep
+        pkgs.sd
         pkgs.starship
         pkgs.tmux
         pkgs.tokei

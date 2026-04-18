@@ -9,7 +9,7 @@
         self.nixosModules.flatpak
         self.nixosModules.fonts
         self.nixosModules.gaming
-        self.nixosModules.guiApps
+        self.nixosModules.guiPrograms
         self.nixosModules.guiSystem
         self.nixosModules.plasma
         self.nixosModules.smartcards

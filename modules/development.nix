@@ -17,6 +17,7 @@ let
         pkgs.black
         pkgs.buf
         pkgs.cargo-binstall
+        pkgs.cargo-expand
         pkgs.cargo-nextest
         pkgs.claude-code
         pkgs.fenix.stable.toolchain
