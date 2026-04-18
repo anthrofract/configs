@@ -1,21 +1,20 @@
-theme = Dimidium
+confirm-close-surface = false
 font-family = JetBrains Mono
 font-size = 13
-window-padding-x = 2
-window-padding-y = 2,0
-window-padding-balance = false
-window-padding-color = extend-always
+initial-command = /usr/local/bin/nu -il -c "tms ~/configs"
 maximize = true
-confirm-close-surface = false
 mouse-scroll-multiplier = 1
 quit-after-last-window-closed = true
+theme = Dimidium
+window-padding-balance = false
+window-padding-color = extend-always
+window-padding-x = 2
+window-padding-y = 2,0
 
-initial-command = /usr/local/bin/nu -il -c "tms ~/configs"
-
-keybind = super+c=copy_to_clipboard
-keybind = super+v=paste_from_clipboard
-keybind = super+==increase_font_size:1
-keybind = super+-=decrease_font_size:1
-keybind = super+\=text:\x1b\\
 keybind = shift+enter=text:\x1b\r
+keybind = super+-=decrease_font_size:1
+keybind = super+==increase_font_size:1
+keybind = super+\=text:\x1b\\
+keybind = super+c=copy_to_clipboard
 keybind = super+s=text:\x1bS
+keybind = super+v=paste_from_clipboard
