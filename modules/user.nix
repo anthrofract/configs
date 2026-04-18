@@ -19,10 +19,9 @@ in
         shell = pkgs.nushell;
       };
 
-      security.sudo = {
+      security.sudo-rs = {
+        enable = true;
         extraConfig = ''
-          Defaults timestamp_timeout=480
-          Defaults pwfeedback
           Defaults lecture=never
           Defaults env_keep += "EDITOR PATH"
         '';

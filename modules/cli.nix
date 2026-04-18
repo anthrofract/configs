@@ -41,7 +41,7 @@ let
         pkgs.tree-sitter
         pkgs.unzip
         pkgs.usbutils
-        pkgs.uutils-coreutils
+        pkgs.uutils-coreutils-noprefix
         pkgs.wget
         pkgs.wireguard-tools
         pkgs.yazi
