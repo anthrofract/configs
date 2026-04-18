@@ -50,8 +50,7 @@ if ($nu.os-info.name == "macos") {
 # Env vars
 $env.EDITOR = $env.config.buffer_editor
 $env.VISUAL = $env.config.buffer_editor
-$env.PAGER = 'ov --exit-write'
-$env.BAT_PAGER = 'ov --quit-if-one-screen --exit-write'
+$env.PAGER = 'bat --plain'
 $env.FZF_DEFAULT_OPTS = "--pointer='>' --gutter=' ' --color=bg+:#30363F,fg+:white,gutter:-1,hl:#C98E56,hl+:#C98E56,pointer:#C98E56"
 $env.LESS = '--mouse --wheel-lines=1'
 if (which gpgconf | is-not-empty) {
@@ -92,7 +91,6 @@ def --wrapped oc [...passed_args] {
     zsh -i -c $"export PATH='($path_string)'; exec opencode ($args)"
 }
 
-# Run just if a Justfile exists, otherwise make
 def --wrapped m [...args] {
     if ("Justfile" | path exists) {
         just ...$args
@@ -130,10 +128,15 @@ def tl [] {
     } | ignore
 }
 
+def --wrapped less [...args] {
+  with-env { BAT_PAGER: 'less -R' } {
+    bat --plain --paging=always ...$args
+  }
+}
+
 # Aliases
 alias cat = bat --plain --paging=never
 alias ff = fastfetch
-alias less = bat --plain
 alias ll = lsd --color always -1 --group-directories-first
 alias lla = lsd --color always -lA --date relative --group-directories-first --git
 alias lt = lsd --color always -A --date relative --group-directories-first --tree
@@ -157,21 +160,9 @@ alias work-mbp = mosh work-mbp
 alias nidavellir = mosh nidavellir
 
 # Jj defs
-def is-jj-repo [] {
-    let jj_check = jj status | complete | get exit_code
-    if $jj_check != 0 {
-        print "Not a jj repository"
-    }
-    $jj_check == 0
-}
-
 def ji [] {
     jj git init --colocate
     jj bookmark create master
-}
-
-def --wrapped jd [...args] {
-    PAGER='ov' jj diff ...$args
 }
 
 def jnM [] { jj git fetch; jj new 'trunk()' }
@@ -189,6 +180,7 @@ alias jbs = jj bookmark set
 alias jc = jj commit
 alias jclone = jj git clone --colocate
 alias jcm = jj commit -m
+alias jd = jj diff
 alias jdb = jd -r @-
 alias jdr = jj describe
 alias jdrb = jj describe -r @-

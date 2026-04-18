@@ -35,7 +35,6 @@ let
         pkgs.nushell
         pkgs.openssl
         pkgs.ouch
-        pkgs.ov
         pkgs.rage
         pkgs.rclone
         pkgs.ripgrep
