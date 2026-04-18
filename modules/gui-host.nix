@@ -4,8 +4,8 @@
     { ... }:
     {
       imports = [
+        self.commonModules.development
         self.nixosModules.baseHost
-        self.nixosModules.development
         self.nixosModules.flatpak
         self.nixosModules.fonts
         self.nixosModules.gaming

@@ -19,14 +19,6 @@ in
         shell = pkgs.nushell;
       };
 
-      security.sudo-rs = {
-        enable = true;
-        extraConfig = ''
-          Defaults lecture=never
-          Defaults env_keep += "EDITOR PATH"
-        '';
-      };
-
       home-manager.users.${id.userName} = {
         home.preferXdgDirectories = true;
       };

@@ -1,6 +1,6 @@
-{ config, ... }:
-let
-  mod = {
+{ config, self, ... }:
+{
+  flake.commonModules.nixSettings = {
     nixpkgs.config.allowUnfree = true;
 
     nix.settings = {
@@ -35,15 +35,12 @@ let
       warn-dirty = false;
     };
   };
-in
-{
+
   flake.nixosModules.nixSettings = {
-    imports = [ mod ];
+    imports = [ self.commonModules.nixSettings ];
 
     nix.gc.dates = "daily";
     nix.gc.automatic = true;
     nix.gc.options = "--delete-older-than 10d";
   };
-
-  flake.darwinModules.nixSettings = mod;
 }

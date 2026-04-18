@@ -2,29 +2,23 @@
   self,
   config,
   inputs,
-  lib,
   ...
 }:
 let
   ids = config.flake.secrets.identities;
 in
 {
-  options.flake.darwinModules = lib.mkOption {
-    type = lib.types.lazyAttrsOf lib.types.raw;
-    default = { };
-  };
-
   config.flake.darwinModules.darwin =
     { pkgs, ... }:
     {
       imports = [
         inputs.home-manager.darwinModules.home-manager
+        self.commonModules.development
+        self.commonModules.env
+        self.commonModules.homeSymlinks
+        self.commonModules.nixSettings
+        self.commonModules.vcs
         self.darwinModules.cli
-        self.darwinModules.development
-        self.darwinModules.env
-        self.darwinModules.homeSymlinks
-        self.darwinModules.nixSettings
-        self.darwinModules.vcs
       ];
 
       nix.enable = false; # For determinate nix

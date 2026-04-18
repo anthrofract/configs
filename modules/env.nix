@@ -18,7 +18,9 @@ let
     '')
     |> builtins.concatStringsSep "";
 
-  mod = {
+in
+{
+  flake.commonModules.env = {
     home-manager.sharedModules = [
       {
         home.sessionVariables = vars;
@@ -26,8 +28,5 @@ let
       }
     ];
   };
-in
-{
-  flake.nixosModules.env = mod;
-  flake.darwinModules.env = mod;
+
 }

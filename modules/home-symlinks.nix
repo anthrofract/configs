@@ -20,7 +20,9 @@ let
 
   allFiles = collectFiles "" homeDir;
 
-  mod = {
+in
+{
+  flake.commonModules.homeSymlinks = {
     home-manager.sharedModules = [
       (
         { config, ... }:
@@ -42,8 +44,5 @@ let
       )
     ];
   };
-in
-{
-  flake.nixosModules.homeSymlinks = mod;
-  flake.darwinModules.homeSymlinks = mod;
+
 }

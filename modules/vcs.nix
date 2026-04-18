@@ -1,12 +1,18 @@
 { config, ... }:
 let
   ids = config.flake.secrets.identities;
-  mod =
-    { ... }:
+in
+{
+  flake.commonModules.vcs =
+    { pkgs, ... }:
     {
+      environment.systemPackages = [
+        pkgs.git
+      ];
+
       home-manager.sharedModules = [
         (
-          { config, pkgs, ... }:
+          { config, ... }:
           {
             home.file.".config/git/ignore-work".text = ''
               .direnv
@@ -105,8 +111,4 @@ let
         )
       ];
     };
-in
-{
-  flake.nixosModules.vcs = mod;
-  flake.darwinModules.vcs = mod;
 }

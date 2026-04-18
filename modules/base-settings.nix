@@ -3,11 +3,9 @@
   flake.nixosModules.baseSettings =
     { pkgs, ... }:
     {
-      # Boot
       boot.loader.efi.canTouchEfiVariables = true;
       boot.loader.systemd-boot.enable = true;
 
-      # Dbus
       services.dbus.implementation = "broker";
 
       # Select internationalisation properties.
@@ -35,5 +33,18 @@
           hash = "sha256-yl+2q4H/a8SLGv4Mt+g8+03uy9ihZxACbsj3uCTog34=";
         })
       ];
+
+      environment.shells = [
+        pkgs.bash
+        pkgs.nushell
+      ];
+
+      security.sudo-rs = {
+        enable = true;
+        extraConfig = ''
+          Defaults lecture=never
+          Defaults env_keep += "EDITOR PATH"
+        '';
+      };
     };
 }

@@ -88,7 +88,7 @@ def --wrapped oc [...passed_args] {
     } else {
         $passed_args | str join ' '
     }
-    zsh -i -c $"export PATH='($path_string)'; exec opencode ($args)"
+    bash -i -c $"export PATH='($path_string)'; exec opencode ($args)"
 }
 
 def --wrapped m [...args] {
