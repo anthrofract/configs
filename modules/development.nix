@@ -4,7 +4,6 @@ let
     { pkgs, ... }:
     {
       nixpkgs.overlays = [
-        inputs.fenix.overlays.default
         inputs.opencode.overlays.default
       ];
 
@@ -20,7 +19,8 @@ let
         pkgs.cargo-expand
         pkgs.cargo-nextest
         pkgs.claude-code
-        pkgs.fenix.stable.toolchain
+        pkgs.cargo
+        pkgs.clippy
         pkgs.go
         pkgs.golangci-lint
         pkgs.golangci-lint-langserver
@@ -35,6 +35,9 @@ let
         pkgs.pnpm
         pkgs.poetry
         pkgs.python3
+        pkgs.rust-analyzer
+        pkgs.rustc
+        pkgs.rustfmt
         pkgs.shellcheck
         pkgs.shfmt
         pkgs.stylua

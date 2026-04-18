@@ -1,14 +1,10 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    fenix = {
-      url = "github:nix-community/fenix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =
-    { nixpkgs, fenix, ... }:
+    { nixpkgs, ... }:
     let
       systems = [
         "aarch64-darwin"
@@ -21,36 +17,33 @@
           system:
           f {
             pkgs = nixpkgs.legacyPackages.${system};
-            rust-toolchain = fenix.packages.${system}.stable.withComponents [
-              "cargo"
-              "clippy"
-              "rust-analyzer"
-              "rust-src"
-              "rustc"
-              "rustfmt"
-            ];
           }
         );
     in
     {
       devShells = forAllSystems (
-        { pkgs, rust-toolchain }:
+        { pkgs }:
         {
           default = (pkgs.mkShell.override { stdenv = pkgs.llvmPackages.stdenv; }) {
             nativeBuildInputs = [
-              rust-toolchain
               pkgs.cargo-binstall
               pkgs.cargo-nextest
+              pkgs.cargo
+              pkgs.clippy
               pkgs.cmake
               pkgs.lld
               pkgs.openssl
               pkgs.pkg-config
+              pkgs.rust-analyzer
+              pkgs.rustc
+              pkgs.rustfmt
             ];
             BINDGEN_EXTRA_CLANG_ARGS = "-isystem ${pkgs.llvmPackages.libclang.lib}/lib/clang/${pkgs.lib.getVersion pkgs.clang}/include";
             LD_LIBRARY_PATH = "${pkgs.llvmPackages.stdenv.cc.cc.lib}/lib";
             LIBCLANG_PATH = "${pkgs.llvmPackages.libclang.lib}/lib";
             NIX_CFLAGS_COMPILE = "-Wno-error=int-conversion";
             CXXFLAGS = "-include cstdint";
+            RUST_SRC_PATH = "${pkgs.rustPlatform.rustLibSrc}";
             RUSTFLAGS = "-Clink-self-contained=no";
           };
         }
