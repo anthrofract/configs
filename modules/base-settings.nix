@@ -42,8 +42,8 @@
       security.sudo-rs = {
         enable = true;
         extraConfig = ''
-          Defaults lecture=never
           Defaults env_keep += "EDITOR PATH"
+          Defaults timestamp_timeout=480
         '';
       };
     };
