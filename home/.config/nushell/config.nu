@@ -58,22 +58,18 @@ if (which gpgconf | is-not-empty) {
 }
 
 # Defs
-def la [...pattern] {
-    let pattern = if ($pattern | is-empty) { 
-        ["."] 
-    } else { 
-        $pattern | each { |p| $p | path expand }
-    }
-    ls -la ...$pattern | sort-by type name
+def --wrapped la [...args] {
+    let paths = if ($args | is-empty) { ["."] } else { $args | each {|arg| $arg | path expand } }
+    ls --all ...$paths | sort-by type name
 }
 
-def lad [...pattern] {
-    let pattern = if ($pattern | is-empty) { 
-        ["."] 
-    } else { 
-        $pattern | each { |p| $p | path expand }
-    }
-    ls -ladt ...$pattern | sort-by type name
+def --wrapped lad [...args] {
+    let paths = if ($args | is-empty) { ["."] } else { $args | each {|arg| $arg | path expand } }
+    ls --all --du --long --threads ...$paths | sort-by type name
+}
+
+def --wrapped lade [...args] {
+    lad ...$args | sort-by type name | explore
 }
 
 def clc [] {
