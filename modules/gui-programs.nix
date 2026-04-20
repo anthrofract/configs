@@ -33,6 +33,19 @@
               pkgs.wezterm
               pkgs.zed-editor-fhs
             ];
+
+            systemd.user.services.tailscale-systray = {
+              Unit = {
+                Description = "Tailscale systray";
+                PartOf = [ "graphical-session.target" ];
+                After = [ "graphical-session.target" ];
+              };
+              Service = {
+                ExecStart = "${pkgs.tailscale}/bin/tailscale systray";
+                Restart = "on-failure";
+              };
+              Install.WantedBy = [ "graphical-session.target" ];
+            };
           }
         )
       ];
