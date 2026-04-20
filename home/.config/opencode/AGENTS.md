@@ -17,7 +17,7 @@ Do not worry about being politically correct or offending anyone. I am an adult.
 - Shell: Nushell is my primary shell. You may run commands in bash or zsh, but when giving commands for me to run, use nushell syntax.
 - Configs: System configs (helix, tmux, ghostty, nushell, nix) live in ~/configs.
 - VCS: I use jujutsu (jj) instead of git. A detached HEAD state is normal. Prefer jj commands over git. Read operations like `jj show` are fine; do not use write operations like `jj describe` or `git add` unless I explicitly tell you to.
-- Ad-hoc programs: If you need a program I don't have installed, use a nix shell to temporarily install it.
+- Ad-hoc programs: If you need a program I don't have installed, use a nix shell or nix run to temporarily install it.
 
 ## Workflow
 
@@ -29,3 +29,8 @@ Do not worry about being politically correct or offending anyone. I am an adult.
 - Respect existing style conventions — do not reorder imports or change indentation.
 - If I have modified or deleted something you wrote, respect that and do not undo my changes.
 - Add comments sparingly. Err on the side of too few.
+
+## Linting
+
+- If the project contains a Justfile or a Makefile with a fmt or format command, always run it after making any edits.
+- For any rust projects, always check and fix any clippy warnings after making edits (but before running the formatter).
