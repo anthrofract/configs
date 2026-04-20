@@ -42,5 +42,7 @@
     nix.gc.dates = "daily";
     nix.gc.automatic = true;
     nix.gc.options = "--delete-older-than 10d";
+
+    programs.nix-ld.enable = true;
   };
 }
