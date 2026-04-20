@@ -1,4 +1,4 @@
-{ self, inputs, ... }:
+{ self, ... }:
 {
   flake.commonModules.development =
     { ... }:
@@ -15,6 +15,7 @@
         self.commonModules.developmentMarkdown
         self.commonModules.developmentNix
         self.commonModules.developmentNodejs
+        self.commonModules.developmentOpencode
         self.commonModules.developmentProto
         self.commonModules.developmentPython
         self.commonModules.developmentRust
@@ -23,11 +24,7 @@
       ];
     };
 
-  flake.commonModules.developmentBase =
-    { ... }:
-    {
-      nixpkgs.overlays = [ inputs.opencode.overlays.default ];
-    };
+  flake.commonModules.developmentBase = { ... }: { };
 
   flake.commonModules.developmentBitcoin =
     { pkgs, ... }:
@@ -42,7 +39,6 @@
     {
       environment.systemPackages = [
         pkgs.claude-code
-        pkgs.opencode
       ];
     };
 
