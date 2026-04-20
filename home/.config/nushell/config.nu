@@ -109,7 +109,7 @@ def tl [] {
     # Must spawn as background task to avoid opencode stealing focus
     job spawn {
         tmux new-window
-        tmux send-keys "jjd" Enter
+        tmux send-keys "mj" Enter
         tmux split-window -h
 
         tmux select-window -t 1
@@ -138,7 +138,7 @@ alias lla = lsd --color always -lA --date relative --group-directories-first --g
 alias lt = lsd --color always -A --date relative --group-directories-first --tree
 alias lt2 = lsd --color always -A --date relative --group-directories-first --tree --depth 2
 alias lt3 = lsd --color always -A --date relative --group-directories-first --tree --depth 3
-alias jjd = ~/projects/jjdag/target/release/jjdag
+alias mj = ~/projects/majjit/target/release/majjit
 alias ns = nix-shell --command /usr/local/bin/nu
 alias nsc = nix develop ~/configs/shells/rust-c --command nu
 alias sha = hash sha256
