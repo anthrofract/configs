@@ -6,6 +6,12 @@
     "port": 4096,
     "hostname": "0.0.0.0"
   },
+  "permission": {
+    "external_directory": {
+      "~/.cargo/**": "allow",
+      "~/configs/**": "allow"
+    }
+  },
   "plugin": ["opencode-claude-auth@latest"],
   "provider": {
     "ollama": {
