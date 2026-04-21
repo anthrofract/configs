@@ -1,8 +1,10 @@
-{ inputs, ... }:
+{ self, ... }:
 {
   flake.nixosModules.guiPrograms =
     { ... }:
     {
+      imports = [ self.nixosModules.helium ];
+
       # Zoom
       programs.zoom-us.enable = true;
 
@@ -11,7 +13,6 @@
           { pkgs, ... }:
           {
             home.packages = [
-              inputs.helium.packages.${pkgs.stdenv.hostPlatform.system}.default
               pkgs.chromium
               pkgs.code-cursor-fhs
               pkgs.ghostty

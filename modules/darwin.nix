@@ -19,6 +19,7 @@ in
         self.commonModules.nixSettings
         self.commonModules.vcs
         self.darwinModules.cli
+        self.darwinModules.helium
       ];
 
       nix.enable = false; # For determinate nix
@@ -45,7 +46,6 @@ in
           "docker-desktop"
           "ghostty"
           "google-chrome"
-          "helium-browser"
           "iterm2"
           "karabiner-elements"
           "keepassxc"
