@@ -89,7 +89,11 @@ in
           opencode = prev.opencode.override {
             node_modules = final.callPackage opencodeNodeModules {
               opencodeSrc = inputs.opencode;
-              hash = "sha256-JjkS8fpYXHCs1h3nGtc8tdSXEMnp6o9aKvsbBx2gvVY=";
+              hash =
+                if final.stdenv.hostPlatform.isDarwin then
+                  "sha256-t16bjKN5f/GCRmIyjv9/RG7PsYLQjUxeAvqo3uG0l9c="
+                else
+                  "sha256-JjkS8fpYXHCs1h3nGtc8tdSXEMnp6o9aKvsbBx2gvVY=";
             };
           };
         })
