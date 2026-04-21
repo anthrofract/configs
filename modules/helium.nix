@@ -7,6 +7,21 @@
 let
   heliumExtensionUpdateUrl = "https://services.helium.imput.net/ext";
 
+  heliumPackageFor = pkgs: inputs.helium.packages.${pkgs.stdenv.hostPlatform.system}.default;
+
+  heliumX11PackageFor =
+    pkgs:
+    pkgs.symlinkJoin {
+      name = "helium-x11";
+      paths = [ (heliumPackageFor pkgs) ];
+      nativeBuildInputs = [ pkgs.makeWrapper ];
+      postBuild = ''
+        wrapProgram "$out/bin/helium" \
+          --set NIXOS_OZONE_WL 0 \
+          --add-flags "--ozone-platform=x11"
+      '';
+    };
+
   extensionIds = {
     darkReader = "eimadpbcbfnmbkopoojfekhnkhdbieeh";
     kagi = "cdglnehniifkbagbbombnjghhcihifij";
@@ -24,10 +39,10 @@ let
     ];
 
     ExtensionInstallAllowlist = [
-      extensionIds.ublockOrigin
+      extensionIds.darkReader
       extensionIds.kagi
       extensionIds.keepassxcBrowser
-      extensionIds.darkReader
+      extensionIds.ublockOrigin
       extensionIds.userAgentSwitcher
     ];
 
@@ -45,12 +60,7 @@ in
 {
   flake.commonModules.helium =
     { pkgs, ... }:
-    let
-      heliumPackage = inputs.helium.packages.${pkgs.stdenv.hostPlatform.system}.default;
-    in
     {
-      environment.systemPackages = [ heliumPackage ];
-
       home-manager.sharedModules = [
         (
           { lib, ... }:
@@ -88,20 +98,37 @@ in
     };
 
   flake.nixosModules.helium =
-    { ... }:
+    { config, pkgs, ... }:
     {
       imports = [ self.commonModules.helium ];
+
+      environment.systemPackages = [
+        (
+          # Chromium on native Wayland + NVIDIA whites out Google Meet effects.
+          if builtins.elem "nvidia" config.services.xserver.videoDrivers then
+            heliumX11PackageFor pkgs
+          else
+            heliumPackageFor pkgs
+        )
+      ];
 
       environment.etc."chromium/policies/managed/helium.json".text = builtins.toJSON policy;
     };
 
   flake.darwinModules.helium =
-    { config, lib, ... }:
+    {
+      config,
+      lib,
+      pkgs,
+      ...
+    }:
     let
       managedPolicyPlist = lib.generators.toPlist { escape = true; } policy;
     in
     {
       imports = [ self.commonModules.helium ];
+
+      environment.systemPackages = [ (heliumPackageFor pkgs) ];
 
       system.activationScripts.script.text = lib.mkAfter ''
         ${config.system.activationScripts.helium.text}

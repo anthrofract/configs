@@ -55,9 +55,6 @@
         enable32Bit = true;
       };
 
-      # Force some crappy Electron apps to use Wayland
-      environment.sessionVariables.NIXOS_OZONE_WL = "1";
-
       # Enable CUPS to print documents.
       services.printing.enable = true;
 
