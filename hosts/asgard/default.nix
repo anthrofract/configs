@@ -4,16 +4,16 @@
     nixosConfigurations.asgard = inputs.nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
-        self.nixosModules.asgardConfiguration
+        self.nixosModules.asgard-configuration
       ];
     };
 
-    nixosModules.asgardConfiguration =
+    nixosModules.asgard-configuration =
       { pkgs, ... }:
       {
         imports = [
           ./hardware.nix
-          self.nixosModules.guiHost
+          self.nixosModules.gui-host
         ];
 
         networking.hostName = "asgard";

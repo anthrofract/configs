@@ -16,8 +16,8 @@ in
         self.commonModules.development
         self.commonModules.env
         self.commonModules.ghostty
-        self.commonModules.homeSymlinks
-        self.commonModules.nixSettings
+        self.commonModules.home-symlinks
+        self.commonModules.nix-settings
         self.commonModules.vcs
         self.darwinModules.cli
         self.darwinModules.helium

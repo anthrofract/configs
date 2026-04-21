@@ -4,27 +4,26 @@
     { ... }:
     {
       imports = [
-        self.commonModules.developmentAgents
-        self.commonModules.developmentBase
-        self.commonModules.developmentBitcoin
-        self.commonModules.developmentDirenv
-        self.commonModules.developmentGo
-        self.commonModules.developmentGoogleCloud
-        self.commonModules.developmentKubernetes
-        self.commonModules.developmentLua
-        self.commonModules.developmentMarkdown
-        self.commonModules.developmentNix
-        self.commonModules.developmentNodejs
-        self.commonModules.developmentOpencode
-        self.commonModules.developmentProto
-        self.commonModules.developmentPython
-        self.commonModules.developmentRust
-        self.commonModules.developmentShell
-        self.commonModules.developmentToml
+        self.commonModules.development-agents
+        self.commonModules.development-bitcoin
+        self.commonModules.development-direnv
+        self.commonModules.development-go
+        self.commonModules.development-google-cloud
+        self.commonModules.development-kubernetes
+        self.commonModules.development-lua
+        self.commonModules.development-markdown
+        self.commonModules.development-nix
+        self.commonModules.development-nodejs
+        self.commonModules.development-opencode
+        self.commonModules.development-proto
+        self.commonModules.development-python
+        self.commonModules.development-rust
+        self.commonModules.development-shell
+        self.commonModules.development-toml
       ];
     };
 
-  flake.commonModules.developmentBitcoin =
+  flake.commonModules.development-bitcoin =
     { pkgs, ... }:
     {
       environment.systemPackages = [
@@ -32,7 +31,7 @@
       ];
     };
 
-  flake.commonModules.developmentAgents =
+  flake.commonModules.development-agents =
     { pkgs, ... }:
     {
       environment.systemPackages = [
@@ -40,7 +39,7 @@
       ];
     };
 
-  flake.commonModules.developmentDirenv =
+  flake.commonModules.development-direnv =
     { ... }:
     {
       home-manager.sharedModules = [
@@ -54,7 +53,7 @@
       ];
     };
 
-  flake.commonModules.developmentGo =
+  flake.commonModules.development-go =
     { pkgs, ... }:
     {
       environment.systemPackages = [
@@ -65,7 +64,7 @@
       ];
     };
 
-  flake.commonModules.developmentGoogleCloud =
+  flake.commonModules.development-google-cloud =
     { pkgs, ... }:
     {
       environment.systemPackages = [
@@ -75,7 +74,7 @@
       ];
     };
 
-  flake.commonModules.developmentKubernetes =
+  flake.commonModules.development-kubernetes =
     { pkgs, ... }:
     {
       environment.systemPackages = [
@@ -83,7 +82,7 @@
       ];
     };
 
-  flake.commonModules.developmentLua =
+  flake.commonModules.development-lua =
     { pkgs, ... }:
     {
       environment.systemPackages = [
@@ -92,7 +91,7 @@
       ];
     };
 
-  flake.commonModules.developmentMarkdown =
+  flake.commonModules.development-markdown =
     { pkgs, ... }:
     {
       environment.systemPackages = [
@@ -100,7 +99,7 @@
       ];
     };
 
-  flake.commonModules.developmentNix =
+  flake.commonModules.development-nix =
     { pkgs, ... }:
     {
       environment.systemPackages = [
@@ -109,7 +108,7 @@
       ];
     };
 
-  flake.commonModules.developmentNodejs =
+  flake.commonModules.development-nodejs =
     { pkgs, ... }:
     {
       environment.systemPackages = [
@@ -120,7 +119,7 @@
       ];
     };
 
-  flake.commonModules.developmentProto =
+  flake.commonModules.development-proto =
     { pkgs, ... }:
     {
       environment.systemPackages = [
@@ -128,7 +127,7 @@
       ];
     };
 
-  flake.commonModules.developmentPython =
+  flake.commonModules.development-python =
     { pkgs, ... }:
     {
       environment.systemPackages = [
@@ -139,7 +138,7 @@
       ];
     };
 
-  flake.commonModules.developmentRust =
+  flake.commonModules.development-rust =
     { lib, pkgs, ... }:
     {
       environment.systemPackages = [
@@ -157,7 +156,7 @@
       ];
     };
 
-  flake.commonModules.developmentShell =
+  flake.commonModules.development-shell =
     { pkgs, ... }:
     {
       environment.systemPackages = [
@@ -167,7 +166,7 @@
       ];
     };
 
-  flake.commonModules.developmentToml =
+  flake.commonModules.development-toml =
     { pkgs, ... }:
     {
       environment.systemPackages = [

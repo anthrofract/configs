@@ -4,16 +4,16 @@
     nixosConfigurations.valhalla = inputs.nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
-        self.nixosModules.valhallaConfiguration
+        self.nixosModules.valhalla-configuration
       ];
     };
 
-    nixosModules.valhallaConfiguration =
+    nixosModules.valhalla-configuration =
       { pkgs, ... }:
       {
         imports = [
           ./hardware.nix
-          self.nixosModules.guiHost
+          self.nixosModules.gui-host
           self.nixosModules.nvidia
           self.nixosModules.sunshine
         ];

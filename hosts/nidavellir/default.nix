@@ -4,16 +4,16 @@
     nixosConfigurations.nidavellir = inputs.nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
-        self.nixosModules.nidavellirConfiguration
+        self.nixosModules.nidavellir-configuration
       ];
     };
 
-    nixosModules.nidavellirConfiguration =
+    nixosModules.nidavellir-configuration =
       { pkgs, ... }:
       {
         imports = [
           ./hardware.nix
-          self.nixosModules.baseHost
+          self.nixosModules.base-host
           self.nixosModules.bitcoind
           self.nixosModules.electrs
           self.nixosModules.gitea

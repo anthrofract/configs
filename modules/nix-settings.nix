@@ -1,6 +1,6 @@
 { config, self, ... }:
 {
-  flake.commonModules.nixSettings = {
+  flake.commonModules.nix-settings = {
     nixpkgs.config.allowUnfree = true;
 
     nix.settings = {
@@ -36,8 +36,8 @@
     };
   };
 
-  flake.nixosModules.nixSettings = {
-    imports = [ self.commonModules.nixSettings ];
+  flake.nixosModules.nix-settings = {
+    imports = [ self.commonModules.nix-settings ];
 
     nix.gc.dates = "daily";
     nix.gc.automatic = true;

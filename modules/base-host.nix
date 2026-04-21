@@ -1,17 +1,17 @@
 { self, ... }:
 {
-  flake.nixosModules.baseHost =
+  flake.nixosModules.base-host =
     { ... }:
     {
       imports = [
         self.commonModules.env
-        self.commonModules.homeSymlinks
+        self.commonModules.home-symlinks
         self.commonModules.vcs
-        self.nixosModules.baseSettings
+        self.nixosModules.base-settings
         self.nixosModules.cli
         self.nixosModules.docker
-        self.nixosModules.homeManager
-        self.nixosModules.nixSettings
+        self.nixosModules.home-manager
+        self.nixosModules.nix-settings
         self.nixosModules.ssh
         self.nixosModules.syncthing
         self.nixosModules.tailscale

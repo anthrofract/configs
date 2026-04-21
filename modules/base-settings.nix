@@ -1,6 +1,6 @@
 { ... }:
 {
-  flake.nixosModules.baseSettings =
+  flake.nixosModules.base-settings =
     { pkgs, ... }:
     {
       boot.loader.efi.canTouchEfiVariables = true;

@@ -22,7 +22,7 @@ let
 
 in
 {
-  flake.commonModules.homeSymlinks = {
+  flake.commonModules.home-symlinks = {
     home-manager.sharedModules = [
       (
         { config, ... }:

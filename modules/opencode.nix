@@ -80,7 +80,7 @@ let
     };
 in
 {
-  flake.commonModules.developmentOpencode =
+  flake.commonModules.development-opencode =
     { pkgs, ... }:
     {
       nixpkgs.overlays = [

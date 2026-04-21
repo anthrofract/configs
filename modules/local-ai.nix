@@ -1,6 +1,6 @@
 { ... }:
 {
-  flake.nixosModules.localAi =
+  flake.nixosModules.local-ai =
     { pkgs, ... }:
     {
       # Ollama

@@ -1,6 +1,6 @@
 { self, ... }:
 {
-  flake.nixosModules.guiPrograms =
+  flake.nixosModules.gui-programs =
     { ... }:
     {
       imports = [

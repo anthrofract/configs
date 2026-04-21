@@ -1,6 +1,6 @@
 { ... }:
 {
-  flake.nixosModules.guiSystem =
+  flake.nixosModules.gui-system =
     { pkgs, ... }:
     {
       # Booting
