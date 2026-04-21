@@ -169,6 +169,9 @@ truncation_length = 5
 style = "blue"
 repo_root_style = "bold blue"
 
+[username]
+format = '[$user]($style) '
+
 [direnv]
 disabled = false
 
@@ -321,6 +324,7 @@ symbol = " "
 symbol = " "
 
 [hostname]
+format = '[$ssh_symbol$hostname]($style) '
 ssh_symbol = " "
 
 [java]
