@@ -48,3 +48,23 @@ update-boot: update boot
 # Drop determinate nix?
 darwin-switch: decrypt
   sudo darwin-rebuild switch --flake path:.#{{host}} --option extra-experimental-features 'nix-command flakes pipe-operators'
+
+[script('nu')]
+lily58-update:
+  with-env {
+    UPDATE_NIX_ATTR_PATH: "lily58-firmware"
+    UPDATE_WEST_ROOT: "packages/lily58-firmware/config"
+  } {
+    nix run path:.#lily58-update
+  }
+
+lily58-build:
+  nix build --no-link path:.#lily58-firmware
+
+[script('nu')]
+lily58-flash side='':
+  if "{{side}}" == "" {
+    nix run path:.#lily58-flash
+  } else {
+    nix run path:.#lily58-flash -- "{{side}}"
+  }

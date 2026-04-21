@@ -35,21 +35,41 @@
       url = "github:schembriaiden/helium-browser-nix-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    zmk-nix = {
+      url = "github:lilyinstarlight/zmk-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
     inputs:
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = builtins.attrNames inputs.zmk-nix.packages;
+
       imports =
         let
-          nixFiles =
+          nixFilesRecursive =
             dir:
             builtins.readDir dir
-            |> builtins.attrNames
-            |> builtins.filter (name: builtins.match ".*\\.nix" name != null);
+            |> builtins.mapAttrs (
+              name: type:
+              let
+                path = dir + "/${name}";
+              in
+              if type == "directory" then
+                nixFilesRecursive path
+              else if builtins.match ".*\\.nix" name != null then
+                [ path ]
+              else
+                [ ]
+            )
+            |> builtins.attrValues
+            |> builtins.concatLists;
         in
         (builtins.readDir ./hosts |> builtins.attrNames |> map (name: ./hosts/${name}))
-        ++ map (name: ./modules/${name}) (nixFiles ./modules)
-        ++ map (name: ./secrets/${name}) (nixFiles ./secrets);
+        ++ nixFilesRecursive ./modules
+        ++ nixFilesRecursive ./packages
+        ++ nixFilesRecursive ./secrets;
     };
 }

@@ -211,7 +211,8 @@
         "nixpkgs": "nixpkgs",
         "opencode": "opencode",
         "plasma-manager": "plasma-manager",
-        "xremap": "xremap"
+        "xremap": "xremap",
+        "zmk-nix": "zmk-nix"
       }
     },
     "systems": {
@@ -284,6 +285,26 @@
         "owner": "k0kubun",
         "ref": "v0.15.2",
         "repo": "xremap",
+        "type": "github"
+      }
+    },
+    "zmk-nix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1776560550,
+        "narHash": "sha256-Z1Aex6W9fi4HsylwXcu2oNoLBL4lneeq93ExdeDC98c=",
+        "owner": "lilyinstarlight",
+        "repo": "zmk-nix",
+        "rev": "10a92bc498508507fd05cb678a43dd44a572e782",
+        "type": "github"
+      },
+      "original": {
+        "owner": "lilyinstarlight",
+        "repo": "zmk-nix",
         "type": "github"
       }
     }
