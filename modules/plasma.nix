@@ -8,15 +8,6 @@
       programs.kdeconnect.enable = true;
 
       environment.systemPackages = [
-        pkgs.kdePackages.discover
-        pkgs.kdePackages.filelight
-        pkgs.kdePackages.isoimagewriter
-        pkgs.kdePackages.kcharselect
-        pkgs.kdePackages.kclock
-        pkgs.kdePackages.kcolorchooser
-        pkgs.kdePackages.kolourpaint
-        pkgs.kdePackages.ksystemlog
-        pkgs.kdePackages.partitionmanager
         pkgs.kdePackages.plasma-browser-integration
         pkgs.kdePackages.plasma-workspace-wallpapers
         pkgs.kdePackages.sddm-kcm

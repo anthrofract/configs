@@ -16,10 +16,29 @@
           { pkgs, ... }:
           {
             home.packages = [
+              (pkgs.kdePackages.ksystemlog.overrideAttrs (old: {
+                postInstall = (old.postInstall or "") + ''
+                  substituteInPlace $out/share/applications/org.kde.ksystemlog.desktop \
+                    --replace-quiet 'X-KDE-SubstituteUID=true' 'X-KDE-SubstituteUID=false'
+                '';
+              }))
               pkgs.chromium
-              pkgs.code-cursor-fhs
               pkgs.google-chrome
               pkgs.haruna
+              pkgs.kdePackages.ark
+              pkgs.kdePackages.discover
+              pkgs.kdePackages.dolphin
+              pkgs.kdePackages.filelight
+              pkgs.kdePackages.gwenview
+              pkgs.kdePackages.isoimagewriter
+              pkgs.kdePackages.kate
+              pkgs.kdePackages.kcharselect
+              pkgs.kdePackages.kclock
+              pkgs.kdePackages.kcolorchooser
+              pkgs.kdePackages.kolourpaint
+              pkgs.kdePackages.okular
+              pkgs.kdePackages.partitionmanager
+              pkgs.kdePackages.spectacle
               pkgs.keepassxc
               pkgs.krita
               pkgs.libreoffice-qt
@@ -32,9 +51,7 @@
               pkgs.timg
               pkgs.tor-browser
               pkgs.transmission_4-qt
-              pkgs.vscodium-fhs
               pkgs.wezterm
-              pkgs.zed-editor-fhs
             ];
 
             systemd.user.services.tailscale-systray = {

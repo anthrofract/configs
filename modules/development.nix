@@ -7,6 +7,7 @@
         self.commonModules.development-agents
         self.commonModules.development-bitcoin
         self.commonModules.development-direnv
+        self.commonModules.development-editors
         self.commonModules.development-go
         self.commonModules.development-google-cloud
         self.commonModules.development-kubernetes
@@ -50,6 +51,22 @@
             config.global.hide_env_diff = true;
           };
         }
+      ];
+    };
+
+  flake.commonModules.development-editors =
+    { ... }:
+    {
+      home-manager.sharedModules = [
+        (
+          { pkgs, ... }:
+          {
+            home.packages = [
+              pkgs.vscodium-fhs
+              pkgs.zed-editor-fhs
+            ];
+          }
+        )
       ];
     };
 
