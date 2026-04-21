@@ -73,7 +73,7 @@ def --wrapped lade [...args] {
 }
 
 def clc [] {
-    history | last 2 | get 0.command | cb
+    history | last 2 | get 0.command | c
 }
 
 # Need to run like this so opencode gets the proper PATH
