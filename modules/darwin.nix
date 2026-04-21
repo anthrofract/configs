@@ -15,6 +15,7 @@ in
         inputs.home-manager.darwinModules.home-manager
         self.commonModules.development
         self.commonModules.env
+        self.commonModules.ghostty
         self.commonModules.homeSymlinks
         self.commonModules.nixSettings
         self.commonModules.vcs
@@ -44,7 +45,6 @@ in
           "claude-code"
           "cursor"
           "docker-desktop"
-          "ghostty"
           "google-chrome"
           "iterm2"
           "karabiner-elements"
@@ -110,6 +110,7 @@ in
             home.username = ids.personal.userName;
             home.homeDirectory = "/Users/${ids.personal.userName}";
             programs.home-manager.enable = true;
+            programs.ghostty.settings.font-size = 15;
           }
         ];
       };

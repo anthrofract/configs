@@ -3,7 +3,10 @@
   flake.nixosModules.guiPrograms =
     { ... }:
     {
-      imports = [ self.nixosModules.helium ];
+      imports = [
+        self.commonModules.ghostty
+        self.nixosModules.helium
+      ];
 
       # Zoom
       programs.zoom-us.enable = true;
@@ -15,7 +18,6 @@
             home.packages = [
               pkgs.chromium
               pkgs.code-cursor-fhs
-              pkgs.ghostty
               pkgs.google-chrome
               pkgs.haruna
               pkgs.keepassxc
