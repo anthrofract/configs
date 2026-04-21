@@ -24,8 +24,6 @@
       ];
     };
 
-  flake.commonModules.developmentBase = { ... }: { };
-
   flake.commonModules.developmentBitcoin =
     { pkgs, ... }:
     {
