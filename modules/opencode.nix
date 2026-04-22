@@ -45,6 +45,7 @@ let
         bun install \
           --cpu="${bunCpu}" \
           --os="${bunOs}" \
+          --filter '!./' \
           --filter './' \
           --filter './packages/opencode' \
           --filter './packages/desktop' \
@@ -55,6 +56,13 @@ let
           --no-progress
         bun --bun ${opencodeSrc + "/nix/scripts/canonicalize-node-modules.ts"}
         bun --bun ${opencodeSrc + "/nix/scripts/normalize-bun-binaries.ts"}
+        for candidate in node_modules/.bun/prettier@*/node_modules/prettier; do
+          if [ -d "$candidate" ]; then
+            rel="''${candidate#node_modules/}"
+            ln -s "./$rel" node_modules/prettier
+            break
+          fi
+        done
         runHook postBuild
       '';
 
@@ -91,9 +99,9 @@ in
               opencodeSrc = inputs.opencode;
               hash =
                 if final.stdenv.hostPlatform.isDarwin then
-                  "sha256-t16bjKN5f/GCRmIyjv9/RG7PsYLQjUxeAvqo3uG0l9c="
+                  final.lib.fakeHash
                 else
-                  "sha256-JjkS8fpYXHCs1h3nGtc8tdSXEMnp6o9aKvsbBx2gvVY=";
+                  "sha256-9ugXY/2lla1hGOFXj8BX1o10P3EGAeQcVizi5JYX4lA=";
             };
           };
         })
