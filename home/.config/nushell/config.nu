@@ -57,7 +57,20 @@ if (which gpgconf | is-not-empty) {
     $env.SSH_AUTH_SOCK = (gpgconf --list-dirs agent-ssh-socket | str trim)
 }
 
-# Defs
+def --wrapped bat-pager [...args] {
+  with-env { BAT_PAGER: 'less -R' } {
+    bat --plain --paging=always ...$args
+  }
+}
+
+def --wrapped just-make [...args] {
+    if ("Justfile" | path exists) {
+        just ...$args
+    } else {
+        make ...$args
+    }
+}
+
 def --wrapped la [...args] {
     let paths = if ($args | is-empty) { ["."] } else { $args | each {|arg| $arg | path expand } }
     ls --all ...$paths | sort-by type name
@@ -72,12 +85,8 @@ def --wrapped lade [...args] {
     lad ...$args | sort-by type name | explore
 }
 
-def clc [] {
-    history | last 2 | get 0.command | c
-}
-
 # Need to run like this so opencode gets the proper PATH
-def --wrapped oc [...passed_args] {
+def --wrapped opencode-wrapped [...passed_args] {
     let path_string = $env.PATH | str join (char esep)
     let args = if ($passed_args | is-empty) {
         "--port"
@@ -87,134 +96,61 @@ def --wrapped oc [...passed_args] {
     bash -i -c $"export PATH='($path_string)'; exec opencode ($args)"
 }
 
-def --wrapped m [...args] {
-    if ("Justfile" | path exists) {
-        just ...$args
-    } else {
-        make ...$args
-    }
+def copy-last-command [] {
+    history | last 2 | get 0.command | c
 }
 
-def po [] { poweroff; tmux kill-server }
+def jj-init [] {
+    jj git init --colocate
+    jj bookmark create master
+}
 
-# Set up tmux layout
-def tl [] {
+def jj-fetch-new-trunk [] { jj git fetch; jj new 'trunk()' }
+
+def tmux-dev-layout [] {
     if ($env.TMUX? | is-empty) {
         print "Error: You must be inside a tmux session to run this."
         return
     }
 
-    print "Setting up tmux layout..."
+    print "Setting up tmux layout."
 
     # Must spawn as background task to avoid opencode stealing focus
     job spawn {
         tmux new-window
         tmux send-keys "mj" Enter
         tmux split-window -h
+        tmux send-keys "oc" Enter
+
+        tmux new-window
 
         tmux select-window -t 1
-        tmux send-keys "oc" Enter
-        tmux split-window -h
-        tmux send-keys "x" Enter
-
-        tmux select-pane -t 1
-        # Wait for opencode to finish loading to avoid it stealing focus
-        sleep 1sec
-        tmux select-pane -t 2
+        tmux send-keys "hx" Enter
     } | ignore
 }
 
-def --wrapped less [...args] {
-  with-env { BAT_PAGER: 'less -R' } {
-    bat --plain --paging=always ...$args
-  }
-}
-
-# Aliases
+alias bp = bat-pager
 alias cat = bat --plain --paging=never
+alias clc = copy-last-command
 alias ff = fastfetch
-alias ll = lsd --color always -1 --group-directories-first
-alias lla = lsd --color always -lA --date relative --group-directories-first --git
+alias ghb = gh browse
+alias ghpr = gh pr view --web (jbr)
+alias ghprnd = gh pr new --web --draft --head (jbr)
+alias ghrpn = gh pr new --web --head (jbr)
+alias jbr = jj log -r "heads(::@ & bookmarks())" --no-graph -T 'bookmarks.map(|b| b.name())'
+alias jclone = jj git clone --colocate
+alias jnM = jj-fetch-new-trunk
 alias lt = lsd --color always -A --date relative --group-directories-first --tree
 alias lt2 = lsd --color always -A --date relative --group-directories-first --tree --depth 2
 alias lt3 = lsd --color always -A --date relative --group-directories-first --tree --depth 3
+alias m = just-make
 alias mj = ~/projects/majjit/target/release/majjit
 alias ns = nix-shell --command nu
 alias nsc = nix develop ~/configs/shells/rust-c --command nu
+alias oc = opencode-wrapped
 alias sha = hash sha256
-alias t = tms ~/scratch
-alias v = nvim
-alias vc = nvim --clean
+alias t = tmux-dev-layout
 alias x = hx
-alias wat = hwatch --interval 2 --differences=word --color --exec nu --login -c
-alias wat1 = hwatch --interval 1 --differences=word --color --exec nu --login -c
-alias wat10 = hwatch --interval 10 --differences=word --color --exec nu --login -c
-alias wat5 = hwatch --interval 5 --differences=word --color --exec nu --login -c
-alias valhalla = mosh valhalla
-alias asgard = mosh asgard
-alias work-mbp = mosh work-mbp
-alias nidavellir = mosh nidavellir
-
-# Jj defs
-def ji [] {
-    jj git init --colocate
-    jj bookmark create master
-}
-
-def jnM [] { jj git fetch; jj new 'trunk()' }
-
-# Jj aliases
-alias j = jj status
-alias ja = jj abandon
-alias jab = jj abandon -r @-
-alias jb = jj bookmark
-alias jbr = jj log -r "heads(::@ & bookmarks())" --no-graph -T 'bookmarks.map(|b| b.name())'
-alias jbc = jj bookmark create
-alias jbl = jj bookmark list
-alias jbmt = jj bookmark move --from 'heads(::@- & bookmarks())' --to @
-alias jbs = jj bookmark set
-alias jc = jj commit
-alias jclone = jj git clone --colocate
-alias jcm = jj commit -m
-alias jd = jj diff
-alias jdb = jd -r @-
-alias jdr = jj describe
-alias jdrb = jj describe -r @-
-alias jdrm = jj describe -m
-alias jdrmb = jj describe -r @- -m
-alias je = jj edit
-alias jeb = jj edit @-
-alias jef = jj edit --ignore-immutable
-alias jf = jj git fetch
-alias jg = jj git
-alias jjs = jj --stat
-alias jl = jj log --revisions 'all()' --limit 10
-alias jla = jj log --revisions 'all()'
-alias jlas = jj log --revisions 'all()' --stat
-alias jls = jj log --revisions 'all()' --limit 10 --stat
-alias jn = jj new
-alias jnb = jj new --insert-before @ --no-edit
-alias jnm = jj new 'trunk()'
-alias jp = jj git push
-alias jrm = jj rebase -s @ -d 'trunk()'
-alias js = jj squash
-alias jsf = jj squash --ignore-immutable
-alias jsi = jj squash --interactive
-alias ju = jj undo
-
-# Github aliases
-alias pr = gh pr view --web (jbr)
-alias prnew = gh pr new --head (jbr)
-alias prnewdraft = gh pr new --draft --head (jbr)
-alias prchecks = gh pr checks --web (jbr)
-alias prready = gh pr ready (jbr)
-alias prdraft = gh pr ready --undo (jbr)
-alias predit = gh pr edit (jbr)
-alias prcomment = gh pr comment (jbr)
-alias prreview = gh pr review (jbr)
-alias browse = gh browse
-alias browseb = gh browse --branch (jbr)
-alias repo = gh repo view --web
 
 # Direnv
 $env.config.hooks.env_change.PWD = $env.config.hooks.env_change.PWD? | default []
@@ -227,10 +163,6 @@ $env.config.hooks.env_change.PWD ++= [{||
   # If direnv changes the PATH, it will become a string and we need to re-convert it to a list
   $env.PATH = do (env-conversions).path.from_string $env.PATH
 }]
-
-# Create vendor autoload directory
-let autoload = ($nu.data-dir | path join "vendor/autoload")
-if not ($autoload | path exists) { mkdir $autoload }
 
 # Zoxide
 zoxide init nushell | save -f ($nu.data-dir | path join "vendor/autoload/zoxide.nu")

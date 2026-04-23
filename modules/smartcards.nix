@@ -3,6 +3,7 @@
   flake.nixosModules.smartcards =
     { pkgs, ... }:
     {
+      # TODO: switch to sequoia?
       environment.systemPackages = [
         pkgs.ccid
         pkgs.gnupg

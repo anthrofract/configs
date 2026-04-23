@@ -20,7 +20,6 @@ in
         pkgs.gh
         pkgs.gnumake
         pkgs.gnupg
-        pkgs.hwatch
         pkgs.inetutils
         pkgs.jc
         pkgs.jq

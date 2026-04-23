@@ -36,8 +36,6 @@
                 bind-key - split-window -v -c "#{pane_current_path}"
                 bind-key _ split-window -vb -c "#{pane_current_path}"
 
-                bind-key Enter if-shell "[ $(tmux list-windows | wc -l) -eq 1 ]" "new-window" "last-window"
-
                 bind-key o display-popup -E "${pkgs.nushell}/bin/nu -l -c 'tms'"
                 bind-key a run-shell "${pkgs.nushell}/bin/nu -l -c 'tms ~/scratch'"
 
@@ -47,8 +45,7 @@
                 bind-key x kill-pane
                 bind-key X kill-session
 
-                bind-key -T copy-mode-vi v send -X begin-selection
-                bind-key -T copy-mode-vi V send -X select-line
+                bind-key -T copy-mode-vi x send -X select-line
                 bind-key -T copy-mode-vi WheelUpPane send-keys -X -N 2 scroll-up
                 bind-key -T copy-mode-vi WheelDownPane send-keys -X -N 2 scroll-down
 
