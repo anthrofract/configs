@@ -1,4 +1,4 @@
-{ self, ... }:
+{ self, inputs, ... }:
 {
   flake.commonModules.development =
     { ... }:
@@ -7,7 +7,6 @@
         self.commonModules.development-agents
         self.commonModules.development-bitcoin
         self.commonModules.development-direnv
-        self.commonModules.development-editors
         self.commonModules.development-go
         self.commonModules.development-google-cloud
         self.commonModules.development-kubernetes
@@ -15,7 +14,6 @@
         self.commonModules.development-markdown
         self.commonModules.development-nix
         self.commonModules.development-nodejs
-        self.commonModules.development-opencode
         self.commonModules.development-proto
         self.commonModules.development-python
         self.commonModules.development-rust
@@ -36,6 +34,16 @@
     { pkgs, ... }:
     {
       environment.systemPackages = [
+        (inputs.opencode.packages.${pkgs.stdenv.hostPlatform.system}.opencode.overrideAttrs (old: {
+          preBuild = (old.preBuild or "") + ''
+            substituteInPlace packages/opencode/src/cli/cmd/generate.ts \
+              --replace-fail 'const prettier = await import("prettier")' 'const prettier: any = { format: async (s: string) => s }' \
+              --replace-fail 'const babel = await import("prettier/plugins/babel")' 'const babel = {}' \
+              --replace-fail 'const estree = await import("prettier/plugins/estree")' 'const estree = {}'
+            substituteInPlace package.json \
+              --replace-fail '"packageManager": "bun@1.3.13"' '"packageManager": "bun@${pkgs.bun.version}"'
+          '';
+        }))
         pkgs.claude-code
       ];
     };
@@ -51,22 +59,6 @@
             config.global.hide_env_diff = true;
           };
         }
-      ];
-    };
-
-  flake.commonModules.development-editors =
-    { ... }:
-    {
-      home-manager.sharedModules = [
-        (
-          { pkgs, ... }:
-          {
-            home.packages = [
-              pkgs.vscodium-fhs
-              pkgs.zed-editor-fhs
-            ];
-          }
-        )
       ];
     };
 

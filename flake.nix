@@ -27,7 +27,7 @@
     };
 
     opencode = {
-      url = "github:anomalyco/opencode/v1.14.20";
+      url = "github:anomalyco/opencode/v1.14.21";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -45,7 +45,10 @@
   outputs =
     inputs:
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
-      systems = builtins.attrNames inputs.zmk-nix.packages;
+      systems = [
+        "aarch64-darwin"
+        "x86_64-linux"
+      ];
 
       imports =
         let
