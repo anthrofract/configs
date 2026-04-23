@@ -31,7 +31,7 @@
       environment.systemPackages = [
         (pkgs.writeTextDir "share/sddm/themes/breeze/theme.conf.user" ''
           [General]
-          background=${pkgs.kdePackages.plasma-workspace-wallpapers}/share/wallpapers/Cluster/contents/images/3840x2160.png
+          background=${pkgs.kdePackages.plasma-workspace-wallpapers}/share/wallpapers/Path/contents/images/2560x1440.jpg
         '')
         pkgs.wayland-utils
         pkgs.wl-clipboard-rs
