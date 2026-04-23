@@ -22,6 +22,7 @@ hidden = false
 cursor-line = "hint"
 
 [editor.lsp]
+auto-signature-help = false
 display-progress-messages = true
 
 [editor.soft-wrap]
