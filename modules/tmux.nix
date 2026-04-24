@@ -27,9 +27,22 @@
                 set-option -g set-titles on
                 set-option -g set-titles-string "#S / #W"
                 set-option -sa terminal-overrides ",xterm-256color:Tc"
+                set-option -ga terminal-features ",xterm-ghostty:extkeys"
                 set-option -ga terminal-features "*:hyperlinks"
+
                 set-option -gq allow-passthrough on
+                set-option -g extended-keys on
                 set-option -g renumber-windows on
+
+                bind-key -n C-1 select-window -t 1
+                bind-key -n C-2 select-window -t 2
+                bind-key -n C-3 select-window -t 3
+                bind-key -n C-4 select-window -t 4
+                bind-key -n C-5 select-window -t 5
+                bind-key -n C-6 select-window -t 6
+                bind-key -n C-7 select-window -t 7
+                bind-key -n C-8 select-window -t 8
+                bind-key -n C-9 select-window -t 9
 
                 bind-key \\ split-window -h -c "#{pane_current_path}"
                 bind-key | split-window -hb -c "#{pane_current_path}"
