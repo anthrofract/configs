@@ -117,15 +117,20 @@ def tmux-dev-layout [] {
 
     # Must spawn as background task to avoid opencode stealing focus
     job spawn {
+        # Window 2, majjit and opencode
         tmux new-window
-        tmux send-keys "mj" Enter
-        tmux split-window -h
         tmux send-keys "oc" Enter
+        tmux split-window -hb
+        tmux send-keys "mj" Enter
 
+        # Window 3, two shells
         tmux new-window
+        tmux split-window -h
 
+        # Window 1, helix with two windows
         tmux select-window -t 1
         tmux send-keys "hx" Enter
+        tmux send-keys " wv"
     } | ignore
 }
 
