@@ -1,7 +1,7 @@
 { config, ... }:
 let
-  id = config.flake.secrets.identities.personal;
-  hosts = config.flake.secrets.hosts;
+  id = config.secrets.identities.personal;
+  hosts = config.secrets.hosts;
 in
 {
   flake.nixosModules.syncthing =

@@ -1,6 +1,6 @@
 { config, inputs, ... }:
 let
-  id = config.flake.secrets.identities.personal;
+  id = config.secrets.identities.personal;
 in
 {
   flake.nixosModules.xremap =

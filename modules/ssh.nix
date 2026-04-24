@@ -1,6 +1,6 @@
 { config, ... }:
 let
-  hostNames = config.flake.secrets.hosts |> builtins.attrNames;
+  hostNames = config.secrets.hosts |> builtins.attrNames;
   foreignHostPattern = ([ "*" ] ++ map (host: "!${host}") hostNames) |> builtins.concatStringsSep " ";
 in
 {

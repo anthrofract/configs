@@ -1,7 +1,7 @@
 { config, ... }:
 let
-  id = config.flake.secrets.identities.personal;
-  authorizedKeys = config.flake.secrets.authorizedKeys;
+  id = config.secrets.identities.personal;
+  authorizedKeys = config.secrets.authorizedKeys;
 in
 {
   flake.nixosModules.user =

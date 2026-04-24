@@ -16,13 +16,13 @@ fmt:
 
 [script('nu')]
 decrypt:
-  glob secrets/*.age | each {|f|
+  glob config/*.age | each {|f|
     rage --decrypt --identity {{ssh-key}} --output ($f | str replace '.age' '') $f
   } | ignore
 
 [script('nu')]
 encrypt:
-  glob secrets/*.nix | each {|f|
+  glob config/*.nix | each {|f|
     rage --armor --recipients-file {{ssh-key}}.pub --output ($f ++ ".age") $f
   } | ignore
 

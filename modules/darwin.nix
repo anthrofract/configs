@@ -5,7 +5,7 @@
   ...
 }:
 let
-  ids = config.flake.secrets.identities;
+  ids = config.secrets.identities;
 in
 {
   config.flake.darwinModules.darwin =
@@ -97,7 +97,7 @@ in
       system.primaryUser = ids.personal.userName;
       users.users.${ids.personal.userName} = {
         home = "/Users/${ids.personal.userName}";
-        openssh.authorizedKeys.keys = config.flake.secrets.authorizedKeys;
+        openssh.authorizedKeys.keys = config.secrets.authorizedKeys;
       };
 
       home-manager = {

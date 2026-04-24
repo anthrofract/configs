@@ -1,6 +1,6 @@
 { config, ... }:
 let
-  ids = config.flake.secrets.identities;
+  ids = config.secrets.identities;
 in
 {
   flake.commonModules.vcs =

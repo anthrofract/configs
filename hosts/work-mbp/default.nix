@@ -5,7 +5,7 @@
   ...
 }:
 {
-  flake.darwinConfigurations.${config.flake.secrets.hosts.work-mbp.localHostName} =
+  flake.darwinConfigurations.${config.secrets.hosts.work-mbp.localHostName} =
     inputs.nix-darwin.lib.darwinSystem
       {
         system = "aarch64-darwin";

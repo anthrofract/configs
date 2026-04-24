@@ -71,8 +71,8 @@
             |> builtins.concatLists;
         in
         (builtins.readDir ./hosts |> builtins.attrNames |> map (name: ./hosts/${name}))
+        ++ nixFilesRecursive ./config
         ++ nixFilesRecursive ./modules
-        ++ nixFilesRecursive ./packages
-        ++ nixFilesRecursive ./secrets;
+        ++ nixFilesRecursive ./packages;
     };
 }

@@ -7,6 +7,10 @@
 !flake.lock
 !flake.nix
 
+!config/
+config/*
+!config/*.age
+
 !home/
 !home/**
 
@@ -18,7 +22,3 @@
 
 !packages/
 !packages/**
-
-!secrets/
-!secrets/*.age
-secrets/*

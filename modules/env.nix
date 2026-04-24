@@ -1,6 +1,6 @@
 { config, ... }:
 let
-  tokens = config.flake.secrets.tokens;
+  tokens = config.secrets.tokens;
 
   # Env vars made available in every shell.
   # POSIX shells pick them up via ~/.nix-profile/etc/profile.d/hm-session-vars.sh.

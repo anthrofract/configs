@@ -27,7 +27,7 @@
       ];
 
       access-tokens = [
-        "github.com=${config.flake.secrets.tokens.github}"
+        "github.com=${config.secrets.tokens.github}"
       ];
 
       http-connections = 50;
