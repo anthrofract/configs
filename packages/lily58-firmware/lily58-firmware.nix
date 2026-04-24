@@ -19,7 +19,7 @@ in
           "-DCONFIG_ZMK_MOUSE=y"
         ];
 
-        zephyrDepsHash = "sha256-yZd+C2k9Kb1TKzXS6rR3/Jcs3UAGeKmq0YwdylODRgs=";
+        zephyrDepsHash = "sha256-14G3J2LTnsu8L47afajd9SICaMR49FOcwQtgKIS5/iY=";
 
         meta = {
           description = "ZMK firmware for Lily58";
