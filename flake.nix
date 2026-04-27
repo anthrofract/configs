@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.11";
     flake-parts.url = "github:hercules-ci/flake-parts";
 
     home-manager = {
@@ -27,7 +28,7 @@
     };
 
     opencode = {
-      url = "github:anomalyco/opencode/v1.14.22";
+      url = "github:anomalyco/opencode/v1.14.28";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
