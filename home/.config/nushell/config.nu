@@ -85,17 +85,6 @@ def --wrapped lade [...args] {
     lad ...$args | sort-by type name | explore
 }
 
-# Need to run like this so opencode gets the proper PATH
-def --wrapped opencode-wrapped [...passed_args] {
-    let path_string = $env.PATH | str join (char esep)
-    let args = if ($passed_args | is-empty) {
-        "--port"
-    } else {
-        $passed_args | str join ' '
-    }
-    bash -i -c $"export PATH='($path_string)'; exec opencode ($args)"
-}
-
 def copy-last-command [] {
     history | last 2 | get 0.command | c
 }
@@ -119,7 +108,7 @@ def tmux-dev-layout [] {
     job spawn {
         # Window 2, majjit and opencode
         tmux new-window
-        tmux send-keys "oc" Enter
+        tmux send-keys "opencode" Enter
         tmux split-window -hb
         tmux send-keys "mj" Enter
 
