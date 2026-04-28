@@ -28,6 +28,7 @@ let
     keepassxcBrowser = "oboonakemofpalcgghocfoadofidjkkk";
     ublockOrigin = "blockjmkbacgjkknlgpkjjiijinjdanf";
     userAgentSwitcher = "bhchdcejhohfmigjafbampogmaanbfkg";
+    vimiumC = "hfjbmagddngcpeloejdejnfgbamkjaeg";
   };
 
   policy = {
@@ -36,6 +37,7 @@ let
       "${extensionIds.kagi};${heliumExtensionUpdateUrl}"
       "${extensionIds.keepassxcBrowser};${heliumExtensionUpdateUrl}"
       "${extensionIds.userAgentSwitcher};${heliumExtensionUpdateUrl}"
+      "${extensionIds.vimiumC};${heliumExtensionUpdateUrl}"
     ];
 
     ExtensionInstallAllowlist = [
@@ -44,6 +46,7 @@ let
       extensionIds.keepassxcBrowser
       extensionIds.ublockOrigin
       extensionIds.userAgentSwitcher
+      extensionIds.vimiumC
     ];
 
     ExtensionInstallSources = [ "${lib.removeSuffix "/ext" heliumExtensionUpdateUrl}/*" ];
