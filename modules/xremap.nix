@@ -30,6 +30,14 @@ in
 
       services.xremap = {
         enable = true;
+        extraArgs = [
+          "--ignore"
+          ''"Razer Razer Basilisk V3"''
+          "--ignore"
+          ''"Razer Razer Basilisk V3 Keyboard"''
+          "--ignore"
+          ''"Yubico YubiKey OTP+FIDO+CCID"''
+        ];
         serviceMode = "user";
         userName = id.userName;
         withKDE = true;
@@ -39,7 +47,7 @@ in
             {
               name = "Mac-like shortcuts";
               application = {
-                not = [ "com.mitchellh.ghostty" ];
+                not = [ "/(?i)ghostty/" ];
               };
               remap = {
                 "Super-c" = "C-c";
