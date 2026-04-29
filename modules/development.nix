@@ -25,12 +25,6 @@
   flake.commonModules.development-bitcoin =
     { pkgs, ... }:
     {
-      nixpkgs.overlays = [
-        (_final: prev: {
-          bitcoind = inputs.nixpkgs-stable.legacyPackages.${prev.stdenv.hostPlatform.system}.bitcoind;
-        })
-      ];
-
       environment.systemPackages = [
         pkgs.bitcoind
       ];
