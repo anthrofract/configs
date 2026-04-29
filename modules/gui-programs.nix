@@ -52,6 +52,7 @@
               pkgs.tor-browser
               pkgs.transmission_4-qt
               pkgs.wezterm
+              pkgs.zed-editor-fhs
             ];
 
             systemd.user.services.tailscale-systray = {
