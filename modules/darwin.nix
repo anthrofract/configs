@@ -110,7 +110,7 @@ in
             home.username = ids.personal.userName;
             home.homeDirectory = "/Users/${ids.personal.userName}";
             programs.home-manager.enable = true;
-            programs.ghostty.settings.font-size = 15;
+            programs.ghostty.settings.font-size = 16;
           }
         ];
       };

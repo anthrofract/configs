@@ -5,7 +5,7 @@
     {
       home-manager.sharedModules = [
         (
-          { pkgs, ... }:
+          { lib, pkgs, ... }:
           {
             programs.ghostty = {
               enable = true;
@@ -13,7 +13,7 @@
               settings = {
                 confirm-close-surface = false;
                 font-family = "JetBrains Mono";
-                font-size = 13;
+                font-size = lib.mkDefault 13;
                 initial-command = "${pkgs.nushell}/bin/nu -il -c \"tms ~/configs\"";
                 maximize = true;
                 mouse-scroll-multiplier = 1;
