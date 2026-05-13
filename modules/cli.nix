@@ -32,6 +32,7 @@ in
         pkgs.moreutils
         pkgs.mosh
         pkgs.neovim
+        pkgs.nh
         pkgs.nushell
         pkgs.openssl
         pkgs.ouch

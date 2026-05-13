@@ -26,26 +26,17 @@ encrypt:
     rage --armor --recipients-file {{ssh-key}}.pub --output ($f ++ ".age") $f
   } | ignore
 
-test: decrypt diff
-  sudo nixos-rebuild test --flake path:.#{{host}}
+test: decrypt
+  nh os test path:. -H {{host}}
 
-switch: decrypt diff
-  sudo nixos-rebuild switch --flake path:.#{{host}}
+switch: decrypt
+  nh os switch path:. -H {{host}}
 
-boot: decrypt diff
-  sudo nixos-rebuild boot --flake path:.#{{host}}
+boot: decrypt
+  nh os boot path:. -H {{host}}
 
 update:
   nix flake update
-
-[script('nu')]
-diff:
-  let new_system = match (uname | get kernel-name) {
-    "Linux" => (nix build --no-link --print-out-paths path:.#nixosConfigurations.{{host}}.config.system.build.toplevel | str trim),
-    "Darwin" => (nix build --no-link --print-out-paths path:.#darwinConfigurations.{{host}}.system --option extra-experimental-features 'nix-command flakes pipe-operators' | str trim),
-    _ => { print "Unsupported OS"; exit 1 }
-  }
-  dix /run/current-system $new_system
 
 update-test: update test
 
@@ -55,8 +46,8 @@ update-boot: update boot
 
 # TODO: we shouldn't need to specify the pipe-operators feature here.
 # Drop determinate nix?
-darwin-switch: decrypt diff
-  sudo darwin-rebuild switch --flake path:.#{{host}} --option extra-experimental-features 'nix-command flakes pipe-operators'
+darwin-switch: decrypt
+  nh darwin switch path:. -H {{host}} -- --option extra-experimental-features 'nix-command flakes pipe-operators'
 
 [script('nu')]
 lily58-update:

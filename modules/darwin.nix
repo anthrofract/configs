@@ -17,10 +17,10 @@ in
         self.commonModules.env
         self.commonModules.ghostty
         self.commonModules.home-symlinks
-        self.commonModules.nix-settings
         self.commonModules.vcs
         self.darwinModules.cli
         self.darwinModules.helium
+        self.darwinModules.nix-settings
       ];
 
       nix.enable = false; # For determinate nix

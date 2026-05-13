@@ -20,7 +20,7 @@ We can now install the full system. These commands will clone the repo, decrypt 
 
 ```bash
 cd ~
-nix-shell -p git jujutsu just nushell rage --extra-experimental-features 'nix-command flakes pipe-operators'
+nix-shell -p git jujutsu just nh nushell rage --extra-experimental-features 'nix-command flakes pipe-operators'
 jj git clone --colocate https://github.com/anthrofract/configs.git
 cd configs
 just --set host "<host>" boot
