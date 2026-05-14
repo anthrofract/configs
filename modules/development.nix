@@ -33,17 +33,10 @@
   flake.commonModules.development-agents =
     { pkgs, ... }:
     {
+      nixpkgs.overlays = [ inputs.opencode.overlays.default ];
+
       environment.systemPackages = [
-        (inputs.opencode.packages.${pkgs.stdenv.hostPlatform.system}.opencode.overrideAttrs (old: {
-          preBuild = (old.preBuild or "") + ''
-            substituteInPlace packages/opencode/src/cli/cmd/generate.ts \
-              --replace-fail 'const prettier = await import("prettier")' 'const prettier: any = { format: async (s: string) => s }' \
-              --replace-fail 'const babel = await import("prettier/plugins/babel")' 'const babel = {}' \
-              --replace-fail 'const estree = await import("prettier/plugins/estree")' 'const estree = {}'
-            substituteInPlace package.json \
-              --replace-fail '"packageManager": "bun@1.3.13"' '"packageManager": "bun@${pkgs.bun.version}"'
-          '';
-        }))
+        pkgs.opencode
         pkgs.claude-code
       ];
     };
