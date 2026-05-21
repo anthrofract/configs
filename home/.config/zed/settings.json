@@ -7,26 +7,41 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "project_panel": {
+    "dock": "left"
+  },
+  "outline_panel": {
+    "dock": "left"
+  },
+  "collaboration_panel": {
+    "dock": "left"
+  },
+  "git_panel": {
+    "dock": "left"
+  },
   "scroll_sensitivity": 3.0,
   "edit_predictions": {
     "provider": "copilot"
   },
   "agent": {
-    "default_profile": "ask",
-    "dock": "left",
+    "limit_content_width": false,
+    "max_content_width": 2160.0,
+    "default_width": 640.0,
+    "flexible": true,
+    "default_profile": "write",
+    "dock": "right",
     "default_model": {
-      "provider": "copilot_chat",
-      "model": "gpt-5.3-codex"
+      "enable_thinking": true,
+      "provider": "openai-subscribed",
+      "model": "gpt-5.5"
     },
     "favorite_models": [],
     "model_parameters": [],
     "enable_feedback": false
   },
   "agent_servers": {
-    "OpenCode": {
-      "type": "custom",
-      "command": "opencode",
-      "args": ["acp", "--port", "0"]
+    "opencode": {
+      "type": "registry"
     }
   },
   "auto_install_extensions": {
