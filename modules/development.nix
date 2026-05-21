@@ -36,19 +36,12 @@
       nixpkgs.overlays = [ inputs.opencode.overlays.default ];
 
       environment.systemPackages = [
-        (
-          (pkgs.opencode.override {
-            node_modules = pkgs.opencode.node_modules.override {
-              hash = "sha256-1KQFagCMMfSdZJLPAr0b17V66Z2ITcaQis4Pa2jC1hE=";
-            };
-          }).overrideAttrs
-          (old: {
-            preBuild = (old.preBuild or "") + ''
-              substituteInPlace package.json \
-                --replace-fail '"packageManager": "bun@1.3.14"' '"packageManager": "bun@${pkgs.bun.version}"'
-            '';
-          })
-        )
+        (pkgs.opencode.overrideAttrs (old: {
+          preBuild = (old.preBuild or "") + ''
+            substituteInPlace package.json \
+              --replace-fail '"packageManager": "bun@1.3.14"' '"packageManager": "bun@${pkgs.bun.version}"'
+          '';
+        }))
         pkgs.claude-code
       ];
     };
