@@ -37,11 +37,15 @@
 
       environment.systemPackages = [
         (pkgs.opencode.overrideAttrs (old: {
+          node_modules = old.node_modules.override {
+            hash = "sha256-pbVW7cOLT76Q7f++xaYYrwuN7eS6FRen80xoaVog3M4=";
+          };
           preBuild = (old.preBuild or "") + ''
             substituteInPlace package.json \
               --replace-fail '"packageManager": "bun@1.3.14"' '"packageManager": "bun@${pkgs.bun.version}"'
           '';
         }))
+
         pkgs.claude-code
       ];
     };
