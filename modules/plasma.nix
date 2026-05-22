@@ -127,10 +127,9 @@
                           "applications:slack.desktop"
                           "applications:signal.desktop"
                           "applications:spotify.desktop"
-                          "applications:obsidian.desktop"
+                          "applications:org.keepassxc.KeePassXC.desktop"
                           "applications:org.kde.dolphin.desktop"
                           "applications:systemsettings.desktop"
-                          "applications:org.keepassxc.KeePassXC.desktop"
                           "applications:steam.desktop"
                         ];
                         behavior = {
