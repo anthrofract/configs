@@ -34,3 +34,12 @@ Do not worry about being politically correct or offending anyone. I am an adult.
 
 - If the project contains a Justfile or a Makefile with a fmt or format command, always run it after making any edits.
 - For any rust projects, always check and fix any clippy warnings after making edits (but before running the formatter).
+
+## Code review
+
+If I ask for a code review, follow these steps:
+
+1. Identify the changes I ask to be reviewed. If I give a branch, look at the diff of that branch compared to where it branches off main or whatever parent branch. Look at the changes as a whole, not commit by commit. If I give a commit or change id, just look at that specific change. Be sure to check what branch or commit the repo is currently on. Using either git or jj is fine for all this, whatever is easiest.
+2. Read the given changes, and analyze it within the larger context of the repo, not in isolation. Feel free to look around the rest of the repo for context.
+3. Before reviewing any code, first give a thorough and detailed summary of the changes to me, so I can understand what these changes do. Don't assume I'm familar with the parts of the codebase or concepts that the changes deal with.
+4. After you give the summary, code review the changes. Be thorough, but concise. Always give file paths and line numbers when talking about specific parts of the code. Look out for potential bugs, security issues, lacking test coverage, bad styling, things that could be deduped or cleaned up, and anything else that comes to mind.
