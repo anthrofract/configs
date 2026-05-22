@@ -1,15 +1,20 @@
 { ... }:
 {
   flake.commonModules.ghostty =
-    { ... }:
+    { pkgs, ... }:
+    let
+      ghosttyPackage = if pkgs.stdenv.isDarwin then pkgs.ghostty-bin else pkgs.ghostty;
+    in
     {
+      environment.systemPackages = [ ghosttyPackage.terminfo ];
+
       home-manager.sharedModules = [
         (
-          { lib, pkgs, ... }:
+          { lib, ... }:
           {
             programs.ghostty = {
               enable = true;
-              package = if pkgs.stdenv.isDarwin then pkgs.ghostty-bin else pkgs.ghostty;
+              package = ghosttyPackage;
               settings = {
                 confirm-close-surface = false;
                 font-family = "JetBrains Mono";

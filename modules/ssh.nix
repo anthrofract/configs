@@ -32,6 +32,9 @@ in
               enableDefaultConfig = false;
               # Keep the default TERM for known hosts that have Ghostty terminfo installed,
               # and force a broadly supported fallback for everything else.
+              matchBlocks.work-mbp.setEnv = {
+                TERMINFO = "/run/current-system/sw/share/terminfo";
+              };
               matchBlocks."${foreignHostPattern}" = {
                 setEnv = {
                   TERM = "xterm-256color";

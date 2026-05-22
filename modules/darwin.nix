@@ -31,7 +31,17 @@ in
         pkgs.yubikey-manager
       ];
 
-      services.openssh.enable = true;
+      environment.variables = {
+        LANG = "en_US.UTF-8";
+        LC_CTYPE = "en_US.UTF-8";
+      };
+
+      services.openssh = {
+        enable = true;
+        extraConfig = ''
+          AcceptEnv TERMINFO
+        '';
+      };
 
       homebrew = {
         enable = true;
