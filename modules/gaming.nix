@@ -8,7 +8,7 @@ in
     {
       programs.steam = {
         enable = true;
-        gamescopeSession.enable = true;
+        # gamescopeSession.enable = true;
         protontricks.enable = true;
         extraCompatPackages = [ pkgs.proton-ge-bin ];
         remotePlay.openFirewall = true;
@@ -19,10 +19,10 @@ in
 
       services.udev.packages = [ pkgs.game-devices-udev-rules ];
 
-      programs.gamescope = {
-        enable = true;
-        capSysNice = true;
-      };
+      # programs.gamescope = {
+      #   enable = true;
+      #   capSysNice = true;
+      # };
 
       programs.gamemode.enable = true;
 
