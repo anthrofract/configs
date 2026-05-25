@@ -9,18 +9,18 @@ let
 
   heliumPackageFor = pkgs: inputs.helium.packages.${pkgs.stdenv.hostPlatform.system}.default;
 
-  heliumX11PackageFor =
-    pkgs:
-    pkgs.symlinkJoin {
-      name = "helium-x11";
-      paths = [ (heliumPackageFor pkgs) ];
-      nativeBuildInputs = [ pkgs.makeWrapper ];
-      postBuild = ''
-        wrapProgram "$out/bin/helium" \
-          --set NIXOS_OZONE_WL 0 \
-          --add-flags "--ozone-platform=x11"
-      '';
-    };
+  # heliumX11PackageFor =
+  #   pkgs:
+  #   pkgs.symlinkJoin {
+  #     name = "helium-x11";
+  #     paths = [ (heliumPackageFor pkgs) ];
+  #     nativeBuildInputs = [ pkgs.makeWrapper ];
+  #     postBuild = ''
+  #       wrapProgram "$out/bin/helium" \
+  #         --set NIXOS_OZONE_WL 0 \
+  #         --add-flags "--ozone-platform=x11"
+  #     '';
+  #   };
 
   extensionIds = {
     darkReader = "eimadpbcbfnmbkopoojfekhnkhdbieeh";
@@ -101,17 +101,17 @@ in
     };
 
   flake.nixosModules.helium =
-    { config, pkgs, ... }:
+    { pkgs, ... }:
     {
       imports = [ self.commonModules.helium ];
 
       environment.systemPackages = [
         (
           # Chromium on native Wayland + NVIDIA whites out Google Meet effects.
-          if builtins.elem "nvidia" config.services.xserver.videoDrivers then
-            heliumX11PackageFor pkgs
-          else
-            heliumPackageFor pkgs
+          # if builtins.elem "nvidia" config.services.xserver.videoDrivers then
+          #   heliumX11PackageFor pkgs
+          # else
+          heliumPackageFor pkgs
         )
       ];
 
