@@ -51,6 +51,7 @@
               pkgs.timg
               pkgs.tor-browser
               pkgs.transmission_4-qt
+              pkgs.vscodium-fhs
               pkgs.wezterm
               pkgs.zed-editor-fhs
             ];
