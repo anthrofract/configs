@@ -38,7 +38,7 @@
       environment.systemPackages = [
         (pkgs.opencode.overrideAttrs (old: {
           node_modules = old.node_modules.override {
-            hash = "sha256-Wdo61RItv595JUIh3ElBXtj0B4y2KpsAJ2WbNNBsO1E=";
+            hash = "sha256-p8EPw6YDdAaToGibLAljdtLuuSIqQ3mVJecYOwUWqY0=";
           };
           preBuild = (old.preBuild or "") + ''
             substituteInPlace package.json \
