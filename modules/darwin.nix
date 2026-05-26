@@ -28,6 +28,7 @@ in
 
       environment.systemPackages = [
         pkgs.opensc
+        pkgs.tart
         pkgs.yubikey-manager
       ];
 
