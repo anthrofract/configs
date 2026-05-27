@@ -54,6 +54,7 @@
 
                 bind-key r source-file ~/.config/tmux/tmux.conf
                 bind-key Space switch-client -l
+                bind-key Enter last-window
                 bind-key e select-layout -E
                 bind-key x kill-pane
                 bind-key X kill-session
