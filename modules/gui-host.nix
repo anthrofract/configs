@@ -12,7 +12,7 @@
         self.nixosModules.gui-programs
         self.nixosModules.gui-system
         self.nixosModules.plasma
-        self.nixosModules.smartcards
+        self.nixosModules.encryption
         self.nixosModules.xremap
       ];
     };

@@ -1,6 +1,6 @@
 { ... }:
 {
-  flake.nixosModules.smartcards =
+  flake.nixosModules.encryption =
     { pkgs, ... }:
     {
       # TODO: switch to sequoia?
@@ -8,6 +8,11 @@
         pkgs.ccid
         pkgs.gnupg
         pkgs.opensc
+        pkgs.sequoia-chameleon-gnupg
+        pkgs.sequoia-sop
+        pkgs.sequoia-sq
+        pkgs.sequoia-sqv
+        pkgs.sequoia-wot
         pkgs.yubikey-manager
       ];
 
