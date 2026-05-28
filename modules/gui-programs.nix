@@ -5,6 +5,7 @@
     {
       imports = [
         self.commonModules.ghostty
+        self.nixosModules.handy
         self.nixosModules.helium
       ];
 

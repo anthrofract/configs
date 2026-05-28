@@ -11,7 +11,6 @@ in
         isNormalUser = true;
         description = id.userName;
         extraGroups = [
-          "input"
           "networkmanager"
           "wheel"
         ];
