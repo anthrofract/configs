@@ -1,13 +1,13 @@
 { ... }:
 {
   flake.nixosModules.docker =
-    { ... }:
+    { lib, ... }:
     {
       virtualisation.docker = {
-        enable = true;
+        enable = lib.mkDefault false;
         rootless = {
-          enable = true;
-          setSocketVariable = true;
+          enable = lib.mkDefault true;
+          setSocketVariable = lib.mkDefault true;
         };
       };
     };

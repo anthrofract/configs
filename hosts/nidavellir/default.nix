@@ -25,6 +25,14 @@
         time.timeZone = "America/Chicago";
         boot.kernelPackages = pkgs.linuxPackages_latest;
 
+        virtualisation.docker = {
+          enable = true;
+          rootless = {
+            enable = false;
+            setSocketVariable = false;
+          };
+        };
+
         # Hack to stop a warning during nix build
         # TODO: Setup real alerts for issues with RAID?
         boot.swraid = {
