@@ -7,6 +7,7 @@
       environment.systemPackages = [
         pkgs.ccid
         pkgs.gnupg
+        pkgs.openpgp-card-tools
         pkgs.opensc
         pkgs.sequoia-chameleon-gnupg
         pkgs.sequoia-sop
