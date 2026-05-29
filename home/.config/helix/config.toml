@@ -7,7 +7,7 @@ idle-timeout = 10
 line-number = "absolute"
 scrolloff = 10
 shell = ["nu", "--commands"]
-text-width = 100
+text-width = 80
 trim-final-newlines = true
 
 [editor.cursor-shape]
