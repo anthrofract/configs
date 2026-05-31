@@ -78,15 +78,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1779969295,
-        "narHash": "sha256-HwIJ3tOcwSMiV75L7KqJXciXR9UfT+d7rwOZMX7cTnA=",
+        "lastModified": 1779726825,
+        "narHash": "sha256-RUkMrREjKDQrA+dA9+xZviGAxM5W1aVdyOr/bSYpHrE=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "61e2c9659324181e0f0ed911958c536333b1d4f6",
+        "rev": "b179bde238977f7d4454fc770b1a727eaf55111c",
         "type": "github"
       },
       "original": {
         "owner": "nix-community",
+        "ref": "release-26.05",
         "repo": "home-manager",
         "type": "github"
       }
@@ -159,16 +160,16 @@
     },
     "nixpkgs-stable": {
       "locked": {
-        "lastModified": 1779796641,
-        "narHash": "sha256-ZsIrKmhp4vbBXoXXmR/tBXA/UCsAQiJL9vsgZEduhVY=",
+        "lastModified": 1780203844,
+        "narHash": "sha256-K5sT4jTpGs15ADhviMKNBH38REpPf5Q6mM1+N6cArVE=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "25f538306313eae3927264466c70d7001dcea1df",
+        "rev": "b51242d7d43689db2f3be91bd05d5b24fbb469c4",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
-        "ref": "nixos-25.11",
+        "ref": "nixos-26.05",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -180,11 +181,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1780015874,
-        "narHash": "sha256-f/NA9rWYlgXHKvEbTRQ6nRwCUXuDEQmWqpPkioaEVfc=",
+        "lastModified": 1780319599,
+        "narHash": "sha256-tTJYnwg9Z+To5rx6ZESWaO0w5fpcBZRLNkD/4tjmmRs=",
         "owner": "anomalyco",
         "repo": "opencode",
-        "rev": "031f82adc89e254bed8bc7a3a88fde5c4066dc8b",
+        "rev": "10095bfad43cf88d544631fc8cd1d8b398d369c7",
         "type": "github"
       },
       "original": {
@@ -277,11 +278,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1779585559,
-        "narHash": "sha256-wQNwGF2yqSQNj8T7xl6ip2B/26t7pEKEWXGVEjN1gXQ=",
+        "lastModified": 1780190665,
+        "narHash": "sha256-qjX/sj0d8rYXAoXrL5Wj9APeO/yPIYL3r0+WmsZ4x6g=",
         "owner": "lilyinstarlight",
         "repo": "zmk-nix",
-        "rev": "6391c897ad90bd2d4e2a3e16f85f2d4f936a76f3",
+        "rev": "0e4a429a56dfc7f1cd8a354373e0bd22b5098276",
         "type": "github"
       },
       "original": {
