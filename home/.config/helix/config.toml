@@ -38,6 +38,7 @@ mode.select = "SELECT"
 [keys.normal]
 A-S = ":w"
 B = "move_prev_sub_word_start"
+D = "extend_to_line_end"
 E = "move_next_sub_word_end"
 W = "move_next_sub_word_start"
 X = "select_line_above"
