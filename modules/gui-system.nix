@@ -40,13 +40,10 @@
       # Kmscon
       services.kmscon = {
         enable = true;
-        fonts = [
-          {
-            name = "JetBrains Mono";
-            package = pkgs.jetbrains-mono;
-          }
-        ];
-        extraConfig = "font-dpi=192";
+        config = {
+          "font-name" = "JetBrains Mono";
+          "font-dpi" = 192;
+        };
       };
 
       # Enable OpenGL

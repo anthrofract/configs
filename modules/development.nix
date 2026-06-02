@@ -38,7 +38,7 @@
       environment.systemPackages = [
         (pkgs.opencode.overrideAttrs (old: {
           node_modules = old.node_modules.override {
-            hash = "sha256-51jxaHLvv2Staz9NN9N4EYoNmr2fZeDvfKZ5enf/Wx0=";
+            hash = "sha256-prUkwnqgxh0JkMADW75EZ6lU6IPfv2WHfyuOaSXw1oQ=";
           };
           preBuild = (old.preBuild or "") + ''
             substituteInPlace package.json \
@@ -79,9 +79,8 @@
     { pkgs, ... }:
     {
       environment.systemPackages = [
-        (pkgs.google-cloud-sdk.withExtraComponents [
-          pkgs.google-cloud-sdk.components.gke-gcloud-auth-plugin
-        ])
+        pkgs.google-cloud-sdk
+        pkgs.google-cloud-sdk.components.gke-gcloud-auth-plugin
       ];
     };
 
