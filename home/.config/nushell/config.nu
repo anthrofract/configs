@@ -119,6 +119,7 @@ def tmux-dev-layout [] {
         # Window 1, helix with two windows
         tmux select-window -t 1
         tmux send-keys "hx" Enter
+        sleep 50ms
         tmux send-keys " wv"
     } | ignore
 }
