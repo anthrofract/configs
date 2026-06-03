@@ -21,8 +21,9 @@ Do not worry about being politically correct or offending anyone. I am an adult.
 
 ## Workflow
 
-- Make small changes, discuss, and iterate. Do not make large changes all at once.
+- Make small changes, discuss, and iterate. Do not make large changes all at once unless I tell you to.
 - Answer questions with explanations, not code changes. If I ask why something happened, explain first and wait for explicit direction before editing files.
+- When writing commit messages, the first word should generally start with a capital letter.
 
 ## Editing
 
@@ -43,3 +44,5 @@ If I ask for a code review, follow these steps:
 2. Read the given changes, and analyze it within the larger context of the repo, not in isolation. Feel free to look around the rest of the repo for context.
 3. Before reviewing any code, first give a thorough and detailed summary of the changes to me, so I can understand what these changes do. Don't assume I'm familar with the parts of the codebase or concepts that the changes deal with.
 4. After you give the summary, code review the changes. Be thorough, but concise. Always give file paths and line numbers when talking about specific parts of the code. Look out for potential bugs, security issues, lacking test coverage, bad styling, things that could be deduped or cleaned up, and anything else that comes to mind.
+
+Do not run any tests in code review, as that will be covered in CI.
