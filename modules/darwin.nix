@@ -13,12 +13,12 @@ in
     {
       imports = [
         inputs.home-manager.darwinModules.home-manager
+        self.commonModules.cli
         self.commonModules.development
         self.commonModules.env
         self.commonModules.ghostty
         self.commonModules.home-symlinks
         self.commonModules.vcs
-        self.darwinModules.cli
         self.darwinModules.helium
         self.darwinModules.nix-settings
       ];
@@ -27,9 +27,18 @@ in
       nixpkgs.hostPlatform = "aarch64-darwin";
 
       environment.systemPackages = [
+        pkgs.google-chrome
+        pkgs.keepassxc
+        pkgs.meetingbar
+        pkgs.obsidian
         pkgs.opensc
+        pkgs.raycast
+        pkgs.signal-desktop
+        pkgs.spotify
         pkgs.tart
         pkgs.yubikey-manager
+        pkgs.zed-editor
+        pkgs.zoom-us
       ];
 
       environment.variables = {
@@ -50,27 +59,14 @@ in
           autoUpdate = true;
           cleanup = "zap";
           upgrade = true;
+          extraFlags = [ "--force-cleanup" ];
         };
         casks = [
-          "brave-browser"
-          "claude-code"
-          "cursor"
           "docker-desktop"
-          "google-chrome"
-          "iterm2"
           "karabiner-elements"
-          "keepassxc"
-          "meetingbar"
-          "obsidian"
-          "raycast"
-          "signal"
           "slack"
-          "spotify"
           "syncthing-app"
           "tailscale-app"
-          "ungoogled-chromium"
-          "zed"
-          "zoom"
         ];
       };
 

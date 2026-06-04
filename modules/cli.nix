@@ -1,12 +1,12 @@
-{ self, config, ... }:
-let
-  ids = config.secrets.identities;
-in
+{ self, ... }:
 {
   flake.commonModules.cli =
     { pkgs, ... }:
     {
-      imports = [ self.commonModules.tmux ];
+      imports = [
+        self.commonModules.nushell
+        self.commonModules.tmux
+      ];
 
       environment.systemPackages = [
         pkgs.asciinema
@@ -33,7 +33,6 @@ in
         pkgs.mosh
         pkgs.neovim
         pkgs.nh
-        pkgs.nushell
         pkgs.openssl
         pkgs.ouch
         pkgs.rage
@@ -65,23 +64,5 @@ in
           }
         )
       ];
-    };
-
-  flake.nixosModules.cli =
-    { ... }:
-    {
-      imports = [ self.commonModules.cli ];
-    };
-
-  flake.darwinModules.cli =
-    { ... }:
-    {
-      imports = [ self.commonModules.cli ];
-
-      # Symlink nushell config to macOS default location so config.nu loads before XDG_CONFIG_HOME is set
-      system.activationScripts.postActivation.text = ''
-        sudo -u ${ids.personal.userName} mkdir -p "/Users/${ids.personal.userName}/Library/Application Support/nushell"
-        sudo -u ${ids.personal.userName} ln -sfn "/Users/${ids.personal.userName}/.config/nushell/config.nu" "/Users/${ids.personal.userName}/Library/Application Support/nushell/config.nu"
-      '';
     };
 }

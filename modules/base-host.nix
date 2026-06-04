@@ -4,11 +4,11 @@
     { ... }:
     {
       imports = [
+        self.commonModules.cli
         self.commonModules.env
         self.commonModules.home-symlinks
         self.commonModules.vcs
         self.nixosModules.base-settings
-        self.nixosModules.cli
         self.nixosModules.docker
         self.nixosModules.home-manager
         self.nixosModules.nix-settings
