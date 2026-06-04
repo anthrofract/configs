@@ -37,9 +37,9 @@
 
       environment.systemPackages = [
         (pkgs.opencode.overrideAttrs (old: {
-          node_modules = old.node_modules.override {
-            hash = "sha256-prUkwnqgxh0JkMADW75EZ6lU6IPfv2WHfyuOaSXw1oQ=";
-          };
+          # node_modules = old.node_modules.override {
+          #   hash = "sha256-prUkwnqgxh0JkMADW75EZ6lU6IPfv2WHfyuOaSXw1oQ=";
+          # };
           preBuild = (old.preBuild or "") + ''
             substituteInPlace package.json \
               --replace-fail '"packageManager": "bun@1.3.14"' '"packageManager": "bun@${pkgs.bun.version}"'
@@ -78,7 +78,7 @@
   flake.commonModules.development-google-cloud =
     { pkgs, ... }:
     let
-      stablePkgs = inputs.nixpkgs-stable.legacyPackages.${pkgs.system};
+      stablePkgs = inputs.nixpkgs-stable.legacyPackages.${pkgs.stdenv.hostPlatform.system};
     in
     {
       environment.systemPackages = [
