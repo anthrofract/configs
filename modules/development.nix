@@ -33,20 +33,9 @@
   flake.commonModules.development-agents =
     { pkgs, ... }:
     {
-      nixpkgs.overlays = [ inputs.opencode.overlays.default ];
-
       environment.systemPackages = [
-        (pkgs.opencode.overrideAttrs (old: {
-          # node_modules = old.node_modules.override {
-          #   hash = "sha256-prUkwnqgxh0JkMADW75EZ6lU6IPfv2WHfyuOaSXw1oQ=";
-          # };
-          preBuild = (old.preBuild or "") + ''
-            substituteInPlace package.json \
-              --replace-fail '"packageManager": "bun@1.3.14"' '"packageManager": "bun@${pkgs.bun.version}"'
-          '';
-        }))
-
         pkgs.claude-code
+        pkgs.opencode
       ];
     };
 

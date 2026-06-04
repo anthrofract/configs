@@ -173,26 +173,6 @@
         "type": "github"
       }
     },
-    "opencode": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1780544665,
-        "narHash": "sha256-7dykarQyoo68uKHwUvo8P1ZUJQOsgw72Djq+8zEYU6s=",
-        "owner": "anomalyco",
-        "repo": "opencode",
-        "rev": "2a33addd290cba71a408a133a6780b311a0d3459",
-        "type": "github"
-      },
-      "original": {
-        "owner": "anomalyco",
-        "repo": "opencode",
-        "type": "github"
-      }
-    },
     "plasma-manager": {
       "inputs": {
         "home-manager": [
@@ -224,7 +204,6 @@
         "nix-darwin": "nix-darwin",
         "nixpkgs": "nixpkgs",
         "nixpkgs-stable": "nixpkgs-stable",
-        "opencode": "opencode",
         "plasma-manager": "plasma-manager",
         "xremap": "xremap",
         "zmk-nix": "zmk-nix"
