@@ -9,6 +9,7 @@
         self.commonModules.development-direnv
         self.commonModules.development-go
         self.commonModules.development-google-cloud
+        self.commonModules.development-haskell
         self.commonModules.development-kubernetes
         self.commonModules.development-lua
         self.commonModules.development-markdown
@@ -75,6 +76,19 @@
         (stablePkgs.google-cloud-sdk.withExtraComponents [
           stablePkgs.google-cloud-sdk.components.gke-gcloud-auth-plugin
         ])
+      ];
+    };
+
+  flake.commonModules.development-haskell =
+    { pkgs, ... }:
+    {
+      environment.systemPackages = [
+        pkgs.cabal-install
+        pkgs.ghc
+        pkgs.haskell-language-server
+        pkgs.hlint
+        pkgs.ormolu
+        pkgs.stack
       ];
     };
 
