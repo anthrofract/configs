@@ -14,7 +14,6 @@
         pkgs.btop
         pkgs.carapace
         pkgs.difftastic
-        pkgs.dix
         pkgs.fastfetch
         pkgs.fd
         pkgs.fzf
