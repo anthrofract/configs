@@ -1,6 +1,6 @@
 {
     "editor.fontSize": 16,
-    "editor.fontFamily": "'JetBrains Mono', monospace",
+    "editor.fontFamily": "'JetBrains Mono NL', monospace",
     "workbench.colorTheme": "Dark Modern",
     "editor.mouseWheelScrollSensitivity": 2,
     "editor.stickyScroll.enabled": false

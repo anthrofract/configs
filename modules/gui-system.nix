@@ -37,7 +37,7 @@
       services.kmscon = {
         enable = true;
         config = {
-          "font-name" = "JetBrains Mono";
+          "font-name" = "JetBrains Mono NL";
           "font-dpi" = 192;
         };
       };

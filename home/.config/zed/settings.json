@@ -51,7 +51,7 @@
     "toml": true,
     "bamboo-theme": true
   },
-  "buffer_font_family": "JetBrains Mono",
+  "buffer_font_family": "JetBrains Mono NL",
   "buffer_font_size": 15,
   "current_line_highlight": "gutter",
   "cursor_blink": false,

@@ -4,7 +4,7 @@
 (setq custom-safe-themes t)
 (load-theme 'doom-material-dark t)
 
-(set-face-attribute 'default nil :font "JetBrains Mono" :height 130)
+(set-face-attribute 'default nil :font "JetBrains Mono NL" :height 130)
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
 (menu-bar-mode -1)
