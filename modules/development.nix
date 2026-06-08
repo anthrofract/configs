@@ -18,15 +18,8 @@
         self.commonModules.development-python
         self.commonModules.development-rust
         self.commonModules.development-shell
+        self.commonModules.development-sui
         self.commonModules.development-toml
-      ];
-    };
-
-  flake.commonModules.development-bitcoin =
-    { pkgs, ... }:
-    {
-      environment.systemPackages = [
-        pkgs.bitcoind
       ];
     };
 
@@ -36,6 +29,14 @@
       environment.systemPackages = [
         pkgs.claude-code
         pkgs.opencode
+      ];
+    };
+
+  flake.commonModules.development-bitcoin =
+    { pkgs, ... }:
+    {
+      environment.systemPackages = [
+        pkgs.bitcoind
       ];
     };
 
