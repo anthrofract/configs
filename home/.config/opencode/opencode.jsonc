@@ -7,6 +7,10 @@
     "hostname": "0.0.0.0"
   },
   "shell": "nu",
+  "compaction": {
+    "auto": true,
+    "prune": true
+  },
   "permission": {
     "external_directory": {
       "/nix/store/**": "allow",
