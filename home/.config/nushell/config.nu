@@ -59,7 +59,7 @@ if (which gpgconf | is-not-empty) {
 
 def --wrapped bat-pager [...args] {
   with-env { BAT_PAGER: 'less -R' } {
-    bat --plain --paging=always ...$args
+    bat --number --paging=always ...$args
   }
 }
 
@@ -124,7 +124,6 @@ def tmux-dev-layout [] {
     } | ignore
 }
 
-alias bp = bat-pager
 alias cat = bat --plain --paging=never
 alias clc = copy-last-command
 alias ff = fastfetch
@@ -135,6 +134,7 @@ alias ghrpn = gh pr new --web --head (jbr)
 alias jbr = jj log -r "heads(::@ & bookmarks())" --no-graph -T 'bookmarks.map(|b| b.name())'
 alias jclone = jj git clone --colocate
 alias jnM = jj-fetch-new-trunk
+alias less = bat-pager
 alias lt = lsd --color always -A --date relative --group-directories-first --tree
 alias lt2 = lsd --color always -A --date relative --group-directories-first --tree --depth 2
 alias lt3 = lsd --color always -A --date relative --group-directories-first --tree --depth 3
