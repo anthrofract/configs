@@ -42,8 +42,12 @@
                   "super+==increase_font_size:1"
                   "super+c=copy_to_clipboard"
                   "super+v=paste_from_clipboard"
+                  ''super+left=text:\x08''
+                  ''super+down=text:\x0a''
+                  ''super+up=text:\x0b''
+                  ''super+right=text:\x0c''
                   ''shift+enter=text:\x1b\r''
-                  ''super+\=text:\x1b\\''
+                  ''super+\=text:\x1c''
                   ''super+s=text:\x1bS''
                 ];
               };

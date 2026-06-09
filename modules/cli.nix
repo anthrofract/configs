@@ -4,6 +4,7 @@
     { pkgs, ... }:
     {
       imports = [
+        self.commonModules.neovim
         self.commonModules.nushell
         self.commonModules.tmux
       ];
@@ -30,7 +31,6 @@
         pkgs.lsof
         pkgs.moreutils
         pkgs.mosh
-        pkgs.neovim
         pkgs.nh
         pkgs.openssl
         pkgs.ouch

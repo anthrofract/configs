@@ -3,7 +3,7 @@ use std/util "path add"
 
 # Config
 $env.config.show_banner = false
-$env.config.buffer_editor = 'hx'
+$env.config.buffer_editor = 'nvim'
 $env.config.history = {
   file_format: sqlite
   max_size: 10_000
@@ -116,9 +116,9 @@ def tmux-dev-layout [] {
         tmux new-window
         tmux split-window -h
 
-        # Window 1, helix with two windows
+        # Window 1, nvim with two windows
         tmux select-window -t 1
-        tmux send-keys "hx" Enter
+        tmux send-keys "nvim" Enter
         sleep 50ms
         tmux send-keys " wv"
     } | ignore
@@ -145,6 +145,7 @@ alias nsc = nix develop ~/configs/shells/rust-c --command nu
 alias oc = opencode
 alias sha = hash sha256
 alias t = tmux-dev-layout
+alias v = nvim
 alias x = hx
 
 # Direnv

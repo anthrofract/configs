@@ -18,6 +18,7 @@
               keyMode = "vi";
               mouse = true;
               prefix = "`";
+              plugins = [ pkgs.tmuxPlugins.vim-tmux-navigator ];
               shell = "${pkgs.nushell}/bin/nu";
               terminal = "tmux-256color";
               extraConfig = ''
