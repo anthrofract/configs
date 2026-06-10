@@ -19,15 +19,14 @@
               mouse = true;
               prefix = "`";
               shell = "${pkgs.nushell}/bin/nu";
-              terminal = "xterm-ghostty";
+              terminal = "tmux-256color";
               extraConfig = ''
                 set-option -g display-time 4000
                 set-option -g status-interval 1
                 set-option -g detach-on-destroy off
                 set-option -g set-titles on
                 set-option -g set-titles-string "#S / #W"
-                set-option -sa terminal-overrides ",xterm-256color:Tc"
-                set-option -ga terminal-features ",xterm-ghostty:extkeys"
+                set-option -ga terminal-features ",xterm-ghostty:extkeys:sync:RGB"
                 set-option -ga terminal-features "*:hyperlinks"
 
                 set-option -gq allow-passthrough on
@@ -83,6 +82,8 @@
                 set-option -g status-left-length 50
                 set-option -g status-left "#[bg=#2f312c,fg=#f1e9d2] [#{session_name}] "
                 set-option -g status-right "#H #{?#{==:#{pane_mode},copy-mode},#[bg=#f1e9d2]#[fg=black],}#{?client_prefix,#[bg=green]#[fg=black]  ,  }"
+
+                set-environment -g TIMG_PIXELATION kitty
               '';
             };
           }
