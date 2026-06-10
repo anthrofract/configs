@@ -58,11 +58,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1780821058,
-        "narHash": "sha256-eHfsA/pKQAK60jmyGzGP7BvcJOXAPZJY0lEQJC2xlGc=",
+        "lastModified": 1781080374,
+        "narHash": "sha256-1RrmVzSKKgsw3VBCLRpklfpz8qUvrbDk26kXEu5R6L0=",
         "owner": "amaanq",
         "repo": "helium-flake",
-        "rev": "d765e1962dbe3fa08e0bf4f6abd3dd53806cf826",
+        "rev": "f6f60ddd33086e3727392d9cade730df37980409",
         "type": "github"
       },
       "original": {
@@ -78,11 +78,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1780943742,
-        "narHash": "sha256-01bTMR9ZPG+uxPaZBeOwagg5uxIaFYs2/3YIrOX+bCA=",
+        "lastModified": 1781115031,
+        "narHash": "sha256-WrHqMjiilIoqF1Lu5mxt9ypdl+VsNfX323LR4PcY4Bs=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "df39142474950e42d5fc3bf2fef9d6c62abbe8d7",
+        "rev": "f96f717a47589c9d0b6e21f1a0d0d42d2c576f18",
         "type": "github"
       },
       "original": {
