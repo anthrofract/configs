@@ -16,7 +16,9 @@
       "/nix/store/**": "allow",
       "/tmp/**": "allow",
       "~/.cargo/**": "allow",
-      "~/configs/**": "allow"
+      "~/configs/**": "allow",
+      "~/repos/**": "allow",
+      "~/work/**": "allow"
     }
   },
   "plugin": ["opencode-claude-auth@latest"],
