@@ -17,18 +17,34 @@
             default = [ ];
             description = "Paths that should be proxied as websockets";
           };
+
+          hostHeader = lib.mkOption {
+            type = lib.types.nullOr lib.types.str;
+            default = null;
+            description = "Host header to send to the proxied service";
+          };
         };
+      };
+
+      serviceLocation = service: {
+        proxyPass = "http://127.0.0.1:${toString service.port}/";
+        extraConfig = lib.optionalString (service.hostHeader != null) ''
+          proxy_set_header Host ${service.hostHeader};
+        '';
       };
 
       serviceVHost = name: service: {
         name = "${name}.${cfg.domain}";
         value = {
           locations = {
-            "/".proxyPass = "http://127.0.0.1:${toString service.port}/";
+            "/" = serviceLocation service;
           }
           // lib.genAttrs service.websocketPaths (_: {
             proxyPass = "http://127.0.0.1:${toString service.port}";
             proxyWebsockets = true;
+            extraConfig = lib.optionalString (service.hostHeader != null) ''
+              proxy_set_header Host ${service.hostHeader};
+            '';
           });
         };
       };

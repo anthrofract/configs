@@ -1,4 +1,9 @@
-{ self, inputs, ... }:
+{
+  config,
+  self,
+  inputs,
+  ...
+}:
 {
   flake = {
     nixosConfigurations.nidavellir = inputs.nixpkgs.lib.nixosSystem {
@@ -17,6 +22,7 @@
           self.nixosModules.bitcoind
           self.nixosModules.electrs
           self.nixosModules.gitea
+          self.nixosModules.hermes
           self.nixosModules.mempool
           self.nixosModules.reverse-proxy
         ];
@@ -33,6 +39,7 @@
             setSocketVariable = false;
           };
         };
+        users.users.${config.secrets.identities.personal.userName}.extraGroups = [ "docker" ];
 
         services.reverse-proxy.domain = "nidavellir";
 
