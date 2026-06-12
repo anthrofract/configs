@@ -47,6 +47,8 @@
           extraSetFlags = [
             "--advertise-exit-node"
             "--advertise-routes=192.168.1.0/24"
+            "--exit-node=auto:any"
+            "--exit-node-allow-lan-access=true"
           ];
         };
 
