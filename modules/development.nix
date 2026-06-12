@@ -163,11 +163,7 @@
         pkgs.cargo-binstall
         pkgs.cargo-expand
         pkgs.cargo-nextest
-        pkgs.cargo
-        pkgs.clippy
-        pkgs.rust-analyzer
-        pkgs.rustc
-        pkgs.rustfmt
+        pkgs.rustup
       ]
       ++ lib.optionals pkgs.stdenv.isLinux [
         pkgs.gcc
