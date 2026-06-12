@@ -28,7 +28,7 @@
 (require 'multiple-cursors)
 (setq mc/always-run-for-all t)
 
-(require 'majutsu)
+(require 'magit)
 
 (require 'helix)
 (helix-mode)
