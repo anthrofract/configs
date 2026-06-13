@@ -18,7 +18,7 @@
             frontend = {
               port = lib.mkOption {
                 type = lib.types.port;
-                default = 80;
+                default = 8081;
                 description = "Port for the mempool frontend";
               };
               image = lib.mkOption {
@@ -125,9 +125,12 @@
           environment = {
             FRONTEND_HTTP_PORT = "8080";
             BACKEND_MAINNET_HTTP_HOST = "mempool-${mempool_name}-api";
+            NGINX_PROTOCOL = config.services.reverse-proxy.protocol;
+            NGINX_HOSTNAME = "mempool.${config.services.reverse-proxy.domain}";
+            NGINX_PORT = toString config.services.reverse-proxy.port;
           };
           ports = [
-            "${toString cfg.frontend.port}:8080"
+            "127.0.0.1:${toString cfg.frontend.port}:8080"
           ];
           cmd = [
             "./wait-for"
@@ -240,7 +243,10 @@
             enable = true;
           };
 
-          networking.firewall.allowedTCPPorts = [ 80 ];
+          services.reverse-proxy.services.mempool = {
+            port = config.services.mempool.mainnet.frontend.port;
+            websocketPaths = [ "/api/v1/ws" ];
+          };
         }
         (lib.mkIf (eachMempool != { }) {
           virtualisation.oci-containers = {

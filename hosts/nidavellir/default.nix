@@ -18,6 +18,7 @@
           self.nixosModules.electrs
           self.nixosModules.gitea
           self.nixosModules.mempool
+          self.nixosModules.reverse-proxy
         ];
 
         networking.hostName = "nidavellir";
@@ -32,6 +33,8 @@
             setSocketVariable = false;
           };
         };
+
+        services.reverse-proxy.domain = "nidavellir";
 
         # Hack to stop a warning during nix build
         # TODO: Setup real alerts for issues with RAID?
