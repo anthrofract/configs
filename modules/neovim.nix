@@ -320,6 +320,7 @@
                     settings.event = [ "DeferredUIEnter" ];
                   };
                 };
+                sleuth.enable = true;
                 telescope = {
                   enable = true;
                   lazyLoad = {
@@ -375,7 +376,6 @@
                     lookahead = true;
                   };
                 };
-                vim-sleuth.enable = true;
                 web-devicons = {
                   enable = true;
                   lazyLoad = {
