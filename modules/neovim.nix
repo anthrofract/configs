@@ -28,6 +28,7 @@
 
               opts = {
                 cursorline = true;
+                expandtab = true;
                 foldlevel = 99;
                 foldlevelstart = 99;
                 ignorecase = true;
@@ -46,6 +47,7 @@
                 signcolumn = "yes";
                 smartcase = true;
                 swapfile = false;
+                tabstop = 4;
                 timeoutlen = 300;
                 updatetime = 1000;
                 winborder = "single";
@@ -499,7 +501,7 @@
                   enable = true;
                   folding.enable = true;
                   highlight.enable = true;
-                  indent.enable = true;
+                  indent.enable = false;
                 };
               };
 
