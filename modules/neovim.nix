@@ -484,6 +484,9 @@
                       bash = [ "shfmt" ];
                       go = [ "gofmt" ];
                       haskell = [ "ormolu" ];
+                      javascript = [ "prettier" ];
+                      json = [ "prettier" ];
+                      jsonc = [ "prettier" ];
                       lua = [ "stylua" ];
                       nix = [ "nixfmt" ];
                       proto = [ "buf" ];
@@ -491,6 +494,7 @@
                       rust = [ "rustfmt" ];
                       sh = [ "shfmt" ];
                       toml = [ "tombi" ];
+                      typescript = [ "prettier" ];
                     };
                     notify_no_formatters = false;
                     notify_on_error = false;

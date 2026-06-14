@@ -4,21 +4,21 @@
   "default_agent": "plan",
   "agent": {
     "build": {
-      "color": "primary"
+      "color": "primary",
     },
     "plan": {
-      "color": "secondary"
-    }
+      "color": "secondary",
+    },
   },
   "instructions": ["AGENTS.md", "AGENTS-GI.md"],
   "server": {
     "port": 4096,
-    "hostname": "0.0.0.0"
+    "hostname": "0.0.0.0",
   },
   "shell": "nu",
   "compaction": {
     "auto": true,
-    "prune": true
+    "prune": true,
   },
   "permission": {
     "external_directory": {
@@ -27,8 +27,8 @@
       "~/.cargo/**": "allow",
       "~/configs/**": "allow",
       "~/repos/**": "allow",
-      "~/work/**": "allow"
-    }
+      "~/work/**": "allow",
+    },
   },
   "plugin": ["opencode-claude-auth@latest"],
   "provider": {
@@ -36,31 +36,31 @@
       "npm": "@ai-sdk/openai-compatible",
       "name": "Ollama (Valhalla)",
       "options": {
-        "baseURL": "http://valhalla:11434/v1"
+        "baseURL": "http://valhalla:11434/v1",
       },
       "models": {
         "qwen3.6:27b": {
           "name": "Qwen3.6 27B",
           "limit": {
             "context": 131072,
-            "output": 32768
-          }
+            "output": 32768,
+          },
         },
         "qwen3.6:27b-mtp-q4_K_M": {
           "name": "Qwen3.6 27B MTP",
           "limit": {
             "context": 131072,
-            "output": 32768
-          }
+            "output": 32768,
+          },
         },
         "fredrezones55/Qwen3.6-27B-Uncensored-HauhauCS-Balanced:IQ4_XS": {
           "name": "Qwen3.6 27B Uncensored Balanced",
           "limit": {
             "context": 131072,
-            "output": 32768
-          }
-        }
-      }
-    }
-  }
+            "output": 32768,
+          },
+        },
+      },
+    },
+  },
 }

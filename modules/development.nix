@@ -10,11 +10,11 @@
         self.commonModules.development-go
         self.commonModules.development-google-cloud
         self.commonModules.development-haskell
+        self.commonModules.development-js
         self.commonModules.development-kubernetes
         self.commonModules.development-lua
         self.commonModules.development-markdown
         self.commonModules.development-nix
-        self.commonModules.development-nodejs
         self.commonModules.development-proto
         self.commonModules.development-python
         self.commonModules.development-rust
@@ -92,6 +92,18 @@
       ];
     };
 
+  flake.commonModules.development-js =
+    { pkgs, ... }:
+    {
+      environment.systemPackages = [
+        pkgs.nodejs
+        pkgs.pnpm
+        pkgs.prettier
+        pkgs.typescript-language-server
+        pkgs.vscode-langservers-extracted
+      ];
+    };
+
   flake.commonModules.development-kubernetes =
     { pkgs, ... }:
     {
@@ -123,17 +135,6 @@
       environment.systemPackages = [
         pkgs.nixd
         pkgs.nixfmt
-      ];
-    };
-
-  flake.commonModules.development-nodejs =
-    { pkgs, ... }:
-    {
-      environment.systemPackages = [
-        pkgs.nodejs
-        pkgs.pnpm
-        pkgs.typescript-language-server
-        pkgs.vscode-langservers-extracted
       ];
     };
 
