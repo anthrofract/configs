@@ -1021,6 +1021,12 @@
                 }
                 {
                   mode = "n";
+                  key = "<leader>v";
+                  action = "ggVG";
+                  options.desc = "Select all";
+                }
+                {
+                  mode = "n";
                   key = "<leader>w<Down>";
                   action = "<C-w>j";
                   options.desc = "Jump to split below";
