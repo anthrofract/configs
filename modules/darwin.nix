@@ -10,6 +10,12 @@ in
 {
   config.flake.darwinModules.darwin =
     { pkgs, ... }:
+    let
+      latestPkgs = import inputs.nixpkgs-latest {
+        inherit (pkgs.stdenv.hostPlatform) system;
+        config = pkgs.config;
+      };
+    in
     {
       imports = [
         inputs.home-manager.darwinModules.home-manager
@@ -27,6 +33,7 @@ in
       nixpkgs.hostPlatform = "aarch64-darwin";
 
       environment.systemPackages = [
+        latestPkgs.zed-editor
         pkgs.google-chrome
         pkgs.keepassxc
         pkgs.meetingbar
@@ -37,7 +44,6 @@ in
         pkgs.spotify
         pkgs.tart
         pkgs.yubikey-manager
-        pkgs.zed-editor
         pkgs.zoom-us
       ];
 

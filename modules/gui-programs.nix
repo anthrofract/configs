@@ -1,4 +1,4 @@
-{ self, ... }:
+{ self, inputs, ... }:
 {
   flake.nixosModules.gui-programs =
     { ... }:
@@ -16,6 +16,12 @@
       home-manager.sharedModules = [
         (
           { pkgs, ... }:
+          let
+            latestPkgs = import inputs.nixpkgs-latest {
+              inherit (pkgs.stdenv.hostPlatform) system;
+              config = pkgs.config;
+            };
+          in
           {
             home.packages = [
               (pkgs.kdePackages.ksystemlog.overrideAttrs (old: {
@@ -24,6 +30,7 @@
                     --replace-quiet 'X-KDE-SubstituteUID=true' 'X-KDE-SubstituteUID=false'
                 '';
               }))
+              latestPkgs.zed-editor-fhs
               pkgs.chromium
               pkgs.google-chrome
               pkgs.haruna
@@ -55,7 +62,6 @@
               pkgs.transmission_4-qt
               pkgs.vscodium-fhs
               pkgs.wezterm
-              pkgs.zed-editor-fhs
             ];
 
             systemd.user.services.tailscale-systray = {
