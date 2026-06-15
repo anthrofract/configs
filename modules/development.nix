@@ -181,6 +181,18 @@
       ];
     };
 
+  flake.commonModules.development-sui =
+    { pkgs, ... }:
+    let
+      packages = self.packages.${pkgs.stdenv.hostPlatform.system};
+    in
+    {
+      environment.systemPackages = [
+        packages.prettier-plugin-move
+        packages.sui-bin
+      ];
+    };
+
   flake.commonModules.development-toml =
     { pkgs, ... }:
     {

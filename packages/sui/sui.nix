@@ -14,12 +14,13 @@ let
   };
 in
 {
-  flake.commonModules.development-sui =
-    { pkgs, ... }:
+  perSystem =
+    { pkgs, system, ... }:
     let
-      platform = platforms.${pkgs.stdenv.hostPlatform.system};
-
-      sui-bin = pkgs.stdenvNoCC.mkDerivation {
+      platform = platforms.${system};
+    in
+    {
+      packages.sui-bin = pkgs.stdenvNoCC.mkDerivation {
         pname = "sui-bin";
         inherit version;
 
@@ -51,7 +52,7 @@ in
         };
       };
 
-      prettier-move = pkgs.stdenv.mkDerivation rec {
+      packages.prettier-plugin-move = pkgs.stdenv.mkDerivation rec {
         pname = "prettier-plugin-move";
         version = "0.3.5";
 
@@ -119,12 +120,5 @@ in
           mainProgram = "prettier-move";
         };
       };
-    in
-    {
-      environment.systemPackages = [
-        sui-bin
-        pkgs.prettier
-        prettier-move
-      ];
     };
 }
