@@ -173,6 +173,18 @@
                   '';
                   desc = "Notify LSP clients after external file reload";
                 }
+                {
+                  event = "LspAttach";
+                  callback.__raw = ''
+                    function(args)
+                      local name = vim.api.nvim_buf_get_name(args.buf)
+                      if name:match("^codediff://") then
+                        vim.lsp.buf_detach_client(args.buf, args.data.client_id)
+                      end
+                    end
+                  '';
+                  desc = "Detach LSPs from CodeDiff virtual buffers";
+                }
               ];
             };
           }
