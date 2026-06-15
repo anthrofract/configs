@@ -68,13 +68,10 @@
 
   flake.commonModules.development-google-cloud =
     { pkgs, ... }:
-    let
-      stablePkgs = inputs.nixpkgs-stable.legacyPackages.${pkgs.stdenv.hostPlatform.system};
-    in
     {
       environment.systemPackages = [
-        (stablePkgs.google-cloud-sdk.withExtraComponents [
-          stablePkgs.google-cloud-sdk.components.gke-gcloud-auth-plugin
+        (pkgs.google-cloud-sdk.withExtraComponents [
+          pkgs.google-cloud-sdk.components.gke-gcloud-auth-plugin
         ])
       ];
     };
