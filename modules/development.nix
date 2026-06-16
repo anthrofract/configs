@@ -157,6 +157,7 @@
         pkgs.poetry
         pkgs.python3
         pkgs.ty
+        pkgs.uv
       ];
     };
 
