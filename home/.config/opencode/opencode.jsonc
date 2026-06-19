@@ -53,6 +53,13 @@
             "output": 32768,
           },
         },
+        "qwen3.6:27b-heretic-text-q4_K_M": {
+          "name": "Qwen3.6 27B Heretic Text",
+          "limit": {
+            "context": 131072,
+            "output": 32768,
+          },
+        },
         "fredrezones55/Qwen3.6-27B-Uncensored-HauhauCS-Balanced:IQ4_XS": {
           "name": "Qwen3.6 27B Uncensored Balanced",
           "limit": {

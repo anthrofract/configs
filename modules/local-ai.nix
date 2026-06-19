@@ -15,9 +15,7 @@
           OLLAMA_CONTEXT_LENGTH = "131072";
         };
         loadModels = [
-          "qwen3.6:27b"
           "qwen3.6:27b-mtp-q4_K_M"
-          "fredrezones55/Qwen3.6-27B-Uncensored-HauhauCS-Balanced:IQ4_XS"
         ];
       };
       systemd.services.ollama = {
