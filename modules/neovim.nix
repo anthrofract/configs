@@ -409,6 +409,10 @@
   flake.commonModules.neovim-langs =
     { ... }:
     {
+      imports = [
+        self.commonModules.neovim-langs-move
+      ];
+
       home-manager.sharedModules = [
         (
           { ... }:

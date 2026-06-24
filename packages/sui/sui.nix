@@ -1,15 +1,15 @@
-{ lib, ... }:
+{ lib, self, ... }:
 let
-  version = "mainnet-v1.72.5";
+  version = "mainnet-v1.73.2";
 
   platforms = {
     x86_64-linux = {
       suffix = "ubuntu-x86_64";
-      hash = "sha256-5XKBbP1+2bfwTQ2W0mz2Q3kiBfYIAGnnptASDkayzsU=";
+      hash = "sha256-EYlODmXWywbPH6JD3+IYvUQT6nZ3YAo7D3yniGOkqeA=";
     };
     aarch64-darwin = {
       suffix = "macos-arm64";
-      hash = "sha256-YkxCdSaLbCbOb473bqBErfb6N8teWSKg1VpRdjIvT28=";
+      hash = "sha256-x7vqeZYTyQ9FqvBZqRos9fAHuGOPpFUi+qPh3MRtuW0=";
     };
   };
 in
@@ -18,6 +18,12 @@ in
     { pkgs, system, ... }:
     let
       platform = platforms.${system};
+      suiSrc = pkgs.fetchFromGitHub {
+        owner = "MystenLabs";
+        repo = "sui";
+        rev = version;
+        hash = "sha256-RFIx0uyS+HJ5yZggQ+PZ7sYoSD5tVNnyD9BaDiT71Oo=";
+      };
     in
     {
       packages.sui-bin = pkgs.stdenvNoCC.mkDerivation {
@@ -55,14 +61,7 @@ in
       packages.prettier-plugin-move = pkgs.stdenv.mkDerivation rec {
         pname = "prettier-plugin-move";
         version = "0.3.5";
-
-        src = pkgs.fetchFromGitHub {
-          owner = "MystenLabs";
-          repo = "sui";
-          rev = "8c1a5dbc40b12b91e5ce79f8f0e259c69f63269c";
-          hash = "sha256-38XMYt492bo/LFNCZrjOmmTUlrvtqsA4N8OqOUD+HvA=";
-        };
-
+        src = suiSrc;
         sourceRoot = src.name;
         pluginPath = "external-crates/move/tooling/prettier-move";
         pnpmWorkspaces = [ "@mysten/prettier-plugin-move" ];
@@ -120,5 +119,74 @@ in
           mainProgram = "prettier-move";
         };
       };
+
+      packages.tree-sitter-move = pkgs.tree-sitter.buildGrammar {
+        language = "move";
+        inherit version;
+        src = suiSrc;
+        location = "external-crates/move/tooling/tree-sitter";
+
+        meta = {
+          description = "Tree-sitter grammar for Move";
+          homepage = "https://github.com/MystenLabs/sui/tree/main/external-crates/move/tooling/tree-sitter";
+          license = lib.licenses.asl20;
+        };
+      };
+    };
+
+  flake.commonModules.neovim-langs-move =
+    { ... }:
+    {
+      home-manager.sharedModules = [
+        (
+          { config, pkgs, ... }:
+          let
+            suiPackages = self.packages.${pkgs.stdenv.hostPlatform.system};
+          in
+          {
+            programs.nixvim = {
+              filetype.extension.move = "move";
+
+              plugins = {
+                lsp.postConfig = ''
+                  vim.lsp.config("move_analyzer", {
+                    cmd = { "${suiPackages.sui-bin}/bin/move-analyzer" },
+                    filetypes = { "move" },
+                    root_markers = { "Move.toml", ".git" },
+                  })
+                  vim.lsp.enable("move_analyzer")
+                '';
+
+                conform-nvim.settings = {
+                  formatters_by_ft.move = [ "prettier_move" ];
+                  formatters.prettier_move = {
+                    command = "${suiPackages.prettier-plugin-move}/bin/prettier-move";
+                    stdin = false;
+                    args = [
+                      "--use-tabs"
+                      "false"
+                      "--tab-width"
+                      "4"
+                      "-w"
+                      "$FILENAME"
+                    ];
+                  };
+                };
+
+                treesitter = {
+                  grammarPackages = config.programs.nixvim.plugins.treesitter.package.allGrammars ++ [
+                    suiPackages.tree-sitter-move
+                  ];
+                  languageRegister.move = "move";
+                };
+              };
+
+              extraPlugins = [
+                suiPackages.tree-sitter-move
+              ];
+            };
+          }
+        )
+      ];
     };
 }
