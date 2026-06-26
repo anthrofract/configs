@@ -40,7 +40,6 @@ in
         pkgs.obsidian
         pkgs.opensc
         pkgs.raycast
-        pkgs.signal-desktop
         pkgs.spotify
         pkgs.tart
         pkgs.yubikey-manager
@@ -70,6 +69,7 @@ in
         casks = [
           "docker-desktop"
           "karabiner-elements"
+          "signal"
           "slack"
           "syncthing-app"
           "tailscale-app"
