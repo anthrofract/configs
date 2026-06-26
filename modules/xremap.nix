@@ -45,7 +45,7 @@ in
           modmap = [ ];
           experimental_map = [
             {
-              name = "Backtick number chords";
+              name = "Backtick alt-number chords";
               chords =
                 map
                   (number: {
@@ -54,7 +54,7 @@ in
                       number
                     ];
                     actions = [
-                      "Control_L"
+                      "Alt_L"
                       number
                     ];
                     timeout = 30;
