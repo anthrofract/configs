@@ -128,9 +128,9 @@ alias cat = bat --plain --paging=never
 alias clc = copy-last-command
 alias ff = fastfetch
 alias ghb = gh browse
-alias ghpr = gh pr view --web (jbr)
-alias ghprnd = gh pr new --web --draft --head (jbr)
-alias ghrpn = gh pr new --web --head (jbr)
+alias ghpr = gh pr view (jbr)
+alias ghprnd = gh pr new --draft --head (jbr)
+alias ghrpn = gh pr new --head (jbr)
 alias jbr = jj log -r "heads(::@ & bookmarks())" --no-graph -T 'bookmarks.map(|b| b.name())'
 alias jclone = jj git clone --colocate
 alias jnM = jj-fetch-new-trunk
