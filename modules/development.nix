@@ -5,6 +5,7 @@
     {
       imports = [
         self.commonModules.development-agents
+        self.commonModules.development-aws
         self.commonModules.development-bitcoin
         self.commonModules.development-direnv
         self.commonModules.development-go
@@ -36,6 +37,14 @@
       environment.systemPackages = [
         latestPkgs.claude-code
         latestPkgs.opencode
+      ];
+    };
+
+  flake.commonModules.development-aws =
+    { pkgs, ... }:
+    {
+      environment.systemPackages = [
+        pkgs.awscli2
       ];
     };
 
