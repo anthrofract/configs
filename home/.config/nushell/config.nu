@@ -124,16 +124,10 @@ def tmux-dev-layout [] {
     } | ignore
 }
 
+# Aliases
 alias cat = bat --plain --paging=never
 alias clc = copy-last-command
 alias ff = fastfetch
-alias ghb = gh browse
-alias ghpr = gh pr view (jbr)
-alias ghprnd = gh pr new --draft --head (jbr)
-alias ghrpn = gh pr new --head (jbr)
-alias jbr = jj log -r "heads(::@ & bookmarks())" --no-graph -T 'bookmarks.map(|b| b.name())'
-alias jclone = jj git clone --colocate
-alias jnM = jj-fetch-new-trunk
 alias less = bat-pager
 alias lt = lsd --color always -A --date relative --group-directories-first --tree
 alias lt2 = lsd --color always -A --date relative --group-directories-first --tree --depth 2
@@ -147,6 +141,15 @@ alias sha = hash sha256
 alias t = tmux-dev-layout
 alias v = nvim
 alias x = hx
+
+# VCS aliases
+alias jbr = jj log -r "heads(::@ & bookmarks())" --no-graph -T 'bookmarks.map(|b| b.name())'
+alias ghb = gh browse
+alias ghpr = gh pr view (jbr)
+alias ghprn = gh pr new --head (jbr)
+alias ghprnd = gh pr new --draft --head (jbr)
+alias jclone = jj git clone --colocate
+alias jnM = jj-fetch-new-trunk
 
 # Direnv
 $env.config.hooks.env_change.PWD = $env.config.hooks.env_change.PWD? | default []
