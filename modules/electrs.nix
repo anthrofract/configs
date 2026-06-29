@@ -82,11 +82,11 @@
         lib.nameValuePair "electrs-${electrsName}" {
           wantedBy = [ "multi-user.target" ];
           after = [
-            "network-setup.service"
+            "network-online.target"
             "bitcoind-${electrsName}.service"
           ];
+          wants = [ "network-online.target" ];
           requires = [
-            "network-setup.service"
             "bitcoind-${electrsName}.service"
           ];
           serviceConfig = {
