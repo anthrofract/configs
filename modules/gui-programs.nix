@@ -30,6 +30,7 @@
                     --replace-quiet 'X-KDE-SubstituteUID=true' 'X-KDE-SubstituteUID=false'
                 '';
               }))
+              latestPkgs.sparrow
               latestPkgs.zed-editor-fhs
               pkgs.chromium
               pkgs.google-chrome
@@ -55,7 +56,6 @@
               pkgs.qalculate-qt
               pkgs.signal-desktop
               pkgs.slack
-              pkgs.sparrow
               pkgs.spotify
               pkgs.timg
               pkgs.tor-browser
