@@ -7,7 +7,7 @@ args@{ inputs, ... }:
 
       services.hermes-agent = {
         enable = true;
-        package = inputs.hermes-agent.packages.${pkgs.stdenv.hostPlatform.system}.full;
+        package = inputs.hermes-agent.packages.${pkgs.stdenv.hostPlatform.system}.default;
         addToSystemPackages = true;
 
         container = {

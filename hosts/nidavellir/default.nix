@@ -22,7 +22,7 @@
           self.nixosModules.bitcoind
           self.nixosModules.electrs
           self.nixosModules.gitea
-          self.nixosModules.hermes
+          # self.nixosModules.hermes
           self.nixosModules.mempool
           self.nixosModules.reverse-proxy
         ];
