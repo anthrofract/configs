@@ -4,7 +4,7 @@
     { ... }:
     {
       imports = [
-        self.nixosModules.emacs
+        # self.nixosModules.emacs
         self.commonModules.ghostty
         self.nixosModules.handy
         self.nixosModules.helium
