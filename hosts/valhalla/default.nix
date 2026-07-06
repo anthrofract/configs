@@ -14,7 +14,7 @@
         imports = [
           ./hardware.nix
           self.nixosModules.gui-host
-          self.nixosModules.local-ai
+          # self.nixosModules.local-ai
           self.nixosModules.nvidia
           self.nixosModules.reverse-proxy
           self.nixosModules.sunshine
