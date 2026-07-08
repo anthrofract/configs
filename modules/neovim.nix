@@ -237,6 +237,34 @@
                     settings.event = [ "DeferredUIEnter" ];
                   };
                 };
+                fzf-lua = {
+                  enable = true;
+                  settings = {
+                    git.status.actions = {
+                      left = false;
+                      right = false;
+                      "ctrl-x" = false;
+                    };
+                    winopts = {
+                      backdrop = false;
+                      border.__raw = ''
+                        function(...)
+                          local b = require("fzf-lua.profiles.border-fused").winopts.border(...)
+                          local sharp = { ["╭"] = "┌", ["╮"] = "┐", ["╯"] = "┘", ["╰"] = "└" }
+                          return vim.tbl_map(function(c) return sharp[c] or c end, b)
+                        end
+                      '';
+                      preview.border.__raw = ''
+                        function(...)
+                          local b = require("fzf-lua.profiles.border-fused").winopts.preview.border(...)
+                          if type(b) ~= "table" then return b end
+                          local sharp = { ["╭"] = "┌", ["╮"] = "┐", ["╯"] = "┘", ["╰"] = "└" }
+                          return vim.tbl_map(function(c) return sharp[c] or c end, b)
+                        end
+                      '';
+                    };
+                  };
+                };
                 gitsigns = {
                   enable = true;
                   lazyLoad = {
@@ -333,43 +361,6 @@
                   };
                 };
                 sleuth.enable = true;
-                telescope = {
-                  enable = true;
-                  lazyLoad = {
-                    enable = true;
-                    settings.event = [ "DeferredUIEnter" ];
-                  };
-                  extensions.fzf-native.enable = true;
-                  extensions.ui-select = {
-                    enable = true;
-                    settings.__raw = ''
-                      require("telescope.themes").get_dropdown({
-                        borderchars = {
-                          prompt = { "─", "│", " ", "│", "┌", "┐", "│", "│" },
-                          results = { "─", "│", "─", "│", "├", "┤", "┘", "└" },
-                          preview = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
-                        },
-                      })
-                    '';
-                  };
-                  settings.defaults = {
-                    borderchars = [
-                      "─"
-                      "│"
-                      "─"
-                      "│"
-                      "┌"
-                      "┐"
-                      "┘"
-                      "└"
-                    ];
-                    layout_config.prompt_position = "top";
-                    mappings.i."<Esc>".__raw = ''
-                      require("telescope.actions").close
-                    '';
-                    sorting_strategy = "ascending";
-                  };
-                };
                 tmux-navigator = {
                   enable = true;
                   lazyLoad = {
@@ -400,6 +391,10 @@
               extraPlugins = [
                 pkgs.vimPlugins.nvim-various-textobjs
               ];
+
+              extraConfigLua = ''
+                require("fzf-lua").register_ui_select()
+              '';
             };
           }
         )
@@ -727,13 +722,13 @@
                 {
                   mode = "n";
                   key = "<leader>'";
-                  action = "<cmd>Telescope resume<CR>";
+                  action = "<cmd>FzfLua resume<CR>";
                   options.desc = "Open last picker";
                 }
                 {
                   mode = "n";
                   key = "<leader>/";
-                  action = "<cmd>Telescope live_grep<CR>";
+                  action = "<cmd>FzfLua live_grep<CR>";
                   options.desc = "Global search in workspace folder";
                 }
                 {
@@ -749,7 +744,7 @@
                 {
                   mode = "n";
                   key = "<leader>bb";
-                  action = "<cmd>Telescope buffers<CR>";
+                  action = "<cmd>FzfLua buffers<CR>";
                   options.desc = "Open buffer picker";
                 }
                 {
@@ -809,21 +804,13 @@
                 {
                   mode = "n";
                   key = "<leader>D";
-                  action.__raw = ''
-                    function()
-                      require("telescope.builtin").diagnostics()
-                    end
-                  '';
+                  action = "<cmd>FzfLua diagnostics_workspace<CR>";
                   options.desc = "Open workspace diagnostic picker";
                 }
                 {
                   mode = "n";
                   key = "<leader>d";
-                  action.__raw = ''
-                    function()
-                      require("telescope.builtin").diagnostics({ bufnr = 0 })
-                    end
-                  '';
+                  action = "<cmd>FzfLua diagnostics_document<CR>";
                   options.desc = "Open diagnostic picker";
                 }
                 {
@@ -849,13 +836,13 @@
                 {
                   mode = "n";
                   key = "<leader>f";
-                  action = "<cmd>Telescope find_files<CR>";
+                  action = "<cmd>FzfLua files<CR>";
                   options.desc = "Open file picker";
                 }
                 {
                   mode = "n";
                   key = "<leader>gg";
-                  action = "<cmd>Telescope git_status<CR>";
+                  action = "<cmd>FzfLua git_status<CR>";
                   options.desc = "Open changed file picker";
                 }
                 {
@@ -928,7 +915,7 @@
                 {
                   mode = "n";
                   key = "<leader>j";
-                  action = "<cmd>Telescope jumplist<CR>";
+                  action = "<cmd>FzfLua jumps<CR>";
                   options.desc = "Open jumplist picker";
                 }
                 {
@@ -976,7 +963,7 @@
                   key = "<leader>m";
                   action.__raw = ''
                     function()
-                      require("telescope.builtin").oldfiles({ cwd_only = true })
+                      require("fzf-lua").oldfiles({ cwd_only = true })
                     end
                   '';
                   options.desc = "Open recent files picker";
@@ -1030,13 +1017,13 @@
                 {
                   mode = "n";
                   key = "<leader>s";
-                  action = "<cmd>Telescope lsp_document_symbols<CR>";
+                  action = "<cmd>FzfLua lsp_document_symbols<CR>";
                   options.desc = "Open symbol picker";
                 }
                 {
                   mode = "n";
                   key = "<leader>S";
-                  action = "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>";
+                  action = "<cmd>FzfLua lsp_live_workspace_symbols<CR>";
                   options.desc = "Open workspace symbol picker";
                 }
                 {
@@ -1389,11 +1376,7 @@
                 {
                   mode = "n";
                   key = "gd";
-                  action.__raw = ''
-                    function()
-                      require("telescope.builtin").lsp_definitions()
-                    end
-                  '';
+                  action = "<cmd>FzfLua lsp_definitions<CR>";
                   options.desc = "Go to definition";
                 }
                 {
@@ -1415,11 +1398,7 @@
                 {
                   mode = "n";
                   key = "gI";
-                  action.__raw = ''
-                    function()
-                      require("telescope.builtin").lsp_implementations()
-                    end
-                  '';
+                  action = "<cmd>FzfLua lsp_implementations<CR>";
                   options.desc = "Go to implementation";
                 }
                 {
@@ -1431,11 +1410,7 @@
                 {
                   mode = "n";
                   key = "gr";
-                  action.__raw = ''
-                    function()
-                      require("telescope.builtin").lsp_references()
-                    end
-                  '';
+                  action = "<cmd>FzfLua lsp_references<CR>";
                   options.desc = "Go to references";
                 }
                 {
@@ -1457,11 +1432,7 @@
                 {
                   mode = "n";
                   key = "gy";
-                  action.__raw = ''
-                    function()
-                      require("telescope.builtin").lsp_type_definitions()
-                    end
-                  '';
+                  action = "<cmd>FzfLua lsp_typedefs<CR>";
                   options.desc = "Go to type definition";
                 }
                 {
