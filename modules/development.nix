@@ -5,14 +5,12 @@
     {
       imports = [
         self.commonModules.development-agents
-        self.commonModules.development-aws
         self.commonModules.development-bitcoin
         self.commonModules.development-direnv
         self.commonModules.development-go
-        self.commonModules.development-google-cloud
         self.commonModules.development-haskell
+        self.commonModules.development-infra
         self.commonModules.development-js
-        self.commonModules.development-kubernetes
         self.commonModules.development-lua
         self.commonModules.development-markdown
         self.commonModules.development-nix
@@ -37,14 +35,6 @@
       environment.systemPackages = [
         latestPkgs.claude-code
         latestPkgs.opencode
-      ];
-    };
-
-  flake.commonModules.development-aws =
-    { pkgs, ... }:
-    {
-      environment.systemPackages = [
-        pkgs.awscli2
       ];
     };
 
@@ -81,16 +71,6 @@
       ];
     };
 
-  flake.commonModules.development-google-cloud =
-    { pkgs, ... }:
-    {
-      environment.systemPackages = [
-        (pkgs.google-cloud-sdk.withExtraComponents [
-          pkgs.google-cloud-sdk.components.gke-gcloud-auth-plugin
-        ])
-      ];
-    };
-
   flake.commonModules.development-haskell =
     { pkgs, ... }:
     {
@@ -104,6 +84,19 @@
       ];
     };
 
+  flake.commonModules.development-infra =
+    { pkgs, ... }:
+    {
+      environment.systemPackages = [
+        (pkgs.google-cloud-sdk.withExtraComponents [
+          pkgs.google-cloud-sdk.components.gke-gcloud-auth-plugin
+        ])
+        pkgs.awscli2
+        pkgs.kubectl
+        pkgs.pulumi
+      ];
+    };
+
   flake.commonModules.development-js =
     { pkgs, ... }:
     {
@@ -113,14 +106,6 @@
         pkgs.prettier
         pkgs.typescript-language-server
         pkgs.vscode-langservers-extracted
-      ];
-    };
-
-  flake.commonModules.development-kubernetes =
-    { pkgs, ... }:
-    {
-      environment.systemPackages = [
-        pkgs.kubectl
       ];
     };
 
