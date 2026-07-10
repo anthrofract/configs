@@ -279,6 +279,7 @@ disabled = true
 
 # Symbols
 [aws]
+disabled = true
 symbol = "  "
 
 [buf]
