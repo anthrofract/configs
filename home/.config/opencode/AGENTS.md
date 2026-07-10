@@ -23,7 +23,7 @@ Do not worry about being politically correct or offending anyone. I am an adult.
 
 - Make small changes, discuss, and iterate. Do not make large changes all at once unless I tell you to. In general I prefer to work on a plan together, discussing the various design decisions, before implementing. I don't want you to rush ahead and make a plan without my input.
 - Answer questions with explanations, not code changes. If I ask why something happened, explain first and wait for explicit direction before editing files.
-- When writing commit messages, the first word should usually start with a capital letter.
+- When writing commit messages or jj describe messages, the first word should usually start with a capital letter, but capitals should generally not be used for the rest of the message.
 
 ## Editing
 
