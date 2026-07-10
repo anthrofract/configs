@@ -54,7 +54,7 @@ in
           description = "Sui blockchain command line tools";
           homepage = "https://github.com/MystenLabs/sui";
           license = lib.licenses.asl20;
-          platforms = builtins.attrNames platforms;
+          platforms = lib.attrNames platforms;
         };
       };
 

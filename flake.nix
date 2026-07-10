@@ -62,9 +62,9 @@
           nixFilesRecursive =
             dir:
             lib.filesystem.listFilesRecursive dir
-            |> builtins.filter (path: lib.strings.hasSuffix ".nix" (toString path));
+            |> lib.filter (path: lib.strings.hasSuffix ".nix" (toString path));
         in
-        (lib.mapAttrsToList (name: _: ./hosts/${name}) (builtins.readDir ./hosts))
+        (lib.mapAttrsToList (name: _: ./hosts/${name}) (lib.filesystem.readDir ./hosts))
         ++ nixFilesRecursive ./config
         ++ nixFilesRecursive ./modules
         ++ nixFilesRecursive ./packages;

@@ -1,7 +1,7 @@
-{ config, ... }:
+{ config, lib, ... }:
 let
-  hostNames = config.secrets.hosts |> builtins.attrNames;
-  foreignHostPattern = ([ "*" ] ++ map (host: "!${host}") hostNames) |> builtins.concatStringsSep " ";
+  hostNames = config.secrets.hosts |> lib.attrNames;
+  foreignHostPattern = ([ "*" ] ++ map (host: "!${host}") hostNames) |> lib.concatStringsSep " ";
 in
 {
   flake.nixosModules.ssh =

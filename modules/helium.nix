@@ -94,21 +94,21 @@ in
     };
 
   flake.nixosModules.helium =
-    { pkgs, ... }:
+    { pkgs, lib, ... }:
     {
       imports = [ self.commonModules.helium ];
 
       environment.systemPackages = [
         (
           # Chromium on native Wayland + NVIDIA whites out Google Meet effects.
-          # if builtins.elem "nvidia" config.services.xserver.videoDrivers then
+          # if lib.elem "nvidia" config.services.xserver.videoDrivers then
           #   heliumX11PackageFor pkgs
           # else
           heliumPackageFor pkgs
         )
       ];
 
-      environment.etc."chromium/policies/managed/helium.json".text = builtins.toJSON policy;
+      environment.etc."chromium/policies/managed/helium.json".text = lib.toJSON policy;
     };
 
   flake.darwinModules.helium =
