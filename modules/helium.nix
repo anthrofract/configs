@@ -71,29 +71,22 @@ in
             home.sessionVariables.BROWSER = "helium";
 
             xdg.mimeApps.defaultApplications = lib.mkIf pkgs.stdenv.hostPlatform.isLinux (
-              builtins.listToAttrs (
-                map
-                  (name: {
-                    inherit name;
-                    value = "helium.desktop";
-                  })
-                  [
-                    "application/pdf"
-                    "application/rdf+xml"
-                    "application/rss+xml"
-                    "application/xhtml+xml"
-                    "application/xhtml_xml"
-                    "application/xml"
-                    "image/gif"
-                    "image/jpeg"
-                    "image/png"
-                    "image/webp"
-                    "text/html"
-                    "text/xml"
-                    "x-scheme-handler/http"
-                    "x-scheme-handler/https"
-                  ]
-              )
+              lib.genAttrs [
+                "application/pdf"
+                "application/rdf+xml"
+                "application/rss+xml"
+                "application/xhtml+xml"
+                "application/xhtml_xml"
+                "application/xml"
+                "image/gif"
+                "image/jpeg"
+                "image/png"
+                "image/webp"
+                "text/html"
+                "text/xml"
+                "x-scheme-handler/http"
+                "x-scheme-handler/https"
+              ] (name: "helium.desktop")
             );
           }
         )

@@ -58,25 +58,13 @@
 
       imports =
         let
+          inherit (inputs.nixpkgs) lib;
           nixFilesRecursive =
             dir:
-            builtins.readDir dir
-            |> builtins.mapAttrs (
-              name: type:
-              let
-                path = dir + "/${name}";
-              in
-              if type == "directory" then
-                nixFilesRecursive path
-              else if builtins.match ".*\\.nix" name != null then
-                [ path ]
-              else
-                [ ]
-            )
-            |> builtins.attrValues
-            |> builtins.concatLists;
+            lib.filesystem.listFilesRecursive dir
+            |> builtins.filter (path: lib.strings.hasSuffix ".nix" (toString path));
         in
-        (builtins.readDir ./hosts |> builtins.attrNames |> map (name: ./hosts/${name}))
+        (lib.mapAttrsToList (name: _: ./hosts/${name}) (builtins.readDir ./hosts))
         ++ nixFilesRecursive ./config
         ++ nixFilesRecursive ./modules
         ++ nixFilesRecursive ./packages;
