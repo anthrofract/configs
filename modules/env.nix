@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, lib, ... }:
 let
   tokens = config.secrets.tokens;
 
@@ -11,12 +11,10 @@ let
   };
 
   nuAutoload =
-    vars
-    |> builtins.attrNames
-    |> map (name: ''
-      $env.${name} = "${vars.${name}}"
-    '')
-    |> builtins.concatStringsSep "";
+    lib.mapAttrsToList (name: value: ''
+      $env.${name} = "${value}"
+    '') vars
+    |> lib.concatStrings;
 
 in
 {
