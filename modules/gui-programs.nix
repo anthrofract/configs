@@ -50,7 +50,6 @@
               pkgs.kdePackages.partitionmanager
               pkgs.kdePackages.spectacle
               pkgs.keepassxc
-              pkgs.krita
               pkgs.libreoffice-qt
               pkgs.obsidian
               pkgs.qalculate-qt
