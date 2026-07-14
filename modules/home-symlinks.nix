@@ -4,22 +4,9 @@
 { lib, ... }:
 let
   homeDir = ../home;
-
-  # Recursively collect all file paths under a directory, relative to homeDir.
-  collectFiles =
-    prefix: dir:
-    builtins.readDir dir
-    |> lib.mapAttrsToList (
-      name: type:
-      let
-        path = "${prefix}${name}";
-      in
-      if type == "directory" then collectFiles "${path}/" (dir + "/${name}") else [ path ]
-    )
-    |> lib.concatLists;
-
-  allFiles = collectFiles "" homeDir;
-
+  relPaths =
+    lib.filesystem.listFilesRecursive homeDir
+    |> map (path: lib.strings.removePrefix "${toString homeDir}/" (toString path));
 in
 {
   flake.commonModules.home-symlinks = {
@@ -28,21 +15,13 @@ in
         { config, ... }:
         let
           dotfiles = "${config.home.homeDirectory}/configs/home";
-          mkLink = config.lib.file.mkOutOfStoreSymlink;
         in
         {
-          # Create a symlink in $HOME for each file, pointing back to the configs repo.
-          # Parent directories are created automatically by home-manager.
-          home.file =
-            allFiles
-            |> map (path: {
-              name = path;
-              value.source = mkLink "${dotfiles}/${path}";
-            })
-            |> lib.listToAttrs;
+          home.file = lib.genAttrs relPaths (path: {
+            source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/${path}";
+          });
         }
       )
     ];
   };
-
 }

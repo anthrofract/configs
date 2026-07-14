@@ -71,29 +71,22 @@ in
             home.sessionVariables.BROWSER = "helium";
 
             xdg.mimeApps.defaultApplications = lib.mkIf pkgs.stdenv.hostPlatform.isLinux (
-              builtins.listToAttrs (
-                map
-                  (name: {
-                    inherit name;
-                    value = "helium.desktop";
-                  })
-                  [
-                    "application/pdf"
-                    "application/rdf+xml"
-                    "application/rss+xml"
-                    "application/xhtml+xml"
-                    "application/xhtml_xml"
-                    "application/xml"
-                    "image/gif"
-                    "image/jpeg"
-                    "image/png"
-                    "image/webp"
-                    "text/html"
-                    "text/xml"
-                    "x-scheme-handler/http"
-                    "x-scheme-handler/https"
-                  ]
-              )
+              lib.genAttrs [
+                "application/pdf"
+                "application/rdf+xml"
+                "application/rss+xml"
+                "application/xhtml+xml"
+                "application/xhtml_xml"
+                "application/xml"
+                "image/gif"
+                "image/jpeg"
+                "image/png"
+                "image/webp"
+                "text/html"
+                "text/xml"
+                "x-scheme-handler/http"
+                "x-scheme-handler/https"
+              ] (name: "helium.desktop")
             );
           }
         )
@@ -101,21 +94,21 @@ in
     };
 
   flake.nixosModules.helium =
-    { pkgs, ... }:
+    { pkgs, lib, ... }:
     {
       imports = [ self.commonModules.helium ];
 
       environment.systemPackages = [
         (
           # Chromium on native Wayland + NVIDIA whites out Google Meet effects.
-          # if builtins.elem "nvidia" config.services.xserver.videoDrivers then
+          # if lib.elem "nvidia" config.services.xserver.videoDrivers then
           #   heliumX11PackageFor pkgs
           # else
           heliumPackageFor pkgs
         )
       ];
 
-      environment.etc."chromium/policies/managed/helium.json".text = builtins.toJSON policy;
+      environment.etc."chromium/policies/managed/helium.json".text = lib.toJSON policy;
     };
 
   flake.darwinModules.helium =
