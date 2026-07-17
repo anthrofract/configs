@@ -26,6 +26,7 @@
         time.timeZone = "America/Chicago";
 
         services.reverse-proxy.domain = "valhalla";
+        services.tailscale.extraSetFlags = [ "--exit-node-allow-lan-access=true" ];
 
         home-manager.sharedModules = [
           {
