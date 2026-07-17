@@ -35,7 +35,6 @@ in
       environment.systemPackages = [
         latestPkgs.zed-editor
         pkgs.google-chrome
-        pkgs.keepassxc
         pkgs.meetingbar
         pkgs.obsidian
         pkgs.opensc
@@ -69,6 +68,7 @@ in
         casks = [
           "docker-desktop"
           "karabiner-elements"
+          "keepassxc"
           "signal"
           "slack"
           "syncthing-app"
