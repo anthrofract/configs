@@ -38,6 +38,10 @@ in
               id = hosts.work-mbp.syncthingId;
               addresses = [ "tcp://work-mbp" ];
             };
+            "graphene-tablet" = {
+              id = hosts.graphene-tablet.syncthingId;
+              addresses = [ "tcp://graphene-tablet" ];
+            };
           };
           folders = {
             "notes" = {
@@ -48,6 +52,7 @@ in
                 "nidavellir"
                 "zfold7"
                 "work-mbp"
+                "graphene-tablet"
               ];
               versioning = {
                 type = "staggered";
@@ -65,6 +70,7 @@ in
                 "nidavellir"
                 "zfold7"
                 "work-mbp"
+                "graphene-tablet"
               ];
               versioning = {
                 type = "trashcan";
@@ -81,6 +87,7 @@ in
                 "nidavellir"
                 "zfold7"
                 "work-mbp"
+                "graphene-tablet"
               ];
               versioning = {
                 type = "staggered";
