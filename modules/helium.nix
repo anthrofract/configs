@@ -7,7 +7,8 @@
 let
   heliumExtensionUpdateUrl = "https://services.helium.imput.net/ext";
 
-  heliumPackageFor = pkgs: inputs.helium.packages.${pkgs.stdenv.hostPlatform.system}.default;
+  heliumPackageFor =
+    pkgs: inputs.helium.packages.${pkgs.stdenv.hostPlatform.system}.default.override { withWidevine = false; };
 
   # heliumX11PackageFor =
   #   pkgs:
