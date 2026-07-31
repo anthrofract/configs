@@ -108,7 +108,7 @@
         ])
         pkgs.awscli2
         pkgs.kubectl
-        pkgs.pulumi
+        pkgs.pulumi-bin
       ];
     };
 
