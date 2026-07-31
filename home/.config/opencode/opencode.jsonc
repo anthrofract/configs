@@ -21,6 +21,7 @@
     "prune": true,
   },
   "permission": {
+    "question": "deny",
     "external_directory": {
       "/nix/store/**": "allow",
       "/tmp/**": "allow",
