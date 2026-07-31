@@ -7,6 +7,7 @@
         self.commonModules.development-agents
         self.commonModules.development-bitcoin
         self.commonModules.development-direnv
+        self.commonModules.development-github
         self.commonModules.development-go
         self.commonModules.development-haskell
         self.commonModules.development-infra
@@ -56,6 +57,20 @@
             nix-direnv.enable = true;
             config.global.hide_env_diff = true;
           };
+        }
+      ];
+    };
+
+  flake.commonModules.development-github =
+    { pkgs, ... }:
+    {
+      environment.systemPackages = [
+        pkgs.gh
+      ];
+
+      home-manager.sharedModules = [
+        {
+          xdg.dataFile."gh/extensions/gh-stack".source = "${pkgs.gh-stack}/bin";
         }
       ];
     };

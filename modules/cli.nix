@@ -18,7 +18,6 @@
         pkgs.fastfetch
         pkgs.fd
         pkgs.fzf
-        pkgs.gh
         pkgs.gnumake
         pkgs.gnupg
         pkgs.inetutils
