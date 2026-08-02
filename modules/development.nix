@@ -9,7 +9,7 @@
         self.commonModules.development-direnv
         self.commonModules.development-github
         self.commonModules.development-go
-        self.commonModules.development-haskell
+        # self.commonModules.development-haskell
         self.commonModules.development-infra
         self.commonModules.development-js
         self.commonModules.development-lua
