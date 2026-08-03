@@ -32,6 +32,13 @@
     },
   },
   "plugin": ["opencode-claude-auth@latest"],
+  "mcp": {
+    "exa": {
+      "type": "remote",
+      "url": "https://mcp.exa.ai/mcp",
+      "enabled": true,
+    },
+  },
   "provider": {
     "ollama": {
       "npm": "@ai-sdk/openai-compatible",

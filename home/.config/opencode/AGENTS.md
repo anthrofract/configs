@@ -9,7 +9,7 @@ I communicate literally. I am autistic. When I write rules, I mean exactly what 
 ## Communication Style
 
 Be direct and informal. Skip pleasantries, filler, and qualifiers. Do not be sycophantic — don't praise my ideas, don't tell me something is a "great question," and don't soften disagreements. If I'm wrong, say so plainly. If something is unclear, ask.
-Do not worry about being politically correct or offending anyone. I am an adult. Give me your honest, unfiltered assessment. Do not hedge, add disclaimers, or water down technical opinions to be safe. Swearing is fine. Internet, hacker, and tech slang are all welcome. Do not use LinkedIn corporate-speak.
+Do not worry about being politically correct or offending anyone. I am an adult. Give me your honest, unfiltered assessment. Do not hedge, add disclaimers, or water down technical opinions to be safe. Swearing is fine. Internet, hacker, and tech slang are all welcome. Do not use LinkedIn corporate-speak. Use simple English, not complicated dense jargon.
 
 ## Environment
 
@@ -18,6 +18,16 @@ Do not worry about being politically correct or offending anyone. I am an adult.
 - Configs: System configs (neovim, tmux, ghostty, nushell, nix) live in ~/configs.
 - VCS: I use jujutsu (jj) instead of git, which is why you may see a detached HEAD state, that is normal. You are welcome to use git commands though. Read operations like `jj show` and `git show` are fine; do not use write operations like `jj describe`, `git add`, `git switch`, etc unless I explicitly tell you to.
 - Ad-hoc programs: If you need a program I don't have installed, use a nix shell or nix run to temporarily install it.
+
+## Engineering Principles
+
+- Do not preserve backward compatibility. Remove obsolete paths instead of adding compatibility layers, fallbacks, or migrations.
+- Choose the simplest implementation that fully meets the current requirements. Avoid speculative abstractions, configuration, and indirection.
+- Grow the system in layers. Start from the smallest version that works end to end, and add each new capability on top of a product that already works. Never trade a working product for unfinished complexity.
+- Keep components modular and concerns clearly separated.
+- Prefer established, well-maintained libraries when they reduce overall complexity or improve reliability. Do not reimplement common functionality without a clear reason.
+- Lean on the dependencies already in the project before writing your own implementation or adding packages. Do not assume a library lacks a capability without checking its documentation and types.
+- Make architectural decisions for the long term. Do not accept a stopgap that only works for now and is meant to be replaced later.
 
 ## Workflow
 
@@ -41,8 +51,8 @@ Do not worry about being politically correct or offending anyone. I am an adult.
 
 If I ask for a code review, follow these steps:
 
-1. Identify the changes I ask to be reviewed. If I give a branch, look at the diff of that branch compared to where it branches off main or whatever parent branch. If I give two branches separated by a ..., then look at the diff between those two branches. Look at the changes as a whole, not commit by commit. If I give a commit or change id, just look at that specific change. Be sure to check what branch or commit the repo is currently on. Using either git or jj is fine for all this, whatever is easiest.
-2. Read the given changes, and analyze it within the larger context of the repo, not in isolation. Make sure to look around the rest of the repo for context.
+1. Identify the changes I ask to be reviewed. If I give a branch, we want to look at the diff of that branch compared to where it branches off main or whatever parent branch. If I give two branches separated by a ..., then we want to look at the diff between those two branches. If I give a github PR, we want to look at the diff from the PR branch to the base branch. Once you've identified the diff we want, use jj git fetch to fetch the latest repo state, then jj new to create a new change on top of whatever branch or commit we're reviewing. This makes our local repo state the same as the changes we are reviewing. Then you can start looking at the changes.
+2. Read the given changes, and analyze it within the larger context of the repo, not in isolation. Make sure to look around the rest of the repo for context. Look at the changes as a whole, not commit by commit.
 3. Before reviewing any code, first give a thorough and detailed summary of the changes to me, so I can understand what these changes do. Don't assume I'm familar with the parts of the codebase or concepts that the changes deal with.
 4. After you give the summary, code review the changes. Be thorough, but concise. Always give file paths and line numbers when talking about specific parts of the code. Look out for potential bugs, security issues, lacking test coverage, bad styling, things that could be deduped or cleaned up, incorrect documentation, and anything else that comes to mind. Don't worry about backwards compatibility or fallbacks too much. If something is fine, correct, or not an issue, don't mention it in the code review. The most important main goal of the code review is for you to suggest actionable improvements we can make to the code, not waste my time discussing trivial details.
 
