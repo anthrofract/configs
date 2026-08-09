@@ -7,6 +7,13 @@
 {
   flake.nixosModules.plasma =
     { pkgs, ... }:
+    let
+      windows95StartupSound = pkgs.fetchurl {
+        name = "windows-95-startup.wav";
+        url = "https://archive.org/download/windows95_startup_hifi/windows95_startup_hifi.wav";
+        hash = "sha256-qdAqPmtD+P0iQdXA7DH1extTsM+O5iHPTq//RnKQ9yc=";
+      };
+    in
     {
       imports = [ self.nixosModules.wallpapers ];
 
@@ -165,6 +172,22 @@
                   ];
                 }
               ];
+            };
+
+            systemd.user.services.windows-95-startup-sound = {
+              Unit = {
+                Description = "Play Windows 95 startup sound";
+                PartOf = [ "graphical-session.target" ];
+                After = [
+                  "graphical-session.target"
+                  "pipewire-pulse.service"
+                ];
+              };
+              Service = {
+                Type = "oneshot";
+                ExecStart = "${pkgs.pipewire}/bin/pw-play ${windows95StartupSound}";
+              };
+              Install.WantedBy = [ "graphical-session.target" ];
             };
           }
         )
