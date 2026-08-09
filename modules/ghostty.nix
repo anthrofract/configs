@@ -17,6 +17,7 @@
               package = ghosttyPackage;
               settings = {
                 confirm-close-surface = false;
+                custom-shader = "${./ghostty/cursor-smear.glsl}";
                 font-family = "JetBrains Mono NL";
                 font-size = lib.mkDefault 13;
                 initial-command = "${pkgs.nushell}/bin/nu -il -c \"tms ~/configs\"";
