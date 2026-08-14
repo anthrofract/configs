@@ -10,8 +10,8 @@ float getSdfRectangle(in vec2 p, in vec2 xy, in vec2 b)
 float seg(in vec2 p, in vec2 a, in vec2 b, inout float s, float d) {
     vec2 e = b - a;
     vec2 w = p - a;
-    vec2 proj = a + e * clamp(dot(w, e) / dot(e, e), 0.0, 1.0);
-    float segd = dot(p - proj, p - proj);
+    vec2 q = w - e * clamp(dot(w, e) / dot(e, e), 0.0, 1.0);
+    float segd = dot(q, q);
     d = min(d, segd);
 
     float c0 = step(0.0, p.y - a.y);
@@ -57,7 +57,8 @@ vec2 getRectangleCenter(vec4 rectangle) {
     return vec2(rectangle.x + (rectangle.z / 2.), rectangle.y - (rectangle.w / 2.));
 }
 float ease(float x) {
-    return pow(1.0 - x, 3.0);
+    float inverse = 1.0 - x;
+    return inverse * inverse * inverse;
 }
 
 const vec4 TRAIL_COLOR = vec4(1., 1., 1., 0.1);
@@ -68,6 +69,13 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord)
     #if !defined(WEB)
     fragColor = texture(iChannel0, fragCoord.xy / iResolution.xy);
     #endif
+
+    float elapsed = iTime - iTimeCursorChange;
+    if (iCursorVisible == 0 || elapsed >= DURATION ||
+        all(equal(iCurrentCursor.xy, iPreviousCursor.xy))) {
+        return;
+    }
+
     // Normalization for fragCoord to a space of -1 to 1;
     vec2 vu = normalize(fragCoord, 1.);
     vec2 offsetFactor = vec2(-.5, 0.5);
@@ -88,10 +96,18 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord)
     vec2 v2 = vec2(previousCursor.x + currentCursor.z * invertedVertexFactor, previousCursor.y);
     vec2 v3 = vec2(previousCursor.x + currentCursor.z * vertexFactor, previousCursor.y - previousCursor.w);
 
+    vec2 lowerBound = min(min(v0, v1), min(v2, v3));
+    vec2 upperBound = max(max(v0, v1), max(v2, v3));
+    vec2 antialiasMargin = vec2(4.0 / iResolution.y);
+    if (any(lessThan(vu, lowerBound - antialiasMargin)) ||
+        any(greaterThan(vu, upperBound + antialiasMargin))) {
+        return;
+    }
+
     float sdfCurrentCursor = getSdfRectangle(vu, currentCursor.xy - (currentCursor.zw * offsetFactor), currentCursor.zw * 0.5);
     float sdfTrail = getSdfParallelogram(vu, v0, v1, v2, v3);
 
-    float progress = clamp((iTime - iTimeCursorChange) / DURATION, 0.0, 1.0);
+    float progress = clamp(elapsed / DURATION, 0.0, 1.0);
     float easedProgress = ease(progress);
     // Distance between cursors determine the total length of the parallelogram;
     vec2 centerCC = getRectangleCenter(currentCursor);

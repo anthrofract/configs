@@ -17,6 +17,7 @@
               package = ghosttyPackage;
               settings = {
                 confirm-close-surface = false;
+                cursor-color = "#ffffff";
                 custom-shader = "${./ghostty/cursor-smear.glsl}";
                 font-family = "JetBrains Mono NL";
                 font-size = lib.mkDefault 13;
