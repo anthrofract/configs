@@ -43,6 +43,7 @@
         pkgs.unzip
         pkgs.usbutils
         pkgs.uutils-coreutils-noprefix
+        pkgs.watchman
         pkgs.wget
         pkgs.wireguard-tools
         pkgs.yazi
