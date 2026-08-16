@@ -1,0 +1,5 @@
+#!/usr/bin/env nu
+
+def --wrapped main [...args] {
+    exec nu --config $nu.config-path ...$args
+}
