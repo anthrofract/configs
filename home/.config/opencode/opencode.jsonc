@@ -27,6 +27,7 @@
       "/tmp/**": "allow",
       "~/.cargo/**": "allow",
       "~/configs/**": "allow",
+      "~/projects/**": "allow",
       "~/repos/**": "allow",
       "~/work/**": "allow",
     },
