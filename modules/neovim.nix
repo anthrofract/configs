@@ -288,6 +288,7 @@
                 lazydev.enable = true;
                 lz-n.enable = true;
                 mini-bufremove.enable = true;
+                neogit.enable = true;
                 nvim-autopairs = {
                   enable = true;
                   lazyLoad = {
