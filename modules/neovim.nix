@@ -22,6 +22,8 @@
               globals.mapleader = " ";
 
               extraConfigLuaPre = ''
+                vim.opt.runtimepath:prepend(vim.fn.expand("~/projects/majjit.nvim"))
+
                 vim.g.loaded_netrw = 1
                 vim.g.loaded_netrwPlugin = 1
               '';
@@ -215,6 +217,10 @@
                     nav.autojump = true;
                   };
                 };
+                baleia = {
+                  enable = true;
+                  callSetup = false;
+                };
                 codediff = {
                   enable = true;
                   lazyLoad = {
@@ -279,6 +285,7 @@
                     settings.event = [ "DeferredUIEnter" ];
                   };
                 };
+                lazydev.enable = true;
                 lz-n.enable = true;
                 mini-bufremove.enable = true;
                 nvim-autopairs = {
@@ -481,6 +488,20 @@
                       ];
                       preset = "default";
                     };
+                    sources = {
+                      default = [
+                        "lazydev"
+                        "lsp"
+                        "path"
+                        "snippets"
+                        "buffer"
+                      ];
+                      providers.lazydev = {
+                        name = "LazyDev";
+                        module = "lazydev.integrations.blink";
+                        score_offset = 100;
+                      };
+                    };
                   };
                 };
 
@@ -491,6 +512,12 @@
                       lsp_format = "never";
                       timeout_ms = 500;
                     };
+                    formatters.stylua.prepend_args = [
+                      "--indent-type"
+                      "Spaces"
+                      "--indent-width"
+                      "2"
+                    ];
                     formatters_by_ft = {
                       bash = [ "shfmt" ];
                       go = [ "gofmt" ];
@@ -914,9 +941,15 @@
                 }
                 {
                   mode = "n";
-                  key = "<leader>j";
+                  key = "<leader>J";
                   action = "<cmd>FzfLua jumps<CR>";
                   options.desc = "Open jumplist picker";
+                }
+                {
+                  mode = "n";
+                  key = "<leader>j";
+                  action = "<cmd>Majjit<CR>";
+                  options.desc = "Open majjit";
                 }
                 {
                   mode = "n";
