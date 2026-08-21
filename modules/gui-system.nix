@@ -26,6 +26,7 @@
         enable = true;
         wayland.enable = true;
       };
+      services.displayManager.defaultSession = "plasma";
 
       # Wayland tooling
       environment.systemPackages = [

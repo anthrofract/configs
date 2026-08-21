@@ -1,0 +1,38 @@
+input {
+    focus-follows-mouse max-scroll-amount="1%"
+}
+
+layout {
+    gaps 0
+
+    focus-ring {
+        off
+    }
+
+    border {
+        on
+        width 1
+        active-color "#5b5e5aee"
+        inactive-color "#3b3e3aee"
+    }
+
+    shadow {
+        on
+        softness 30
+        spread 5
+        offset x=0 y=5
+        color "#1a1a1aee"
+    }
+}
+
+animations {
+    slowdown 0.5
+}
+
+binds {
+    Mod+Tab { focus-workspace-previous; }
+    Mod+0 { toggle-overview; }
+    Mod+E { spawn "dolphin"; }
+    // Mod+Z { maximize-column; }
+    // Mod+Shift+Z { fullscreen-window; }
+}
