@@ -1,0 +1,32 @@
+{
+  "lastChangelogVersion": "0.84.2",
+  "theme": "bamboo",
+  "defaultProvider": "openai-codex",
+  "defaultModel": "gpt-5.6-sol",
+  "defaultThinkingLevel": "medium",
+  "defaultTools": ["read", "bash", "edit", "write", "grep", "find", "ls"],
+  "enableInstallTelemetry": false,
+  "packages": [
+    "npm:pi-clutch",
+    "npm:pi-footer",
+    "npm:pi-jj",
+    "npm:pi-quote",
+    "npm:pi-web-access",
+    "npm:pi-wtf",
+    "npm:pi-subagents",
+    "npm:@narumitw/pi-btw"
+  ],
+  "piJj": {
+    "silentCheckpoints": true
+  },
+  "editorPaddingX": 1,
+  "autocompleteMaxVisible": 10,
+  "quietStartup": true,
+  "treeFilterMode": "no-tools",
+  "tuiMode": "fullscreen",
+  "userShell": {
+    "path": "~/bin/nu-with-config/nu"
+  },
+  "showHardwareCursor": true,
+  "hideThinkingBlock": false
+}

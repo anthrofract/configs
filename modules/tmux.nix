@@ -32,7 +32,9 @@
 
                 set-option -gq allow-passthrough on
                 set-option -g extended-keys on
+                set-option -g extended-keys-format csi-u
                 set-option -g renumber-windows on
+                set-option -g set-clipboard on
 
                 bind-key -n M-1 select-window -t 1
                 bind-key -n M-2 select-window -t 2

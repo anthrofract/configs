@@ -49,7 +49,6 @@
                   ''super+down=text:\x0a''
                   ''super+up=text:\x0b''
                   ''super+right=text:\x0c''
-                  ''shift+enter=text:\x1b\r''
                   ''super+\=text:\x1c''
                   ''super+s=text:\x1bS''
                 ];

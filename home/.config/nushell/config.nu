@@ -108,7 +108,7 @@ def tmux-dev-layout [] {
     job spawn {
         # Window 2, majjit and opencode
         tmux new-window
-        tmux send-keys "opencode" Enter
+        tmux send-keys "pi" Enter
         tmux split-window -hb
         tmux send-keys "mj" Enter
 
