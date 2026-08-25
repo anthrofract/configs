@@ -1,9 +1,10 @@
 { ... }:
 {
   flake.commonModules.ghostty =
-    { pkgs, ... }:
+    { pkgs, latestPkgs, ... }:
     let
-      ghosttyPackage = if pkgs.stdenv.hostPlatform.isDarwin then pkgs.ghostty-bin else pkgs.ghostty;
+      ghosttyPackage =
+        if pkgs.stdenv.hostPlatform.isDarwin then latestPkgs.ghostty-bin else latestPkgs.ghostty;
     in
     {
       environment.systemPackages = [ ghosttyPackage.terminfo ];

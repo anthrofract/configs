@@ -1,4 +1,4 @@
-{ self, inputs, ... }:
+{ self, ... }:
 {
   flake.nixosModules.gui-programs =
     { ... }:
@@ -15,13 +15,7 @@
 
       home-manager.sharedModules = [
         (
-          { pkgs, ... }:
-          let
-            latestPkgs = import inputs.nixpkgs-latest {
-              inherit (pkgs.stdenv.hostPlatform) system;
-              config = pkgs.config;
-            };
-          in
+          { pkgs, latestPkgs, ... }:
           {
             home.packages = [
               (pkgs.kdePackages.ksystemlog.overrideAttrs (old: {

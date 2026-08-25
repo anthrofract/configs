@@ -9,13 +9,7 @@ let
 in
 {
   config.flake.darwinModules.darwin =
-    { pkgs, ... }:
-    let
-      latestPkgs = import inputs.nixpkgs-latest {
-        inherit (pkgs.stdenv.hostPlatform) system;
-        config = pkgs.config;
-      };
-    in
+    { pkgs, latestPkgs, ... }:
     {
       imports = [
         inputs.home-manager.darwinModules.home-manager
@@ -24,6 +18,7 @@ in
         self.commonModules.env
         self.commonModules.ghostty
         self.commonModules.home-symlinks
+        self.commonModules.latest-pkgs
         self.commonModules.vcs
         self.darwinModules.helium
         self.darwinModules.nix-settings

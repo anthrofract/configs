@@ -1,4 +1,4 @@
-{ self, inputs, ... }:
+{ self, ... }:
 {
   flake.commonModules.development =
     { ... }:
@@ -25,13 +25,7 @@
     };
 
   flake.commonModules.development-agents =
-    { pkgs, ... }:
-    let
-      latestPkgs = import inputs.nixpkgs-latest {
-        inherit (pkgs.stdenv.hostPlatform) system;
-        config = pkgs.config;
-      };
-    in
+    { latestPkgs, ... }:
     {
       environment.systemPackages = [
         latestPkgs.claude-code

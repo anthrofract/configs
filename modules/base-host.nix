@@ -7,6 +7,7 @@
         self.commonModules.cli
         self.commonModules.env
         self.commonModules.home-symlinks
+        self.commonModules.latest-pkgs
         self.commonModules.vcs
         self.nixosModules.base-settings
         self.nixosModules.docker
