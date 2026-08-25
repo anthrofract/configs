@@ -35,7 +35,7 @@ switch: decrypt
 boot: decrypt
   nh os boot path:. -H {{host}}
 
-update:
+update: decrypt
   nix flake update
 
 update-test: update test
@@ -50,7 +50,7 @@ darwin-switch: decrypt
   nh darwin switch path:. -H {{host}} -- --option extra-experimental-features 'nix-command flakes pipe-operators'
 
 [script('nu')]
-lily58-update:
+lily58-update: decrypt
   with-env {
     UPDATE_NIX_ATTR_PATH: "lily58-firmware"
     UPDATE_WEST_ROOT: "packages/lily58-firmware/config"
@@ -58,11 +58,11 @@ lily58-update:
     nix run path:.#lily58-update
   }
 
-lily58-build:
+lily58-build: decrypt
   nix build --no-link path:.#lily58-firmware
 
 [script('nu')]
-lily58-flash side='':
+lily58-flash side='': decrypt
   if "{{side}}" == "" {
     nix run path:.#lily58-flash
   } else {
