@@ -16,7 +16,7 @@
         self.commonModules.development-markdown
         self.commonModules.development-nix
         self.commonModules.development-proto
-        # self.commonModules.development-python
+        self.commonModules.development-python
         self.commonModules.development-rust
         self.commonModules.development-shell
         self.commonModules.development-sui
