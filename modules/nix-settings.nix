@@ -58,6 +58,8 @@
     {
       imports = [ self.commonModules.nix-settings ];
 
+      environment.systemPackages = [ pkgs.nh ];
+
       launchd.daemons.nh-clean = {
         serviceConfig = {
           ProgramArguments = [

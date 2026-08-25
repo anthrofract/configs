@@ -30,7 +30,6 @@
         pkgs.lsof
         pkgs.moreutils
         pkgs.mosh
-        pkgs.nh
         pkgs.openssl
         pkgs.ouch
         pkgs.rage
