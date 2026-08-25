@@ -1,6 +1,7 @@
 *
 
 !.gitignore
+!AGENTS.md
 !Justfile
 !LICENSE
 !README.md
