@@ -1,0 +1,94 @@
+providers:
+  webSearchOrder:
+    - exa
+    - perplexity
+    - gemini
+    - anthropic
+    - codex
+    - xai
+    - zai
+    - tinyfish
+    - jina
+    - kagi
+    - tavily
+    - firecrawl
+    - brave
+    - kimi
+    - parallel
+    - synthetic
+    - searxng
+    - startpage
+    - duckduckgo
+    - ecosia
+    - google
+    - mojeek
+    - public
+disabledProviders:
+  - opencode
+setupVersion: 2
+shellPath: /home/luke/bin/nu-with-config/nu
+modelRoles:
+  default: openai-codex/gpt-5.6-sol:medium
+theme:
+  dark: bamboo
+colorBlindMode: false
+statusLine:
+  preset: custom
+  separator: powerline-thin
+  sessionAccent: false
+  compactThinkingLevel: false
+  leftSegments:
+    - pi
+    - path
+    - session_name
+  rightSegments:
+    - mode
+    - model
+    - cost
+    - context_pct
+  segmentOptions:
+    model:
+      showThinkingLevel: true
+    path:
+      abbreviate: true
+      maxLength: 40
+      stripWorkPrefix: true
+composer:
+  shape: pi
+display:
+  shimmer: classic
+  showTurnTime: true
+  showTokenUsage: true
+bash:
+  direnv: "off"
+edit:
+  blackbox:
+    enabled: false
+  mode: hashline
+symbolPreset: nerd
+terminal:
+  showProgress: false
+tui:
+  textSizing: false
+  tight: false
+task:
+  showResolvedModelBadge: false
+  eager: preferred
+treeFilterMode: no-tools
+marketplace:
+  autoUpdate: auto
+git:
+  enabled: true
+branchSummary:
+  enabled: false
+startup:
+  quiet: false
+  showSplash: false
+  checkUpdate: false
+dev:
+  autoqa: false
+compaction:
+  thresholdPercent: 80
+  enabled: false
+hideThinkingBlock: true
+extendedContext: true

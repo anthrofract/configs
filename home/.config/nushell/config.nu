@@ -106,21 +106,22 @@ def tmux-dev-layout [] {
 
     # Must spawn as background task to avoid the new window stealing focus
     job spawn {
+        # Window 1, nvim with two windows
+        tmux send-keys "nvim" Enter
+        sleep 50ms
+        tmux send-keys " wv"
+
         # Window 2, majjit and a directory listing
         tmux new-window
-        tmux send-keys "ls" Enter
-        tmux split-window -hb
         tmux send-keys "mj" Enter
+        tmux split-window -h
+        tmux send-keys "omp" Enter
 
         # Window 3, two shells
         tmux new-window
         tmux split-window -h
 
-        # Window 1, nvim with two windows
-        tmux select-window -t 1
-        tmux send-keys "nvim" Enter
-        sleep 50ms
-        tmux send-keys " wv"
+        tmux select-window -t 2
     } | ignore
 }
 
