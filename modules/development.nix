@@ -29,8 +29,6 @@
     {
       environment.systemPackages = [
         latestPkgs.claude-code
-        latestPkgs.opencode
-        latestPkgs.pi-coding-agent
       ];
     };
 

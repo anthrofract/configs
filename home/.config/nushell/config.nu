@@ -104,11 +104,11 @@ def tmux-dev-layout [] {
 
     print "Setting up tmux layout."
 
-    # Must spawn as background task to avoid opencode stealing focus
+    # Must spawn as background task to avoid the new window stealing focus
     job spawn {
-        # Window 2, majjit and opencode
+        # Window 2, majjit and a directory listing
         tmux new-window
-        tmux send-keys "pi" Enter
+        tmux send-keys "ls" Enter
         tmux split-window -hb
         tmux send-keys "mj" Enter
 
@@ -136,7 +136,6 @@ alias m = just-make
 alias mj = ~/projects/majjit/target/release/majjit
 alias ns = nix-shell --command nu
 alias nsc = nix develop ~/configs/shells/rust-c --command nu
-alias oc = opencode
 alias sha = hash sha256
 alias t = tmux-dev-layout
 alias v = nvim

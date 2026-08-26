@@ -2,7 +2,7 @@
 
 ![](https://i0.wp.com/globalpragmatica.com/wp-content/uploads/2010/10/Mandelbrot.jpeg)
 
-My personal configs for NixOS, KDE Plasma, Neovim, Tmux, Ghostty, Nushell, Pi agent, and more.
+My personal configs for NixOS, KDE Plasma, Neovim, Tmux, Ghostty, Nushell, and more.
 
 ## NixOS setup
 

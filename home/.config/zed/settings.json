@@ -40,11 +40,6 @@
     "model_parameters": [],
     "enable_feedback": false
   },
-  "agent_servers": {
-    "opencode": {
-      "type": "registry"
-    }
-  },
   "auto_install_extensions": {
     "lua": true,
     "nix": true,
