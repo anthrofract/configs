@@ -61,6 +61,8 @@
                 bind-key x kill-pane
                 bind-key X kill-session
 
+                bind-key -n PPage if-shell -F '#{alternate_on}' 'send-keys PPage' 'copy-mode -eu'
+
                 bind-key -T copy-mode-vi x send -X select-line
                 bind-key -T copy-mode-vi WheelUpPane send-keys -X -N 2 scroll-up
                 bind-key -T copy-mode-vi WheelDownPane send-keys -X -N 2 scroll-down
