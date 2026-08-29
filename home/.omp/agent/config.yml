@@ -28,7 +28,18 @@ disabledProviders:
 setupVersion: 2
 shellPath: /home/luke/bin/nu-with-config/nu
 modelRoles:
-  default: openai-codex/gpt-5.6-sol:medium
+  default: openai-codex/gpt-5.6-sol:high
+  slow: openai-codex/gpt-5.6-sol:max
+  plan: openai-codex/gpt-5.6-sol:max
+  designer: openai-codex/gpt-5.6-sol:high
+  task: openai-codex/gpt-5.6-sol:medium
+  vision: openai-codex/gpt-5.6-terra:high
+  advisor: openai-codex/gpt-5.6-terra:high
+  smol: openai-codex/gpt-5.6-luna:medium
+  commit: openai-codex/gpt-5.6-luna:low
+  tiny: openai-codex/gpt-5.6-luna:low
+advisor:
+  enabled: false
 theme:
   dark: bamboo
 colorBlindMode: false
@@ -72,6 +83,8 @@ tui:
   textSizing: false
   tight: false
 task:
+  agentModelOverrides:
+    security-reviewer: openai-codex/gpt-5.6-sol:max
   showResolvedModelBadge: false
   eager: preferred
 treeFilterMode: no-tools

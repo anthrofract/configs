@@ -137,6 +137,7 @@ alias m = just-make
 alias mj = ~/projects/majjit/target/release/majjit
 alias ns = nix-shell --command nu
 alias nsc = nix develop ~/configs/shells/rust-c --command nu
+alias p = omp
 alias sha = hash sha256
 alias t = tmux-dev-layout
 alias v = nvim
