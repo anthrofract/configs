@@ -32,6 +32,8 @@
           withWaylandScreencast = pkgs.stdenv.hostPlatform.isLinux;
         })
         latestPkgs.claude-code
+        latestPkgs.codex
+        latestPkgs.t3code
       ];
     };
 
