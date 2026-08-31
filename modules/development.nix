@@ -7,7 +7,6 @@
         self.commonModules.development-agents
         self.commonModules.development-bitcoin
         self.commonModules.development-direnv
-        self.commonModules.development-github
         self.commonModules.development-go
         # self.commonModules.development-haskell
         self.commonModules.development-infra
@@ -18,6 +17,7 @@
         self.commonModules.development-proto
         self.commonModules.development-python
         self.commonModules.development-rust
+        self.commonModules.development-services
         self.commonModules.development-shell
         self.commonModules.development-sui
         self.commonModules.development-toml
@@ -55,20 +55,6 @@
             nix-direnv.enable = true;
             config.global.hide_env_diff = true;
           };
-        }
-      ];
-    };
-
-  flake.commonModules.development-github =
-    { pkgs, ... }:
-    {
-      environment.systemPackages = [
-        pkgs.gh
-      ];
-
-      home-manager.sharedModules = [
-        {
-          xdg.dataFile."gh/extensions/gh-stack".source = "${pkgs.gh-stack}/bin";
         }
       ];
     };
@@ -179,6 +165,21 @@
       ]
       ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [
         pkgs.gcc
+      ];
+    };
+
+  flake.commonModules.development-services =
+    { pkgs, ... }:
+    {
+      environment.systemPackages = [
+        pkgs.gh
+        pkgs.gws
+      ];
+
+      home-manager.sharedModules = [
+        {
+          xdg.dataFile."gh/extensions/gh-stack".source = "${pkgs.gh-stack}/bin";
+        }
       ];
     };
 
