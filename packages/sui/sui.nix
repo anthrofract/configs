@@ -1,15 +1,15 @@
 { lib, self, ... }:
 let
-  version = "mainnet-v1.76.1";
+  version = "testnet-v1.79.0";
 
   platforms = {
     x86_64-linux = {
       suffix = "ubuntu-x86_64";
-      hash = "sha256-gGebHAEjpaexXhrdI6qA+AAuJd40RTnM6WOJwB3BeGU=";
+      hash = "sha256-vpnh6BwJjdC+spadZx+4JwzMBSAYjM6mAhOuCU0yM3o=";
     };
     aarch64-darwin = {
       suffix = "macos-arm64";
-      hash = "sha256-QCMSCdMJhYb2XjylmyPwTQ/c8ccxCmcs4et+4zuVDlg=";
+      hash = "sha256-eZAANMtTODKjv58Q14PDCb+oJZaX1kF+bczbB1jw9hM=";
     };
   };
 in
@@ -22,7 +22,7 @@ in
         owner = "MystenLabs";
         repo = "sui";
         rev = version;
-        hash = "sha256-hrtVQotnSjCXhy3XflES+ntg+fdCcXV2w7kRb5Vr0II=";
+        hash = "sha256-5J39tE4bEyRkjg6bZWHgBS0sM0jYeOhXs7Dr02uv2PI=";
       };
     in
     {
