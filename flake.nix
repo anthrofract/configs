@@ -48,7 +48,7 @@
     };
 
     omp = {
-      url = "github:can1357/oh-my-pi/v18.1.8";
+      url = "github:can1357/oh-my-pi/v18.1.10";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
