@@ -105,3 +105,5 @@ compaction:
   enabled: false
 hideThinkingBlock: true
 extendedContext: true
+browser:
+  relay: true

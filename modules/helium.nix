@@ -7,11 +7,55 @@
 let
   heliumExtensionUpdateUrl = "https://services.helium.imput.net/ext";
 
-  heliumPackageFor =
+  ompBrowserRelayExtensionFiles = [
+    "background.js"
+    "LICENSE"
+    "manifest.json"
+    "options.html"
+    "options.js"
+    "THIRD-PARTY-NOTICES.txt"
+  ];
+
+  ompBrowserRelayExtensionFor =
+    pkgs:
+    let
+      assets = "${inputs.omp}/packages/coding-agent/src/tools/browser/relay/extension-assets";
+    in
+    pkgs.runCommand "omp-browser-relay-extension" { } ''
+      install -Dm444 "${assets}/background.js.txt" "$out/background.js"
+      install -Dm444 "${assets}/LICENSE.txt" "$out/LICENSE"
+      install -Dm444 "${assets}/manifest.json.txt" "$out/manifest.json"
+      install -Dm444 "${assets}/options.html.txt" "$out/options.html"
+      install -Dm444 "${assets}/options.js.txt" "$out/options.js"
+      install -Dm444 "${assets}/THIRD-PARTY-NOTICES.txt" "$out/THIRD-PARTY-NOTICES.txt"
+    '';
+
+  baseHeliumPackageFor =
     pkgs:
     inputs.helium.packages.${pkgs.stdenv.hostPlatform.system}.default.override {
       withWidevine = false;
     };
+
+  heliumPackageFor =
+    pkgs:
+    let
+      helium = baseHeliumPackageFor pkgs;
+    in
+    if pkgs.stdenv.hostPlatform.isLinux then
+      pkgs.symlinkJoin {
+        name = "${helium.name}-omp-browser-relay";
+        paths = [ helium ];
+        postBuild = ''
+          mv "$out/bin/helium" "$out/bin/.helium-wrapped"
+          cat > "$out/bin/helium" <<EOF
+          #!${pkgs.runtimeShell}
+          exec -a "\$0" "$out/bin/.helium-wrapped" --load-extension="\$HOME/.omp/browser-relay/extension" "\$@"
+          EOF
+          chmod +x "$out/bin/helium"
+        '';
+      }
+    else
+      helium;
 
   # heliumX11PackageFor =
   #   pkgs:
@@ -72,6 +116,14 @@ in
         (
           { lib, ... }:
           {
+            home.file = lib.mkIf pkgs.stdenv.hostPlatform.isLinux (
+              lib.genAttrs (map (name: ".omp/browser-relay/extension/${name}") ompBrowserRelayExtensionFiles)
+                (path: {
+                  force = true;
+                  source = "${ompBrowserRelayExtensionFor pkgs}/${builtins.baseNameOf path}";
+                })
+            );
+
             home.sessionVariables.BROWSER = "helium";
 
             xdg.mimeApps.defaultApplications = lib.mkIf pkgs.stdenv.hostPlatform.isLinux (
