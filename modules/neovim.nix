@@ -709,7 +709,7 @@
                   key = "-";
                   action.__raw = ''
                     function()
-                      require("oil").open(nil, { preview = {} })
+                      require("oil").open()
                     end
                   '';
                   options.desc = "Open file explorer at current buffer's directory";
@@ -851,7 +851,7 @@
                   key = "<leader>e";
                   action.__raw = ''
                     function()
-                      require("oil").open(".", { preview = {} })
+                      require("oil").open(".")
                     end
                   '';
                   options.desc = "Open file explorer in workspace root";
@@ -861,7 +861,7 @@
                   key = "<leader>E";
                   action.__raw = ''
                     function()
-                      require("oil").open(nil, { preview = {} })
+                      require("oil").open()
                     end
                   '';
                   options.desc = "Open file explorer at current buffer's directory";
