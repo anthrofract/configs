@@ -1,49 +1,30 @@
 # Global AGENTS.md
 
-## About Me
-
-I am an intelligent, driven, and passionate software engineer. Always refer to be as "sir".
-
-I communicate literally. I am autistic. When I write rules, I mean exactly what they say — no subtext, no hidden urgency, no implied priorities. Do not infer emotional states from the length or specificity of instructions. If you deviate from a rule, do not explain why — just correct it. Never justify a deviation by attributing feelings to me ("I sensed time pressure"). That is confabulation. Reset and follow the rules as written.
-
 ## Communication Style
 
-Be direct and informal. Skip pleasantries, filler, and qualifiers. Do not be sycophantic — don't praise my ideas, don't tell me something is a "great question," and don't soften disagreements. If I'm wrong, say so plainly. If something is unclear, ask.
-Do not worry about being politically correct or offending anyone. I am an adult. Give me your honest, unfiltered assessment. Do not hedge, add disclaimers, or water down technical opinions to be safe. Swearing is fine. Internet, hacker, and tech slang are all welcome. Do not use LinkedIn corporate-speak. Use simple English, not complicated dense jargon.
+- Be direct and concise. Use plain English.
+- Disagree plainly when I'm wrong.
+- Ask when uncertainty would materially change the result; otherwise use repository conventions and reasonable defaults.
+- Answer questions with explanations. Do not edit files unless I explicitly ask you to.
+- End long responses with a brief summary of the key takeaways, decisions, and any next steps.
 
 ## Environment
 
 - OS: NixOS and nix-darwin.
-- Shell: Nushell is my primary shell. You may run commands in bash or zsh, but when giving commands for me to run, use nushell syntax.
-- Configs: System configs (neovim, tmux, ghostty, nushell, nix) live in ~/configs.
-- VCS: I use jujutsu (jj) instead of git, which is why you may see a detached HEAD state, that is normal. You are welcome to use git commands though. Read operations like `jj show` and `git show` are fine; do not use write operations like `jj describe`, `git add`, `git switch`, etc unless I explicitly tell you to.
-- Ad-hoc programs: If you need a program I don't have installed, use a nix shell or nix run to temporarily install it.
-
-## Engineering Principles
-
-- Do not preserve backward compatibility. Remove obsolete paths instead of adding compatibility layers, fallbacks, or migrations.
-- Ward off the complexity demon: treat features, abstractions, dependencies, layers, configuration options and every other source of complexity as an ongoing cost. Accept that cost only when a concrete present need clearly justifies it. When in doubt prefer the simplest, most obvious solution that fully meets the current need.
-- Grow the system in layers. Start from the smallest version that works end to end, and add each new capability on top of a product that already works. Never trade a working product for unfinished complexity.
-- Keep components modular and concerns clearly separated.
-- Prefer established, well-maintained libraries when they reduce overall complexity or improve reliability. Do not reimplement common functionality without a clear reason.
-- Lean on the dependencies already in the project before writing your own implementation or adding packages. Do not assume a library lacks a capability without checking its documentation and types.
-- Make architectural decisions for the long term. Do not accept a stopgap that only works for now and is meant to be replaced later.
+- Shell: Use Nushell syntax for commands you give me to run. You may use bash for your own tool calls.
+- Configs: System configs (neovim, tmux, ghostty, nushell, nix, omp) live in ~/configs.
+- VCS: Prefer jj over git. A detached HEAD is normal in my jj workspaces. Read-only commands are allowed; commands that modify repository state require my explicit permission.
+- Ad-hoc programs: Use `nix shell` or `nix run` for programs that are not installed.
+- Agent harness: omp (oh my pi)
 
 ## Workflow
 
-- Make small changes, discuss, and iterate. Do not make large changes all at once unless I tell you to. In general I prefer to work on a plan together, discussing the various design decisions, before implementing. I don't want you to rush ahead and make a plan without my input.
-- Answer questions with explanations, not code changes. If I ask why something happened, explain first and wait for explicit direction before editing files.
-- For potentially large tool output such as logs, recursive searches, and resource histories, filter or summarize at the source instead of returning the full output.
-- When writing commit messages or jj describe messages, the first word should always start with a capital letter, but capitals should never be used for the rest of the message.
-
-## Editing
-
-- Respect existing style conventions — do not reorder imports or change indentation.
-- If I have modified or deleted something you wrote, respect that and do not undo my changes.
-- Add comments sparingly. Err on the side of too few.
-- If you're adding lines to a section of code, don't just stick it in a random location. Look at the surrounding code and figure out the best place to put it. For example if you're adding to a list, and the list is alphabetized, make sure that adding the lines will preserve the alphabetization. If you're adding a function to a file, don't just stick it at the top without thinking, find the best place in the file to add it (which might still be the top).
-
-## Linting
-
-- If the project contains a Justfile or a Makefile with a fmt or format command, run it after making any substantial edits. You don't need to run it if you just made a small change and you're confident you didn't mess up formatting.
-- For any rust projects, check and fix any clippy warnings after making substantial edits (but before running the formatter). You don't need to run it if you just made a small change and you're confident you didn't mess up anything.
+- Prefer the simplest solution that fully meets the current need; require concrete justification for added complexity.
+- Do not preserve backward compatibility. Remove obsolete paths instead of adding compatibility layers, fallbacks, or migrations.
+- Before adding a dependency or implementing functionality yourself, check whether existing dependencies provide it. Consult their documentation and types rather than assuming they lack a capability. Prefer maintained libraries when they reduce overall complexity.
+- Make small changes and iterate. Discuss plans and design decisions with me before substantial implementation unless I explicitly authorize proceeding.
+- Scale research, planning, delegation, and validation to the task's scope and risk. Stop once the request is complete and necessary checks pass.
+- Filter or summarize large tool output at the source rather than returning it in full.
+- For commit and `jj describe` messages, capitalize the first letter and use lowercase everywhere else.
+- After substantial edits, run the project's `fmt` or `format` recipe from its Justfile or Makefile, if available. Skip formatting for small changes only when confident formatting is unaffected.
+- After substantial Rust edits, run Clippy and fix its warnings before formatting. Skip Clippy for small changes only when confident they introduce no warnings.
