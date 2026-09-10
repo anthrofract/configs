@@ -14,3 +14,14 @@
 - Before evaluating the main flake, ensure the plaintext file exists with `just decrypt` and use an explicit `path:.` flake reference so Nix includes it.
 - Prefer the matching Just recipe when one exists; recipes that evaluate the main flake handle decryption.
 - If a task explicitly changes `config/secrets.nix`, run `just encrypt` so the tracked encrypted file is updated.
+
+## Updating the flake
+
+When asked to update the flake, follow these steps. If any step fails, stop and report the error and suggested fixes. Do not attempt fixes unless asked.
+
+1. Run `jj git fetch`, then inspect the working-copy change (`@`). If it is both empty and has no description, stay on the current change. Otherwise, run `jj new` to start a new change on top of `@`.
+2. Find the latest stable omp release at https://github.com/can1357/oh-my-pi, excluding prereleases unless requested. Update `inputs.omp.url` in `flake.nix` to that release tag if needed.
+3. Run `just update` (which runs `nix flake update`). If the working-copy diff is empty afterward, stop and report that there are no updates; do not build or commit.
+4. Run `just build`. Do not activate the configuration or run `just switch`, `just test`, or `just boot`.
+5. If the build succeeds, run `jj commit -m "Update flake"`.
+6. Report that the configuration built successfully and was committed but was not activated. Summarize the changed input versions/revisions and notable changes supported by release notes; distinguish these from anything not investigated.

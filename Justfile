@@ -26,6 +26,9 @@ encrypt:
     rage --armor --recipients-file {{ssh-key}}.pub --output ($f ++ ".age") $f
   } | ignore
 
+build: decrypt
+  nh os build path:. -H {{host}}
+
 test: decrypt
   nh os test path:. -H {{host}}
 
