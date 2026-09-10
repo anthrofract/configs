@@ -57,8 +57,8 @@ in
               versioning = {
                 type = "staggered";
                 params = {
-                  cleanInterval = "3600";
-                  maxAge = "31536000";
+                  cleanInterval = "3600"; # 1 hour
+                  maxAge = "31536000"; # 365 days
                 };
               };
             };
@@ -92,8 +92,24 @@ in
               versioning = {
                 type = "staggered";
                 params = {
-                  cleanInterval = "3600";
-                  maxAge = "31536000";
+                  cleanInterval = "3600"; # 1 hour
+                  maxAge = "31536000"; # 365 days
+                };
+              };
+            };
+            "emulation" = {
+              path = "/home/${id.userName}/Emulation";
+              devices = [
+                "valhalla"
+                "asgard"
+                "nidavellir"
+              ];
+              type = "sendreceive";
+              versioning = {
+                type = "staggered";
+                params = {
+                  cleanInterval = "3600"; # 1 hour
+                  maxAge = "2592000"; # 30 days
                 };
               };
             };
