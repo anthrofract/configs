@@ -42,6 +42,10 @@ in
               id = hosts.graphene-tablet.syncthingId;
               addresses = [ "tcp://graphene-tablet" ];
             };
+            "steam-deck" = {
+              id = hosts.steam-deck.syncthingId;
+              addresses = [ "dynamic" ];
+            };
           };
           folders = {
             "notes" = {
@@ -103,6 +107,7 @@ in
                 "valhalla"
                 "asgard"
                 "nidavellir"
+                "steam-deck"
               ];
               type = "sendreceive";
               versioning = {
