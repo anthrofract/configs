@@ -14,6 +14,7 @@
 
         jellyfin = {
           enable = true;
+          package = inputs.nixpkgs-jellyfin.legacyPackages.${pkgs.stdenv.hostPlatform.system}.jellyfin;
           openFirewall = true;
         };
 

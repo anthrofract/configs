@@ -4,6 +4,8 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-latest.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    # Keep Jellyfin at 10.11.11 until nixarr supports its 12.0 API specification.
+    nixpkgs-jellyfin.url = "github:NixOS/nixpkgs/d6524aaca2ff07876657ae2b323f24be4874944b";
     flake-parts.url = "github:hercules-ci/flake-parts";
 
     home-manager = {
