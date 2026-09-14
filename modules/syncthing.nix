@@ -46,6 +46,10 @@ in
               id = hosts.steam-deck.syncthingId;
               addresses = [ "dynamic" ];
             };
+            "ayn-thor" = {
+              id = hosts.ayn-thor.syncthingId;
+              addresses = [ "dynamic" ];
+            };
           };
           folders = {
             "notes" = {
@@ -92,6 +96,7 @@ in
                 "zfold7"
                 "work-mbp"
                 "graphene-tablet"
+                "ayn-thor"
               ];
               versioning = {
                 type = "staggered";
@@ -108,6 +113,7 @@ in
                 "asgard"
                 "nidavellir"
                 "steam-deck"
+                "ayn-thor"
               ];
               type = "sendreceive";
               versioning = {
