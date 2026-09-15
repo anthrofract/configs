@@ -1,4 +1,4 @@
-{ self, inputs, ... }:
+{ self, ... }:
 {
   flake.commonModules.development =
     { ... }:
@@ -25,15 +25,12 @@
     };
 
   flake.commonModules.development-agents =
-    { latestPkgs, pkgs, ... }:
+    { latestPkgs, ... }:
     {
       environment.systemPackages = [
-        (inputs.omp.packages.${pkgs.stdenv.hostPlatform.system}.omp.override {
-          withWaylandScreencast = pkgs.stdenv.hostPlatform.isLinux;
-        })
         latestPkgs.claude-code
         latestPkgs.codex
-        latestPkgs.t3code
+        latestPkgs.omp
       ];
     };
 

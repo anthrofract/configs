@@ -17,9 +17,9 @@ let
   ];
 
   ompBrowserRelayExtensionFor =
-    pkgs:
+    pkgs: latestPkgs:
     let
-      assets = "${inputs.omp}/packages/coding-agent/src/tools/browser/relay/extension-assets";
+      assets = "${latestPkgs.omp.src}/packages/coding-agent/src/tools/browser/relay/extension-assets";
     in
     pkgs.runCommand "omp-browser-relay-extension" { } ''
       install -Dm444 "${assets}/background.js.txt" "$out/background.js"
@@ -110,7 +110,7 @@ let
 in
 {
   flake.commonModules.helium =
-    { pkgs, ... }:
+    { pkgs, latestPkgs, ... }:
     {
       home-manager.sharedModules = [
         (
@@ -120,7 +120,7 @@ in
               lib.genAttrs (map (name: ".omp/browser-relay/extension/${name}") ompBrowserRelayExtensionFiles)
                 (path: {
                   force = true;
-                  source = "${ompBrowserRelayExtensionFor pkgs}/${builtins.baseNameOf path}";
+                  source = "${ompBrowserRelayExtensionFor pkgs latestPkgs}/${builtins.baseNameOf path}";
                 })
             );
 

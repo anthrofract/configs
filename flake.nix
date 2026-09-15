@@ -49,11 +49,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    omp = {
-      url = "github:can1357/oh-my-pi/v18.1.19";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     zmk-nix = {
       url = "github:lilyinstarlight/zmk-nix";
       inputs.nixpkgs.follows = "nixpkgs";
