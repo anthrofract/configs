@@ -37,7 +37,6 @@ in
         pkgs.spotify
         pkgs.tart
         pkgs.yubikey-manager
-        pkgs.zoom-us
       ];
 
       environment.variables = {
