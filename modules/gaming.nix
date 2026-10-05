@@ -37,7 +37,7 @@ in
           {
             home.packages = [
               (pkgs.prismlauncher.override { jdks = [ pkgs.zulu25 ]; })
-              pkgs.limo
+              # pkgs.limo
             ];
           }
         )
