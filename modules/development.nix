@@ -31,6 +31,7 @@
         latestPkgs.claude-code
         latestPkgs.codex
         latestPkgs.omp
+        latestPkgs.opencode
       ];
     };
 
