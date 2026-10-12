@@ -27,6 +27,7 @@
               latestPkgs.sparrow
               latestPkgs.zed-editor-fhs
               pkgs.chromium
+              pkgs.discord
               pkgs.google-chrome
               pkgs.haruna
               pkgs.kdePackages.ark
