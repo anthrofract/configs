@@ -148,6 +148,7 @@
                         hidden = [
                           "Syncthing Tray"
                           "org.kde.kdeconnect"
+                          "org.kde.merkuro.contact.applet"
                           "org.kde.plasma.brightness"
                           "org.kde.plasma.clipboard"
                           "org.kde.plasma.notifications"
