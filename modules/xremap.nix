@@ -56,7 +56,15 @@ in
         serviceMode = "user";
         userName = id.userName;
         config = {
-          modmap = [ ];
+          modmap = [
+            {
+              name = "Swap left alt and super";
+              remap = {
+                KEY_LEFTALT = "KEY_LEFTMETA";
+                KEY_LEFTMETA = "KEY_LEFTALT";
+              };
+            }
+          ];
           experimental_map = [
             {
               name = "Backtick alt-number chords";
