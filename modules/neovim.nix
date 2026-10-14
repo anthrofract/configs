@@ -24,6 +24,9 @@
               extraConfigLuaPre = ''
                 vim.opt.runtimepath:prepend(vim.fn.expand("~/projects/majjit.nvim"))
 
+                -- Keep CodeDiff's polling fallback instead of installing a watcher into the read-only Nix store.
+                vim.env.CODEDIFF_WATCHER_NO_AUTO_INSTALL = "1"
+
                 vim.g.loaded_netrw = 1
                 vim.g.loaded_netrwPlugin = 1
               '';
