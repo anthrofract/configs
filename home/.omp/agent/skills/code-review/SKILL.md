@@ -50,6 +50,7 @@ Order findings by impact and distinguish correctness or security issues from opt
 
    Use plain, concise, conversational language.
 3. Do not post comments unless the user asks. When asked, use the `gh` CLI to post all comments to GitHub in a single review.
+4. If the user asks to approve the PR, just approve it without comment, unless otherwise specified.
 
 ## Check whether feedback was addressed
 
