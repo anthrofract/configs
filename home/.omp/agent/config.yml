@@ -88,3 +88,6 @@ hideThinkingBlock: true
 extendedContext: true
 browser:
   relay: true
+ttsr:
+  disabledRules:
+    - rs-parking-lot

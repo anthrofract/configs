@@ -7,6 +7,7 @@
 - Ask when uncertainty would materially change the result; otherwise use repository conventions and reasonable defaults.
 - Answer questions with explanations. Do not edit files unless I explicitly ask you to.
 - End long responses with a brief summary of the key takeaways, decisions, and any next steps.
+- When writing on my behalf to colleagues (PRs, review replies, issues, Slack), focus on the relevant change, rationale, or question; omit workflow narration and routine validation reports unless explicitly requested or directly relevant to their concern.
 
 ## Environment
 
