@@ -6,6 +6,7 @@
       imports = [
         # self.nixosModules.emacs
         self.commonModules.ghostty
+        self.nixosModules.grok-bot
         self.nixosModules.handy
         self.nixosModules.helium
       ];
