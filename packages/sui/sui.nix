@@ -1,15 +1,15 @@
 { lib, self, ... }:
 let
-  version = "testnet-v1.79.0";
+  version = "mainnet-v1.81.1";
 
   platforms = {
     x86_64-linux = {
       suffix = "ubuntu-x86_64";
-      hash = "sha256-vpnh6BwJjdC+spadZx+4JwzMBSAYjM6mAhOuCU0yM3o=";
+      hash = "sha256-2SGRD97fWuK8PwinI2xXgZpFfOU6jMYMhfNlPHgxtdQ=";
     };
     aarch64-darwin = {
       suffix = "macos-arm64";
-      hash = "sha256-eZAANMtTODKjv58Q14PDCb+oJZaX1kF+bczbB1jw9hM=";
+      hash = "sha256-zNAglIYkhIIHJ8IvGhROK9/8yVS3drYC5k1AWSQlzHw=";
     };
   };
 in
@@ -22,7 +22,7 @@ in
         owner = "MystenLabs";
         repo = "sui";
         rev = version;
-        hash = "sha256-5J39tE4bEyRkjg6bZWHgBS0sM0jYeOhXs7Dr02uv2PI=";
+        hash = "sha256-QHllXBunG88WPuZs7Vf4NKTMt9RRCIaNW1SZZCOycZ8=";
       };
     in
     {
@@ -60,7 +60,7 @@ in
 
       packages.prettier-plugin-move = pkgs.stdenv.mkDerivation rec {
         pname = "prettier-plugin-move";
-        version = "0.3.5";
+        version = "0.4.0";
         src = suiSrc;
         sourceRoot = src.name;
         pluginPath = "external-crates/move/tooling/prettier-move";
@@ -75,7 +75,7 @@ in
             pnpmWorkspaces
             ;
           pnpm = pkgs.pnpm_10;
-          hash = "sha256-w05dSVSWLAd4hz0rJET4SGz6RMAnV6VDU4nqNPQhSbE=";
+          hash = "sha256-W+WPB0EXcaZ0bQ1i7Xp177EVykAVU8KKE2NVtmapCHw=";
           fetcherVersion = 4;
         };
 
