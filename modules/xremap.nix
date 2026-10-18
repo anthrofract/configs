@@ -57,6 +57,11 @@ in
         userName = id.userName;
         config = {
           modmap = [
+            # Remap input events so games also see Escape, unlike Plasma's XKB option.
+            {
+              name = "Caps lock to escape";
+              remap.KEY_CAPSLOCK = "KEY_ESC";
+            }
             {
               name = "Swap left alt and super";
               remap = {

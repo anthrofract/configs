@@ -23,7 +23,6 @@
               enable = true;
 
               input.keyboard = {
-                options = [ "caps:escape" ];
                 repeatDelay = 250;
                 repeatRate = 30;
               };
