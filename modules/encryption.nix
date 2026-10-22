@@ -13,7 +13,6 @@
         pkgs.sequoia-sop
         pkgs.sequoia-sq
         pkgs.sequoia-sqv
-        pkgs.sequoia-wot
         pkgs.yubikey-manager
       ];
 

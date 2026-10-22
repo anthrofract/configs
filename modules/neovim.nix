@@ -469,7 +469,7 @@
                       };
                     };
                     tombi.enable = true;
-                    # ts_ls.enable = true; # Disabled while typescript-language-server's pnpm dependency hash is broken.
+                    ts_ls.enable = true;
                     ty.enable = true;
                   };
                 };

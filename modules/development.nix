@@ -101,7 +101,7 @@
         pkgs.nodejs
         pkgs.pnpm
         pkgs.prettier
-        # pkgs.typescript-language-server # Disabled while its pnpm dependency hash is broken.
+        pkgs.typescript-language-server
         pkgs.vscode-langservers-extracted
       ];
     };
