@@ -3,6 +3,18 @@
   flake.commonModules.ghostty =
     { pkgs, latestPkgs, ... }:
     let
+      # Linux: Ghostty 1.3.1 + systemd 262 can intermittently fail to launch from
+      # KDE's panel via D-Bus. Confirmed in the journal on 2026-10-22:
+      # "lacks handler for reload signal USR2, refusing service startup"
+      # followed by "Failed with result 'protocol'"; later attempts succeed.
+      # Dark-mode startup can send READY=1 before the SIGUSR2 handler is installed,
+      # which systemd rejects for Ghostty's Type=notify-reload service.
+      # The desktop ID com.mitchellh.ghostty is correct; no Plasma pin change needed.
+      # Upstream bug: https://github.com/ghostty-org/ghostty/issues/14398
+      # Upstream fix: https://github.com/ghostty-org/ghostty/pull/14399
+      # No workaround applied. If needed, Type=dbus on the Ghostty user service
+      # uses bus-name readiness instead, but gives up notify-reload semantics.
+      # Remove this note once the packaged Ghostty includes the upstream fix.
       ghosttyPackage =
         if pkgs.stdenv.hostPlatform.isDarwin then latestPkgs.ghostty-bin else latestPkgs.ghostty;
     in
