@@ -67,6 +67,7 @@
                 bind-key -T copy-mode-vi WheelUpPane send-keys -X -N 2 scroll-up
                 bind-key -T copy-mode-vi WheelDownPane send-keys -X -N 2 scroll-down
 
+                set-option -s theme terminal
                 set-option -g status-position bottom
                 set-option -g status-style bg="#2f312c",fg="#f1e9d2"
 
