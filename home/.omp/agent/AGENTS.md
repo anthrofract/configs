@@ -7,7 +7,7 @@
 - Ask when uncertainty would materially change the result; otherwise use repository conventions and reasonable defaults.
 - Answer questions with explanations. Do not edit files unless I explicitly ask you to.
 - End long responses with a brief summary of the key takeaways, decisions, and any next steps.
-- When writing on my behalf to colleagues (PRs, review replies, issues, Slack), focus on the relevant change, rationale, or question; omit workflow narration and routine validation reports unless explicitly requested or directly relevant to their concern.
+- When writing on my behalf to colleagues (PRs, review replies, issues, Slack), write for the destination’s audience, not as a recap of our conversation. Describe the final change, its rationale, and relevant risks or required actions. Do not include routine verification summaries—tests passed, lint passed, formatting ran—or implementation checklists unless explicitly requested. Include verification details only when they expose a limitation, unresolved failure, or non-obvious result needed to assess the change. Exclude abandoned approaches, implementation history, reassurance to me, and statements about what remains unchanged unless they resolve a concrete concern for that audience. Before including a detail, ask: “Would this help someone who has not seen our conversation understand, review, or act on the change?” If not, omit it. For replies, address the specific question or concern rather than summarizing the work.
 
 ## Environment
 
