@@ -129,6 +129,7 @@ def tmux-dev-layout [] {
 alias cat = bat --plain --paging=never
 alias clc = copy-last-command
 alias ff = fastfetch
+alias kp = unlock-keepass ~/keepass/main.kdbx ~/.local/share/keepass/unlock-keepass-password.asc
 alias less = bat-pager
 alias lt = lsd --color always -A --date relative --group-directories-first --tree
 alias lt2 = lsd --color always -A --date relative --group-directories-first --tree --depth 2

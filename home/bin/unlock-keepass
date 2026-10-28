@@ -1,0 +1,43 @@
+#!/usr/bin/env nu
+
+# Unlock a database using an OpenPGP-encrypted password.
+# Usage: unlock-keepass <database> <encrypted-password>
+# Requires sq and keepassxc; hardware decryption uses sq's gpg-agent backend.
+#
+# Provision the password file used by kp:
+#   mkdir ~/.local/share/keepass
+#   chmod 700 ~/.local/share/keepass
+#   input --suppress-output "Database password: " |
+#       sq encrypt --for-file ~/Documents/lgpg-pubkey.asc --without-signature --output ~/.local/share/keepass/unlock-keepass-password.asc
+#   chmod 600 ~/.local/share/keepass/unlock-keepass-password.asc
+
+def main [database: path, encrypted_password: path] {
+    let database = ($database | path expand)
+    let encrypted_password = ($encrypted_password | path expand)
+
+    for file in [$database $encrypted_password] {
+        if ($file | path type) != "file" {
+            error make {msg: $"Not a file: ($file)"}
+        }
+    }
+
+    let decrypted = (^sq decrypt $encrypted_password | complete)
+    if $decrypted.exit_code != 0 {
+        print --stderr $decrypted.stderr
+        error make {msg: "Could not decrypt the KeePass password"}
+    }
+
+    # Nu's job spawn belongs to this script's process: jobs and their children
+    # are terminated when the script exits, and Nu has no disown builtin.
+    # POSIX sh + nohup lets the GUI outlive the script and terminal on Linux/macOS.
+    # The password stays on stdin; only the database path is passed as an argument.
+    $decrypted.stdout | ^sh -c '
+        # Save password stdin as fd 3 before backgrounding redirects stdin.
+        exec 3<&0
+        # nohup ignores terminal hangups; & launches without waiting.
+        # "$1" is the quoted database path (-- below occupies $0 for sh).
+        # <&3 restores password stdin; 3<&- closes the now-redundant fd.
+        # Discard GUI stdout/stderr so neither the terminal nor nohup.out gets it.
+        nohup keepassxc --pw-stdin "$1" <&3 3<&- >/dev/null 2>&1 &
+    ' -- $database
+}
