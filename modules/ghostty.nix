@@ -44,15 +44,6 @@
                 window-padding-x = 2;
                 window-padding-y = "2,0";
                 keybind = [
-                  "ctrl+1=csi:27;5;49~"
-                  "ctrl+2=csi:27;5;50~"
-                  "ctrl+3=csi:27;5;51~"
-                  "ctrl+4=csi:27;5;52~"
-                  "ctrl+5=csi:27;5;53~"
-                  "ctrl+6=csi:27;5;54~"
-                  "ctrl+7=csi:27;5;55~"
-                  "ctrl+8=csi:27;5;56~"
-                  "ctrl+9=csi:27;5;57~"
                   "super+-=decrease_font_size:1"
                   "super+==increase_font_size:1"
                   "super+c=copy_to_clipboard"
