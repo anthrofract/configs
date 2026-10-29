@@ -19,8 +19,12 @@
 
 When asked to update the flake, follow these steps. If any step fails, stop and report the error and suggested fixes. Do not attempt fixes unless asked.
 
+Follow these instructions directly and efficiently. Stay focused on the update; avoid unnecessary research, codebase inspection, or rediscovery of documented conventions. Apply the same guidance to delegated tasks.
+
 1. Run `jj git fetch`, then inspect the working-copy change (`@`). If it is both empty and has no description, stay on the current change. Otherwise, run `jj new` to start a new change on top of `@`.
-2. Run `just update` (which runs `nix flake update`). If the working-copy diff is empty afterward, stop and report that there are no updates; do not build or commit.
-3. Run `just build`. Do not activate the configuration or run `just switch`, `just test`, or `just boot`.
-4. If the build succeeds, run `jj commit -m "Update flake"`.
-5. Report that the configuration built successfully and was committed but was not activated. Summarize the changed input versions/revisions and notable changes supported by release notes; distinguish these from anything not investigated.
+2. Run `just update` (which runs `nix flake update`).
+3. Check upstream online and update all pinned software under `packages/` to the latest version on its existing release channel. Edit the package Nix files, updating versions, URLs, revisions, and source/dependency hashes for all platforms. Stop if an update cannot be determined reliably.
+4. After both flake-input and local-package updates, if the working-copy diff is empty, stop and report that there are no updates; do not build or commit.
+5. Build all version-changed local packages supported on the current platform with `nix build --no-link path:.#<package>`, then run `just build`. Report any packages that could not be built. Do not activate the configuration.
+6. If the required builds succeed, run `jj commit -m "Update flake"`.
+7. Summarize changed flake-input revisions and all user-facing package version changes, additions, and removals by comparing pre-update and post-update configurations. Group components of the same application and omit dependency-only changes unless they have a notable user-facing impact. Identify supplying inputs where verified. Read and link upstream release notes covering the old-to-new version range. Briefly highlight concrete features, behavior changes, and fixes for each changed package, prioritizing relevance to this configuration, breaking changes, required actions, and security impact. Give major releases more detail.
