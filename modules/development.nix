@@ -129,6 +129,7 @@
       environment.systemPackages = [
         pkgs.nixd
         pkgs.nixfmt
+        pkgs.nix-prefetch
       ];
     };
 
