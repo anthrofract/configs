@@ -79,14 +79,25 @@ let
     vimiumC = "hfjbmagddngcpeloejdejnfgbamkjaeg";
   };
 
-  policy = {
-    ExtensionInstallForcelist = [
-      "${extensionIds.darkReader};${heliumExtensionUpdateUrl}"
-      "${extensionIds.kagi};${heliumExtensionUpdateUrl}"
-      "${extensionIds.keepassxcBrowser};${heliumExtensionUpdateUrl}"
-      "${extensionIds.userAgentSwitcher};${heliumExtensionUpdateUrl}"
-      "${extensionIds.vimiumC};${heliumExtensionUpdateUrl}"
-    ];
+  installedExtensionIds = [
+    extensionIds.darkReader
+    extensionIds.kagi
+    extensionIds.keepassxcBrowser
+    extensionIds.userAgentSwitcher
+    extensionIds.vimiumC
+  ];
+
+  browserDefaults = {
+    DefaultSearchProviderEnabled = true;
+    DefaultSearchProviderName = "Kagi";
+    DefaultSearchProviderSearchURL = "https://kagi.com/search?q={searchTerms}";
+    DefaultSearchProviderSuggestURL = "https://kagi.com/api/autosuggest?q={searchTerms}";
+    RestoreOnStartup = 1;
+    SearchSuggestEnabled = true;
+  };
+
+  policy = browserDefaults // {
+    ExtensionInstallForcelist = map (id: "${id};${heliumExtensionUpdateUrl}") installedExtensionIds;
 
     ExtensionInstallAllowlist = [
       extensionIds.darkReader
@@ -98,13 +109,6 @@ let
     ];
 
     ExtensionInstallSources = [ "${lib.removeSuffix "/ext" heliumExtensionUpdateUrl}/*" ];
-
-    DefaultSearchProviderEnabled = true;
-    DefaultSearchProviderName = "Kagi";
-    DefaultSearchProviderSearchURL = "https://kagi.com/search?q={searchTerms}";
-    DefaultSearchProviderSuggestURL = "https://kagi.com/api/autosuggest?q={searchTerms}";
-    RestoreOnStartup = 1;
-    SearchSuggestEnabled = true;
   };
 
 in
@@ -168,32 +172,28 @@ in
     };
 
   flake.darwinModules.helium =
-    {
-      config,
-      lib,
-      pkgs,
-      ...
-    }:
-    let
-      managedPolicyPlist = lib.generators.toPlist { escape = true; } policy;
-    in
+    { pkgs, ... }:
     {
       imports = [ self.commonModules.helium ];
 
       environment.systemPackages = [ (heliumPackageFor pkgs) ];
 
-      system.activationScripts.script.text = lib.mkAfter ''
-        ${config.system.activationScripts.helium.text}
-      '';
+      # Ordinary preferences are user-overridable defaults, not MDM policy.
+      system.defaults.CustomUserPreferences."net.imput.helium" = browserDefaults;
 
-      system.activationScripts.helium.text = ''
-        echo "setting up helium policy..."
-        /usr/bin/install -d -m 755 "/Library/Managed Preferences"
-        /bin/cat > "/Library/Managed Preferences/net.imput.helium.plist" <<'PLIST_EOF'
-        ${managedPolicyPlist}
-        PLIST_EOF
-        /usr/sbin/chown root:wheel "/Library/Managed Preferences/net.imput.helium.plist"
-        /bin/chmod 0644 "/Library/Managed Preferences/net.imput.helium.plist"
-      '';
+      home-manager.sharedModules = [
+        {
+          home.file =
+            lib.genAttrs
+              (map (
+                id: "Library/Application Support/net.imput.helium/External Extensions/${id}.json"
+              ) installedExtensionIds)
+              (_: {
+                text = builtins.toJSON {
+                  external_update_url = heliumExtensionUpdateUrl;
+                };
+              });
+        }
+      ];
     };
 }
