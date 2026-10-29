@@ -7,7 +7,6 @@
         # self.nixosModules.emacs
         self.commonModules.ghostty
         self.nixosModules.grok-bot
-        self.nixosModules.handy
         self.nixosModules.helium
       ];
 
@@ -57,6 +56,7 @@
               pkgs.transmission_4-qt
               pkgs.vscodium-fhs
               pkgs.wezterm
+              self.packages.${pkgs.stdenv.hostPlatform.system}.handy
             ];
 
             systemd.user.services.tailscale-systray = {
