@@ -18,12 +18,6 @@
           { pkgs, latestPkgs, ... }:
           {
             home.packages = [
-              (pkgs.kdePackages.ksystemlog.overrideAttrs (old: {
-                postInstall = (old.postInstall or "") + ''
-                  substituteInPlace $out/share/applications/org.kde.ksystemlog.desktop \
-                    --replace-quiet 'X-KDE-SubstituteUID=true' 'X-KDE-SubstituteUID=false'
-                '';
-              }))
               latestPkgs.sparrow
               latestPkgs.zed-editor-fhs
               pkgs.chromium
@@ -41,6 +35,7 @@
               pkgs.kdePackages.kclock
               pkgs.kdePackages.kcolorchooser
               pkgs.kdePackages.kolourpaint
+              pkgs.kdePackages.ksystemlog
               pkgs.kdePackages.okular
               pkgs.kdePackages.partitionmanager
               pkgs.kdePackages.spectacle
