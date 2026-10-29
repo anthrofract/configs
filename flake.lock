@@ -329,8 +329,7 @@
         "nixpkgs-latest": "nixpkgs-latest",
         "nixvim": "nixvim",
         "plasma-manager": "plasma-manager",
-        "xremap": "xremap",
-        "zmk-nix": "zmk-nix"
+        "xremap": "xremap"
       }
     },
     "systems": {
@@ -444,26 +443,6 @@
         "owner": "k0kubun",
         "ref": "v0.15.16",
         "repo": "xremap",
-        "type": "github"
-      }
-    },
-    "zmk-nix": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1792890045,
-        "narHash": "sha256-1ePRfrRqFWqMSzUkn7LUgy4NhUrX8grekkN/TsRtD4E=",
-        "owner": "lilyinstarlight",
-        "repo": "zmk-nix",
-        "rev": "21db1843634c4883bcb732689979dcdacdef3f9a",
-        "type": "github"
-      },
-      "original": {
-        "owner": "lilyinstarlight",
-        "repo": "zmk-nix",
         "type": "github"
       }
     }
