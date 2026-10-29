@@ -14,6 +14,7 @@
 - Before evaluating the main flake, ensure the plaintext file exists with `just decrypt` and use an explicit `path:.` flake reference so Nix includes it.
 - Prefer the matching Just recipe when one exists; recipes that evaluate the main flake handle decryption.
 - If a task explicitly changes `config/secrets.nix`, run `just encrypt` so the tracked encrypted file is updated.
+- Prefer `~/bin/c`, a cross-platform copy/paste tool, over platform-specific commands such as `wl-copy`, `wl-paste`, `pbcopy`, or `pbpaste`: pipe content to it to copy to the clipboard, or run it interactively to paste clipboard contents.
 
 ## Updating the flake
 
