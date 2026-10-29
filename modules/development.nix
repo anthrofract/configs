@@ -155,12 +155,18 @@
 
   flake.commonModules.development-rust =
     { lib, pkgs, ... }:
+    let
+      rustup = pkgs.rustup.overrideAttrs (_: {
+        # Keep downloaded toolchains unpatched; NixOS runs them through nix-ld.
+        patches = [ ];
+      });
+    in
     {
       environment.systemPackages = [
         pkgs.cargo-binstall
         pkgs.cargo-expand
         pkgs.cargo-nextest
-        pkgs.rustup
+        rustup
       ]
       ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [
         pkgs.gcc
