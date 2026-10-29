@@ -25,13 +25,27 @@
     };
 
   flake.commonModules.development-agents =
-    { latestPkgs, ... }:
+    { pkgs, latestPkgs, ... }:
     {
       environment.systemPackages = [
         latestPkgs.claude-code
         latestPkgs.codex
         latestPkgs.omp
         latestPkgs.opencode
+      ];
+
+      home-manager.sharedModules = [
+        {
+          home.file.".omp/agent/agents/reviewer-secondary.md".source =
+            pkgs.runCommand "reviewer-secondary.md" { }
+              ''
+                substitute \
+                  ${latestPkgs.omp}/lib/omp/packages/coding-agent/src/prompts/agents/reviewer.md \
+                  "$out" \
+                  --replace-fail 'name: reviewer' 'name: reviewer-secondary' \
+                  --replace-fail 'model: "@slow"' 'model: anthropic/claude-opus-5-5:high'
+              '';
+        }
       ];
     };
 
