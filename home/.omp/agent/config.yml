@@ -8,10 +8,10 @@ modelRoles:
   plan: openai-codex/gpt-6-astra:high
   task: openai-codex/gpt-6-astra:medium
   vision: openai-codex/gpt-6-astra:medium
-  advisor: openai-codex/gpt-5.6-terra:high
-  smol: openai-codex/gpt-5.6-terra:medium
-  commit: openai-codex/gpt-5.6-terra:low
-  tiny: openai-codex/gpt-5.6-luna:low
+  advisor: openai-codex/gpt-6.1-terra:high
+  smol: openai-codex/gpt-6.1-terra:medium
+  commit: openai-codex/gpt-6.1-terra:low
+  tiny: openai-codex/gpt-6-luna:low
   web: web/exa
 retry:
   fallbackChains:
