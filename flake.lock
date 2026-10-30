@@ -134,11 +134,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1793233101,
-        "narHash": "sha256-JK7KcDzslwangCgo2n6UNPR5dEgtFIe9wx5qFZYcgfg=",
+        "lastModified": 1793365859,
+        "narHash": "sha256-VZDg+XLqxhu2t740bXuelxoPPHHLeLoJL7ojOrFjrb4=",
         "owner": "amaanq",
         "repo": "helium-flake",
-        "rev": "c81f2a0b0b62bd9ac63a4db382fc5d61263d1253",
+        "rev": "6d6114ae2fbb1a895bc89ed05eca6a9b28465c6c",
         "type": "github"
       },
       "original": {
@@ -228,11 +228,11 @@
     },
     "nixpkgs-latest": {
       "locked": {
-        "lastModified": 1793195608,
-        "narHash": "sha256-lNZLwWf5tYNKjothaoFq/VZYvzaclmLafjgMdUlpJPQ=",
+        "lastModified": 1793225069,
+        "narHash": "sha256-sx1f99WGrDfJ83KKuQrqGPmot0rnDgmpLJDzpU2oHQQ=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "58deea654ec5dd0644f31c840a07c29fa0592528",
+        "rev": "e62746b0b472753ef019baceab6f1e2e52014980",
         "type": "github"
       },
       "original": {
