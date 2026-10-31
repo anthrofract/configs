@@ -17,6 +17,8 @@
 - VCS: Prefer jj over git. A detached HEAD is normal in my jj workspaces. Read-only commands are allowed; commands that modify repository state require my explicit permission.
 - Ad-hoc programs: Use `nix shell` or `nix run` for programs that are not installed.
 - Agent harness: omp (oh my pi)
+- Prefer `~/bin/c`, a cross-platform copy/paste tool, over platform-specific commands such as `wl-copy`, `wl-paste`, `pbcopy`, or `pbpaste`: pipe content to it to copy to the clipboard, or run it interactively to paste clipboard contents.
+- When I say `cb`, and it doesn't clearly refer to something else from context, use `~/bin/c` to copy the relevant content to my clipboard, defaulting to your previous response. For example, for text we're refining, copy the latest version unless I specify another version; for a code snippet, copy the code.
 
 ## Workflow
 
