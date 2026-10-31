@@ -12,6 +12,16 @@
 
         vpn.enable = false;
 
+        # Remove this patch once Nixarr includes the Jellyfin 12.4 OpenAPI hash.
+        nixarr-py.package =
+          pkgs.callPackage
+            (pkgs.applyPatches {
+              name = "nixarr-py";
+              src = "${inputs.nixarr}/nixarr/lib/nixarr-py";
+              patches = [ ./media-server/nixarr-jellyfin-12.4.patch ];
+            })
+            { jellyfin = config.nixarr.jellyfin.package; };
+
         jellyfin = {
           enable = true;
           openFirewall = true;
