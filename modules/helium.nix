@@ -47,26 +47,13 @@ let
           mv "$out/bin/helium" "$out/bin/.helium-wrapped"
           cat > "$out/bin/helium" <<EOF
           #!${pkgs.runtimeShell}
-          exec -a "\$0" "$out/bin/.helium-wrapped" --load-extension="\$HOME/.omp/browser-relay/extension" "\$@"
+          exec -a "\$0" "$out/bin/.helium-wrapped" --disable-features=OverlayScrollbar --load-extension="\$HOME/.omp/browser-relay/extension" "\$@"
           EOF
           chmod +x "$out/bin/helium"
         '';
       }
     else
       helium;
-
-  # heliumX11PackageFor =
-  #   pkgs:
-  #   pkgs.symlinkJoin {
-  #     name = "helium-x11";
-  #     paths = [ (heliumPackageFor pkgs) ];
-  #     nativeBuildInputs = [ pkgs.makeWrapper ];
-  #     postBuild = ''
-  #       wrapProgram "$out/bin/helium" \
-  #         --set NIXOS_OZONE_WL 0 \
-  #         --add-flags "--ozone-platform=x11"
-  #     '';
-  #   };
 
   extensionIds = {
     darkReader = "eimadpbcbfnmbkopoojfekhnkhdbieeh";
@@ -122,7 +109,7 @@ in
               lib.genAttrs (map (name: ".omp/browser-relay/extension/${name}") ompBrowserRelayExtensionFiles)
                 (path: {
                   force = true;
-                  source = "${ompBrowserRelayExtensionFor pkgs latestPkgs}/${builtins.baseNameOf path}";
+                  source = "${ompBrowserRelayExtensionFor pkgs latestPkgs}/${baseNameOf path}";
                 })
             );
 

@@ -70,6 +70,7 @@ in
         ];
       };
 
+      system.defaults.NSGlobalDomain.AppleShowScrollBars = "Always";
       system.defaults.NSGlobalDomain.NSAutomaticWindowAnimationsEnabled = false;
       system.defaults.NSGlobalDomain.NSWindowShouldDragOnGesture = true;
       system.defaults.controlcenter.Bluetooth = true;
