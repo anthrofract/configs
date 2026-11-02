@@ -13,7 +13,6 @@ let
     "manifest.json"
     "options.html"
     "options.js"
-    "THIRD-PARTY-NOTICES.txt"
   ];
 
   ompBrowserRelayExtensionFor =
@@ -27,7 +26,6 @@ let
       install -Dm444 "${assets}/manifest.json.txt" "$out/manifest.json"
       install -Dm444 "${assets}/options.html.txt" "$out/options.html"
       install -Dm444 "${assets}/options.js.txt" "$out/options.js"
-      install -Dm444 "${assets}/THIRD-PARTY-NOTICES.txt" "$out/THIRD-PARTY-NOTICES.txt"
     '';
 
   baseHeliumPackageFor =
