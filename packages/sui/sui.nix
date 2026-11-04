@@ -1,15 +1,15 @@
 { lib, self, ... }:
 let
-  version = "mainnet-v1.82.3";
+  version = "mainnet-v1.83.1";
 
   platforms = {
     x86_64-linux = {
       suffix = "ubuntu-x86_64";
-      hash = "sha256-1hbWPZAwmSbPf1RGM8jdQTL3Yv27pVWjXEhCz6QSk3k=";
+      hash = "sha256-Glk0T34Xw/aUwvF/SiPCnlUpPV1espTQ3K//MEsYg0c=";
     };
     aarch64-darwin = {
       suffix = "macos-arm64";
-      hash = "sha256-hh+IM8XHAIyGrKUOklBDuqjgQzLcvYRsxsMeoO7ha+k=";
+      hash = "sha256-dwh8Q6KJuS3Wvk4jBkH/5p06GaIqI5To/3aW8Mm/70k=";
     };
   };
 in
@@ -22,7 +22,7 @@ in
         owner = "MystenLabs";
         repo = "sui";
         rev = version;
-        hash = "sha256-bBldssmoc+SAtdB62VJ9bh/yAz4PdJnpkiLPJ7uzEPg=";
+        hash = "sha256-nPx/hScz4qN60+XXMaCau5sOSn/o4smw+ba4yO9cWNY=";
       };
     in
     {
@@ -75,7 +75,7 @@ in
             pnpmWorkspaces
             ;
           pnpm = pkgs.pnpm_10;
-          hash = "sha256-W+WPB0EXcaZ0bQ1i7Xp177EVykAVU8KKE2NVtmapCHw=";
+          hash = "sha256-iyApeuXpn4C0kMRhe2SI2mMz1cUWNw2RpYsO++4iYQE=";
           fetcherVersion = 4;
         };
 

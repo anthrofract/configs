@@ -5,10 +5,10 @@
     lib.optionalAttrs (system == "x86_64-linux") {
       packages.grok-bot =
         let
-          version = "0.78.1";
+          version = "0.78.5";
           src = pkgs.fetchurl {
-            url = "https://downloads.cursor.com/grokbot/stable/72e130b4e6be3fdc47b97e809b6b420908ce2dd8/linux/x64/Grok_Bot_${version}.AppImage";
-            hash = "sha256-BQ11I8bvoEYmYROuLjsfPOlAlVSSwrlS/T5pi2DXP7g=";
+            url = "https://downloads.cursor.com/grokbot/stable/87b31da762ca894e084ea1a069477801c85166a3/linux/x64/Grok_Bot_${version}.AppImage";
+            hash = "sha256-0ID4Furn0Fhzj0kcFGCS8eO31NQ/0ojydHAFWSIfhIU=";
           };
           extracted = pkgs.appimageTools.extract {
             pname = "grok-bot";

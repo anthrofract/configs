@@ -31,7 +31,6 @@
         latestPkgs.claude-code
         latestPkgs.codex
         latestPkgs.omp
-        latestPkgs.opencode
       ];
 
       home-manager.sharedModules = [
