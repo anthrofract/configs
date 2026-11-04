@@ -8,6 +8,7 @@
         dbCache = 4096;
         extraConfig = ''
           server=1
+          rest=1
           txindex=1
           rpcbind=0.0.0.0
           rpcallowip=127.0.0.1

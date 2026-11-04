@@ -93,6 +93,7 @@
             User = cfg.user;
             Group = cfg.group;
             Type = "simple";
+            LimitNOFILE = 65536;
           };
           path = [ pkgs.electrs ];
           script = ''
