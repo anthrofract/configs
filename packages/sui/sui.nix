@@ -5,11 +5,11 @@ let
   platforms = {
     x86_64-linux = {
       suffix = "ubuntu-x86_64";
-      hash = "sha256-Glk0T34Xw/aUwvF/SiPCnlUpPV1espTQ3K//MEsYg0c=";
+      hash = "sha256-pUsk2jyP1LiFIvAchxiCauVjdRLuCVNGmldZQI4fcBs=";
     };
     aarch64-darwin = {
       suffix = "macos-arm64";
-      hash = "sha256-dwh8Q6KJuS3Wvk4jBkH/5p06GaIqI5To/3aW8Mm/70k=";
+      hash = "sha256-B5bn0dWl/aIPsNJ/nSFIMM04GgMV3ZYTmljnarXRq4o=";
     };
   };
 in

@@ -17,7 +17,7 @@
 
 ## Updating the flake
 
-When asked to update the flake, follow these steps. If any step fails, stop and report the error and suggested fixes. Do not attempt fixes unless asked.
+When asked to update the flake, follow these steps. If an update, package build, or configuration build fails, stop and report the error and suggested fixes. Do not attempt fixes unless asked.
 
 Follow these instructions directly and efficiently. Stay focused on the update; avoid unnecessary research, codebase inspection, or rediscovery of documented conventions. Apply the same guidance to delegated tasks.
 
