@@ -10,7 +10,6 @@
       ];
 
       environment.systemPackages = [
-        pkgs.asciinema
         pkgs.bc
         pkgs.btop
         pkgs.carapace
@@ -29,7 +28,6 @@
         pkgs.lsd
         pkgs.lsof
         pkgs.moreutils
-        pkgs.mosh
         pkgs.openssl
         pkgs.ouch
         pkgs.rage
@@ -45,7 +43,6 @@
         pkgs.watchman
         pkgs.wget
         pkgs.wireguard-tools
-        pkgs.yazi
         pkgs.zoxide
       ];
 
