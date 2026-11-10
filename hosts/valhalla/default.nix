@@ -22,7 +22,7 @@
 
         networking.hostName = "valhalla";
         system.stateVersion = "24.11";
-        boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
+        boot.kernelPackages = pkgs.linuxPackages_latest;
         time.timeZone = "America/Chicago";
 
         services.reverse-proxy.domain = "valhalla";

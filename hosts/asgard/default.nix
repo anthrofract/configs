@@ -18,7 +18,7 @@
 
         networking.hostName = "asgard";
         system.stateVersion = "24.11";
-        boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
+        boot.kernelPackages = pkgs.linuxPackages_latest;
         services.automatic-timezoned.enable = true;
         services.geoclue2.geoProviderUrl = "https://api.beacondb.net/v1/geolocate";
 
