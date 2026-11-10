@@ -51,3 +51,6 @@ update-boot: update boot
 # Drop determinate nix?
 darwin-switch: decrypt
   nh darwin switch path:. -H {{host}} -- --option extra-experimental-features 'nix-command flakes pipe-operators'
+
+gimle-build-iso: decrypt
+  nix build path:.#nixosConfigurations.gimle.config.system.build.isoImage

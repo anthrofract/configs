@@ -8,7 +8,7 @@
 #   mkdir ~/.local/share/keepass
 #   chmod 700 ~/.local/share/keepass
 #   input --suppress-output "Database password: " |
-#       sq encrypt --for-file ~/Documents/lgpg-pubkey.asc --without-signature --output ~/.local/share/keepass/unlock-keepass-password.asc
+#       sq encrypt --for-file ~/gpg-pubkey.asc --without-signature --output ~/.local/share/keepass/unlock-keepass-password.asc
 #   chmod 600 ~/.local/share/keepass/unlock-keepass-password.asc
 
 def main [database: path, encrypted_password: path] {

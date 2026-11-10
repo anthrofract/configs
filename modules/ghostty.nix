@@ -34,7 +34,7 @@
                 custom-shader = "${./ghostty/cursor-smear.glsl}";
                 font-family = "JetBrains Mono NL";
                 font-size = lib.mkDefault 13;
-                initial-command = "${pkgs.nushell}/bin/nu -il -c \"tms ~/configs\"";
+                initial-command = lib.mkDefault "${pkgs.nushell}/bin/nu -il -c \"tms ~/configs\"";
                 maximize = true;
                 mouse-scroll-multiplier = 1;
                 quit-after-last-window-closed = true;

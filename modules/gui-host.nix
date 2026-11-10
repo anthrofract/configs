@@ -17,5 +17,7 @@
         self.nixosModules.encryption
         self.nixosModules.xremap
       ];
+
+      programs.kdeconnect.enable = true;
     };
 }

@@ -1,11 +1,7 @@
-{ config, ... }:
-let
-  id = config.secrets.identities.personal;
-in
+{ ... }:
 {
   flake.commonModules.nushell =
     {
-      config,
       lib,
       pkgs,
       ...
@@ -13,9 +9,7 @@ in
     {
       environment.systemPackages = [ pkgs.nushell ];
 
-      environment.etc."nu-with-config/nu".source = "${
-        config.users.users.${id.userName}.home
-      }/bin/nu-with-config/nu";
+      environment.etc."nu-with-config/nu".source = ../home/bin/nu-with-config/nu;
 
       home-manager.sharedModules = [
         (

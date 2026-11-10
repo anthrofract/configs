@@ -1,4 +1,4 @@
-{ ... }:
+{ config, ... }:
 {
   flake.nixosModules.encryption =
     { pkgs, ... }:
@@ -9,11 +9,18 @@
         pkgs.gnupg
         pkgs.openpgp-card-tools
         pkgs.opensc
+        pkgs.rage
         pkgs.sequoia-chameleon-gnupg
         pkgs.sequoia-sop
         pkgs.sequoia-sq
         pkgs.sequoia-sqv
         pkgs.yubikey-manager
+      ];
+
+      home-manager.sharedModules = [
+        {
+          home.file."gpg-pubkey.asc".text = config.secrets.gpgPublicKey;
+        }
       ];
 
       services.pcscd.enable = true;

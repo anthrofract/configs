@@ -30,7 +30,6 @@
         pkgs.moreutils
         pkgs.openssl
         pkgs.ouch
-        pkgs.rage
         pkgs.rclone
         pkgs.ripgrep
         pkgs.sd

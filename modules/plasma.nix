@@ -5,7 +5,6 @@
     {
       # Enable the KDE Plasma Desktop Environment.
       services.desktopManager.plasma6.enable = true;
-      programs.kdeconnect.enable = true;
 
       environment.systemPackages = [
         pkgs.kdePackages.plasma-browser-integration
@@ -15,11 +14,26 @@
 
       home-manager.sharedModules = [
         (
-          { ... }:
+          { config, lib, ... }:
           {
             imports = [ inputs.plasma-manager.homeModules.plasma-manager ];
 
-            programs.plasma = {
+            options.programs.plasma.taskbarLaunchers = lib.mkOption {
+              type = lib.types.listOf lib.types.str;
+              description = "Applications pinned to the Plasma taskbar.";
+              default = [
+                "applications:helium.desktop"
+                "applications:com.mitchellh.ghostty.desktop"
+                "applications:slack.desktop"
+                "applications:signal.desktop"
+                "applications:spotify.desktop"
+                "applications:org.keepassxc.KeePassXC.desktop"
+                "applications:org.kde.dolphin.desktop"
+                "applications:steam.desktop"
+              ];
+            };
+
+            config.programs.plasma = {
               enable = true;
 
               input.keyboard = {
@@ -119,17 +133,7 @@
 
                     {
                       iconTasks = {
-                        launchers = [
-                          "applications:helium.desktop"
-                          "applications:com.mitchellh.ghostty.desktop"
-                          "applications:slack.desktop"
-                          "applications:signal.desktop"
-                          "applications:spotify.desktop"
-                          "applications:org.keepassxc.KeePassXC.desktop"
-                          "applications:org.kde.dolphin.desktop"
-                          "applications:systemsettings.desktop"
-                          "applications:steam.desktop"
-                        ];
+                        launchers = config.programs.plasma.taskbarLaunchers;
                         behavior = {
                           minimizeActiveTaskOnClick = false;
                         };

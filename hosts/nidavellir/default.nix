@@ -21,6 +21,7 @@
           self.nixosModules.base-host
           self.nixosModules.bitcoind
           self.nixosModules.electrs
+          self.nixosModules.encryption
           self.nixosModules.gitea
           # self.nixosModules.hermes
           self.nixosModules.media-server
