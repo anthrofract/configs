@@ -64,6 +64,7 @@ in
             }
             {
               name = "Swap left alt and super";
+              device.only = [ "SINO WEALTH Gaming KB " ];
               remap = {
                 KEY_LEFTALT = "KEY_LEFTMETA";
                 KEY_LEFTMETA = "KEY_LEFTALT";
