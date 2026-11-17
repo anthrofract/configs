@@ -1,4 +1,4 @@
-{ self, ... }:
+{ self, inputs, ... }:
 {
   flake.commonModules.development =
     { ... }:
@@ -30,7 +30,7 @@
       environment.systemPackages = [
         latestPkgs.claude-code
         latestPkgs.codex
-        latestPkgs.omp
+        inputs.omp.packages.${pkgs.stdenv.hostPlatform.system}.default
       ];
 
       home-manager.sharedModules = [
@@ -39,7 +39,7 @@
             pkgs.runCommand "reviewer-secondary.md" { }
               ''
                 substitute \
-                  ${latestPkgs.omp}/lib/omp/packages/coding-agent/src/prompts/agents/reviewer.md \
+                  ${inputs.omp}/packages/coding-agent/src/prompts/agents/reviewer.md \
                   "$out" \
                   --replace-fail 'name: reviewer' 'name: reviewer-secondary' \
                   --replace-fail 'model: "@slow"' 'model: anthropic/claude-opus-5-5:high'
