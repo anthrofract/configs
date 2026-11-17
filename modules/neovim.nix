@@ -13,10 +13,11 @@
       home-manager.sharedModules = [
         inputs.nixvim.homeModules.nixvim
         (
-          { ... }:
+          { pkgs, ... }:
           {
             programs.nixvim = {
               enable = true;
+              package = inputs.neovim-nightly.packages.${pkgs.stdenv.hostPlatform.system}.default;
               nixpkgs.source = inputs.nixpkgs;
 
               globals.mapleader = " ";
@@ -52,7 +53,7 @@
                 swapfile = false;
                 tabstop = 4;
                 timeoutlen = 300;
-                updatetime = 1000;
+                updatetime = 300;
                 winborder = "single";
               };
 
@@ -116,50 +117,6 @@
                 #   '';
                 #   desc = "Update cursorline visibility";
                 # }
-                {
-                  event = "FocusGained";
-                  command = "if getcmdwintype() == '' | checktime | endif";
-                  desc = "Reload files changed on disk when Neovim gains focus";
-                }
-                {
-                  event = "BufEnter";
-                  command = "if &buftype == '' && !&modified && expand('%') != '' | exec 'checktime ' . expand('<abuf>') | endif";
-                  desc = "Reload unmodified buffers changed on disk";
-                }
-                {
-                  event = "VimEnter";
-                  callback.__raw = ''
-                    function()
-                      if _G.checktime_timer then
-                        return
-                      end
-
-                      _G.checktime_timer = vim.uv.new_timer()
-
-                      _G.checktime_timer:start(3000, 3000, function()
-                        vim.schedule(function()
-                          if vim.fn.getcmdwintype() == "" then
-                            vim.cmd("silent! checktime")
-                          end
-                        end)
-                      end)
-                    end
-                  '';
-                  desc = "Check loaded file buffers for external changes every 3 seconds";
-                }
-                {
-                  event = "VimLeavePre";
-                  callback.__raw = ''
-                    function()
-                      if _G.checktime_timer then
-                        _G.checktime_timer:stop()
-                        _G.checktime_timer:close()
-                        _G.checktime_timer = nil
-                      end
-                    end
-                  '';
-                  desc = "Stop checktime timer";
-                }
                 {
                   event = "FileChangedShellPost";
                   callback.__raw = ''
@@ -733,6 +690,7 @@
                   action.__raw = ''
                     function()
                       vim.cmd("nohlsearch")
+                      vim.api.nvim_buf_clear_namespace(0, vim.api.nvim_create_namespace("nvim.multicursor"), 0, -1)
                       pcall(vim.lsp.buf.clear_references)
 
                       for _, win in ipairs(vim.api.nvim_list_wins()) do
@@ -745,7 +703,7 @@
                       vim.cmd("echo")
                     end
                   '';
-                  options.desc = "Clear highlights, messages, and popups";
+                  options.desc = "Clear multicursors, highlights, messages, and popups";
                 }
                 {
                   mode = "n";
