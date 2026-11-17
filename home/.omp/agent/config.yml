@@ -3,15 +3,15 @@ disabledProviders:
 setupVersion: 3
 shellPath: /etc/nu-with-config/nu
 modelRoles:
-  default: openai-codex/gpt-6-astra:medium
-  slow: openai-codex/gpt-6-astra:max
-  plan: openai-codex/gpt-6-astra:high
+  default: openai-codex/gpt-6.2-astra:medium
+  slow: openai-codex/gpt-6.2-astra:max
+  plan: openai-codex/gpt-6.2-astra:high
   task: anthropic/claude-opus-5-5:high
-  vision: openai-codex/gpt-6-astra:medium
-  advisor: openai-codex/gpt-6.1-terra:high
-  smol: openai-codex/gpt-6.1-terra:medium
-  commit: openai-codex/gpt-6.1-terra:low
-  tiny: openai-codex/gpt-6-luna:low
+  vision: openai-codex/gpt-6.2-astra:medium
+  advisor: openai-codex/gpt-6.2-sol:high
+  smol: openai-codex/gpt-6.2-sol:medium
+  commit: openai-codex/gpt-6.2-sol:low
+  tiny: openai-codex/gpt-6.2-sol:low
   web: web/exa
 retry:
   fallbackChains:
@@ -64,8 +64,8 @@ tui:
   tight: false
 task:
   agentModelOverrides:
-    reviewer: openai-codex/gpt-6-astra:high
-    security-reviewer: openai-codex/gpt-6-astra:max
+    reviewer: openai-codex/gpt-6.2-astra:high
+    security-reviewer: openai-codex/gpt-6.2-astra:max
   showResolvedModelBadge: false
   eager: preferred
 treeFilterMode: no-tools
