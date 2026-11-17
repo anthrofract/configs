@@ -162,7 +162,11 @@
     {
       home-manager.sharedModules = [
         (
-          { pkgs, ... }:
+          { config, pkgs, ... }:
+          let
+            # Guh's module checks need the same nightly APIs as the editor.
+            nightlyPkgs = pkgs.extend (_: _: { neovim-unwrapped = config.programs.nixvim.package; });
+          in
           {
             programs.nixvim = {
               plugins = {
@@ -360,6 +364,11 @@
               };
 
               extraPlugins = [
+                (nightlyPkgs.vimUtils.buildVimPlugin {
+                  pname = "guh.nvim";
+                  version = inputs.guh-nvim.shortRev;
+                  src = inputs.guh-nvim;
+                })
                 pkgs.vimPlugins.nvim-various-textobjs
               ];
 

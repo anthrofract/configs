@@ -45,6 +45,11 @@
 
     neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
 
+    guh-nvim = {
+      url = "github:justinmk/guh.nvim";
+      flake = false;
+    };
+
     helium = {
       url = "github:amaanq/helium-flake";
       inputs.nixpkgs.follows = "nixpkgs";

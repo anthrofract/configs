@@ -255,6 +255,22 @@
         "type": "github"
       }
     },
+    "guh-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1794764358,
+        "narHash": "sha256-fb7zkG8ySt0z6/9K2neamaN6qjtrsL1ErgDcSrpvVRM=",
+        "owner": "justinmk",
+        "repo": "guh.nvim",
+        "rev": "bb67084d8a22ecfe12406c7e9e29b99db382cd6d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "justinmk",
+        "repo": "guh.nvim",
+        "type": "github"
+      }
+    },
     "helium": {
       "inputs": {
         "nixpkgs": [
@@ -578,6 +594,7 @@
       "inputs": {
         "dms": "dms",
         "flake-parts": "flake-parts",
+        "guh-nvim": "guh-nvim",
         "helium": "helium",
         "home-manager": "home-manager",
         "neovim-nightly": "neovim-nightly",
