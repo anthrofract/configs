@@ -5,10 +5,10 @@
     lib.optionalAttrs (system == "x86_64-linux") {
       packages.handy =
         let
-          version = "0.10.0";
+          version = "0.10.1";
           src = pkgs.fetchurl {
             url = "https://github.com/cjpais/Handy/releases/download/v${version}/Handy_${version}_amd64.AppImage";
-            sha256 = "0v7cd2r7fjxw69q1vfphxazm9xhp5czldgi0a3fbgqdrn0b1qri0";
+            sha256 = "0prr90h7krm5apxq8avham2a0gxajdg4p9xzkjd0cgcqi5xjd7pq";
           };
           extracted = pkgs.appimageTools.extract {
             pname = "handy";
