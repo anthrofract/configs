@@ -64,7 +64,10 @@ in
             }
             {
               name = "Swap left alt and super";
-              device.only = [ "SINO WEALTH Gaming KB " ];
+              device.only = [
+                "SINO WEALTH Gaming KB "
+                "AT Translated Set 2 keyboard"
+              ];
               remap = {
                 KEY_LEFTALT = "KEY_LEFTMETA";
                 KEY_LEFTMETA = "KEY_LEFTALT";
