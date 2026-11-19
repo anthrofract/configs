@@ -18,7 +18,7 @@
     },
     "nushell": {
       "command": "nu",
-      "args": ["--mcp"],
+      "args": ["--mcp", "-n"],
       "instructions": false
     }
   }
