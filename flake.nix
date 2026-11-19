@@ -51,6 +51,11 @@
       flake = false;
     };
 
+    nu-scripts = {
+      url = "github:nushell/nu_scripts";
+      flake = false;
+    };
+
     helium = {
       url = "github:amaanq/helium-flake";
       inputs.nixpkgs.follows = "nixpkgs";

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://raw.githubusercontent.com/can1357/oh-my-pi/main/packages/coding-agent/src/config/mcp-schema.json",
+  "mcpServers": {
+    "linear": {
+      "type": "http",
+      "url": "https://mcp.linear.app/mcp"
+    },
+    "slack": {
+      "type": "http",
+      "url": "https://mcp.slack.com/mcp"
+    },
+    "fastmail": {
+      "type": "http",
+      "url": "https://api.fastmail.com/mcp",
+      "oauth": {
+        "clientId": "631641ae"
+      }
+    },
+    "nushell": {
+      "command": "nu",
+      "args": ["--mcp"],
+      "instructions": false
+    }
+  }
+}

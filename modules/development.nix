@@ -1,10 +1,10 @@
-{ self, inputs, ... }:
+{ self, ... }:
 {
   flake.commonModules.development =
     { ... }:
     {
       imports = [
-        self.commonModules.development-agents
+        self.commonModules.agents
         self.commonModules.development-bitcoin
         self.commonModules.development-direnv
         self.commonModules.development-go
@@ -21,31 +21,6 @@
         self.commonModules.development-shell
         self.commonModules.development-sui
         self.commonModules.development-toml
-      ];
-    };
-
-  flake.commonModules.development-agents =
-    { pkgs, latestPkgs, ... }:
-    {
-      environment.systemPackages = [
-        latestPkgs.claude-code
-        latestPkgs.codex
-        inputs.autolith.packages.${pkgs.stdenv.hostPlatform.system}.default
-        inputs.omp.packages.${pkgs.stdenv.hostPlatform.system}.default
-      ];
-
-      home-manager.sharedModules = [
-        {
-          home.file.".omp/agent/agents/reviewer-secondary.md".source =
-            pkgs.runCommand "reviewer-secondary.md" { }
-              ''
-                substitute \
-                  ${inputs.omp}/packages/coding-agent/src/prompts/agents/reviewer.md \
-                  "$out" \
-                  --replace-fail 'name: reviewer' 'name: reviewer-secondary' \
-                  --replace-fail 'model: "@slow"' 'model: openai-codex/gpt-6.2-astra:high'
-              '';
-        }
       ];
     };
 

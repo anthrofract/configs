@@ -615,6 +615,22 @@
         "type": "github"
       }
     },
+    "nu-scripts": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1795047733,
+        "narHash": "sha256-0PStN0Jc5kTlYQZAnuf81mG3nr8OJWnfGdo0UB5W6OY=",
+        "owner": "nushell",
+        "repo": "nu_scripts",
+        "rev": "da6d0414663c0e4b3dd29e87346c01bb8f7aef07",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nushell",
+        "repo": "nu_scripts",
+        "type": "github"
+      }
+    },
     "omp": {
       "inputs": {
         "bun2nix": "bun2nix",
@@ -676,6 +692,7 @@
         "nixpkgs": "nixpkgs_3",
         "nixpkgs-latest": "nixpkgs-latest",
         "nixvim": "nixvim",
+        "nu-scripts": "nu-scripts",
         "omp": "omp",
         "plasma-manager": "plasma-manager",
         "xremap": "xremap"

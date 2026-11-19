@@ -14,7 +14,7 @@
 ## Environment
 
 - OS: NixOS and nix-darwin.
-- Shell: Use Nushell syntax for commands you give me to run. You may use bash for your own tool calls.
+- Shell: Use Nushell syntax for commands you give me to run, and read `skill://nushell` before writing nontrivial Nushell. You may use bash for your own tool calls; run `nu -c '…'` through it when Nushell's structured data handling helps.
 - Configs: System configs (neovim, tmux, ghostty, nushell, nix, omp) live in ~/configs.
 - VCS: Use jj. Read-only Git operations are allowed, but prefer jj equivalents. Never run Git commands that mutate repository state, directly or through helpers. A detached HEAD is normal in my jj workspaces. Repository-state changes through jj require my explicit permission.
 - Ad-hoc programs: Use `nix shell` or `nix run` for programs that are not installed.
