@@ -44,6 +44,8 @@ statusLine:
       abbreviate: true
       maxLength: 40
       stripWorkPrefix: true
+commit:
+  enabled: false
 composer:
   shape: pi
 display:
