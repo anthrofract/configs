@@ -157,7 +157,6 @@ in
               ".config/starship.toml".source = ../../home/.config/starship.toml;
             };
             home.activation.mkDirs = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-              mkdir -p ${config.home.homeDirectory}/.local/share/nushell/vendor/autoload
               mkdir -p ${config.home.homeDirectory}/scratch
             '';
           };

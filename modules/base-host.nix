@@ -6,6 +6,7 @@
       imports = [
         self.commonModules.cli
         self.commonModules.env
+        self.commonModules.home-dirs
         self.commonModules.home-symlinks
         self.commonModules.latest-pkgs
         self.commonModules.vcs

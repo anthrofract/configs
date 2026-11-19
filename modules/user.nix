@@ -23,28 +23,12 @@ in
       };
 
       home-manager.sharedModules = [
-        (
-          {
-            config,
-            lib,
-            ...
-          }:
-          {
-            home.username = id.userName;
-            home.homeDirectory = "/home/${id.userName}";
+        {
+          home.username = id.userName;
+          home.homeDirectory = "/home/${id.userName}";
 
-            programs.home-manager.enable = true;
-
-            # Make some directories
-            home.activation.mkDirs = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-              mkdir -p ${config.home.homeDirectory}/.local/share/nushell/vendor/autoload
-              mkdir -p ${config.home.homeDirectory}/projects
-              mkdir -p ${config.home.homeDirectory}/repos
-              mkdir -p ${config.home.homeDirectory}/scratch
-              mkdir -p ${config.home.homeDirectory}/work
-            '';
-          }
-        )
+          programs.home-manager.enable = true;
+        }
       ];
     };
 }

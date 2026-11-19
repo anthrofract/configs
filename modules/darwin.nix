@@ -18,6 +18,7 @@ in
         self.commonModules.encryption
         self.commonModules.env
         self.commonModules.ghostty
+        self.commonModules.home-dirs
         self.commonModules.home-symlinks
         self.commonModules.latest-pkgs
         self.commonModules.vcs
