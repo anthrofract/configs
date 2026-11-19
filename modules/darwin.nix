@@ -15,6 +15,7 @@ in
         inputs.home-manager.darwinModules.home-manager
         self.commonModules.cli
         self.commonModules.development
+        self.commonModules.encryption
         self.commonModules.env
         self.commonModules.ghostty
         self.commonModules.home-symlinks
@@ -32,11 +33,9 @@ in
         pkgs.google-chrome
         pkgs.meetingbar
         pkgs.obsidian
-        pkgs.opensc
         pkgs.raycast
         pkgs.spotify
         pkgs.tart
-        pkgs.yubikey-manager
       ];
 
       environment.variables = {

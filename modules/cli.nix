@@ -18,7 +18,6 @@
         pkgs.fd
         pkgs.fzf
         pkgs.gnumake
-        pkgs.gnupg
         pkgs.inetutils
         pkgs.jc
         pkgs.jq

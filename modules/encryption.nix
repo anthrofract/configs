@@ -1,11 +1,10 @@
-{ config, ... }:
+{ self, config, ... }:
 {
-  flake.nixosModules.encryption =
+  flake.commonModules.encryption =
     { pkgs, ... }:
     {
       # TODO: switch to sequoia?
       environment.systemPackages = [
-        pkgs.ccid
         pkgs.gnupg
         pkgs.openpgp-card-tools
         pkgs.opensc
@@ -22,6 +21,14 @@
           home.file."gpg-pubkey.asc".text = config.secrets.gpgPublicKey;
         }
       ];
+    };
+
+  flake.nixosModules.encryption =
+    { pkgs, ... }:
+    {
+      imports = [ self.commonModules.encryption ];
+
+      environment.systemPackages = [ pkgs.ccid ];
 
       services.pcscd.enable = true;
       programs.gnupg.agent = {
