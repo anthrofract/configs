@@ -5,6 +5,7 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-latest.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     flake-parts.url = "github:hercules-ci/flake-parts";
+    autolith.url = "github:lambda-symbolics/autolith";
     omp.url = "github:can1357/oh-my-pi";
 
     home-manager = {

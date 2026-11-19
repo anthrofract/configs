@@ -30,6 +30,7 @@
       environment.systemPackages = [
         latestPkgs.claude-code
         latestPkgs.codex
+        inputs.autolith.packages.${pkgs.stdenv.hostPlatform.system}.default
         inputs.omp.packages.${pkgs.stdenv.hostPlatform.system}.default
       ];
 
