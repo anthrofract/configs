@@ -69,7 +69,6 @@ tui:
   tight: false
 task:
   agentModelOverrides:
-    reviewer: anthropic/claude-opus-5-5:high
     security-reviewer: openai-codex/gpt-6.2-astra:max
   showResolvedModelBadge: false
   eager: preferred
