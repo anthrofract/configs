@@ -1183,6 +1183,12 @@
                 }
                 {
                   mode = "n";
+                  key = "<leader>wr";
+                  action = "<cmd>setlocal wrap!<CR>";
+                  options.desc = "Toggle line wrap";
+                }
+                {
+                  mode = "n";
                   key = "<leader>ws";
                   action = "<cmd>botright split<CR>";
                   options.desc = "Horizontal bottom split";
