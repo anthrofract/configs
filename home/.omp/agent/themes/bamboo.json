@@ -1,5 +1,5 @@
 {
-  "$schema": "https://raw.githubusercontent.com/can1357/oh-my-pi/main/packages/coding-agent/theme-schema.json",
+  "$schema": "https://raw.githubusercontent.com/can1357/oh-my-pi/v19.0.0/packages/tui/src/theme/theme-schema.json",
   "name": "bamboo",
   "vars": {
     "contrast": "#111210",
@@ -87,6 +87,7 @@
     "thinkingXhigh": "inputBorder",
     "thinkingMax": "inputBorder",
     "bashMode": "yellow",
+    "btwMode": "lightPurple",
     "statusLineBg": "bg1",
     "statusLineSep": "grey",
     "statusLineModel": "lightBlue",

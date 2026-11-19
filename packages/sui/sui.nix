@@ -1,15 +1,15 @@
 { lib, self, ... }:
 let
-  version = "mainnet-v1.83.1";
+  version = "mainnet-v1.84.1";
 
   platforms = {
     x86_64-linux = {
       suffix = "ubuntu-x86_64";
-      hash = "sha256-pUsk2jyP1LiFIvAchxiCauVjdRLuCVNGmldZQI4fcBs=";
+      hash = "sha256-NfcUqBMPYmErsOxNFaWkPNBAFbUsLMCjfZLo5xgd8Gw=";
     };
     aarch64-darwin = {
       suffix = "macos-arm64";
-      hash = "sha256-B5bn0dWl/aIPsNJ/nSFIMM04GgMV3ZYTmljnarXRq4o=";
+      hash = "sha256-nWYz/0fmGt5cD/VVITsNi0rxi+RxTbe39LxZEU/w+VY=";
     };
   };
 in
@@ -22,7 +22,7 @@ in
         owner = "MystenLabs";
         repo = "sui";
         rev = version;
-        hash = "sha256-nPx/hScz4qN60+XXMaCau5sOSn/o4smw+ba4yO9cWNY=";
+        hash = "sha256-NFHQsFD7CU/2ikWS4cOfB+7OJQzbJmInAznF9NfPF0E=";
       };
     in
     {
@@ -60,7 +60,7 @@ in
 
       packages.prettier-plugin-move = pkgs.stdenv.mkDerivation rec {
         pname = "prettier-plugin-move";
-        version = "0.4.0";
+        version = "0.5.0";
         src = suiSrc;
         sourceRoot = src.name;
         pluginPath = "external-crates/move/tooling/prettier-move";
