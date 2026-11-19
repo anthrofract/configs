@@ -46,11 +46,6 @@
 
     neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
 
-    guh-nvim = {
-      url = "github:justinmk/guh.nvim";
-      flake = false;
-    };
-
     nu-scripts = {
       url = "github:nushell/nu_scripts";
       flake = false;

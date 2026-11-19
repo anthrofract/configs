@@ -28,6 +28,7 @@
 
                 vim.g.loaded_netrw = 1
                 vim.g.loaded_netrwPlugin = 1
+                vim.g.loaded_nvim_dir_plugin = 1
               '';
 
               opts = {
@@ -82,13 +83,16 @@
 
               autoCmd = [
                 {
-                  event = "TextYankPost";
+                  event = [
+                    "TextYankPost"
+                    "TextPutPost"
+                  ];
                   callback.__raw = ''
                     function()
-                      vim.highlight.on_yank({ timeout = 100 })
+                      vim.hl.hl_op({ timeout = 100 })
                     end
                   '';
-                  desc = "Briefly highlight yanked text";
+                  desc = "Briefly highlight yanked and put text";
                 }
                 # {
                 #   event = [
@@ -162,11 +166,7 @@
     {
       home-manager.sharedModules = [
         (
-          { config, pkgs, ... }:
-          let
-            # Guh's module checks need the same nightly APIs as the editor.
-            nightlyPkgs = pkgs.extend (_: _: { neovim-unwrapped = config.programs.nixvim.package; });
-          in
+          { pkgs, ... }:
           {
             programs.nixvim = {
               plugins = {
@@ -282,16 +282,6 @@
                     settings.event = [ "DeferredUIEnter" ];
                   };
                 };
-                octo = {
-                  enable = true;
-                  lazyLoad = {
-                    enable = true;
-                    settings.cmd = [ "Octo" ];
-                  };
-                  settings = {
-                    enable_builtin = true;
-                  };
-                };
                 oil = {
                   enable = true;
                   lazyLoad = {
@@ -363,14 +353,7 @@
                 };
               };
 
-              extraPlugins = [
-                (nightlyPkgs.vimUtils.buildVimPlugin {
-                  pname = "guh.nvim";
-                  version = inputs.guh-nvim.shortRev;
-                  src = inputs.guh-nvim;
-                })
-                pkgs.vimPlugins.nvim-various-textobjs
-              ];
+              extraPlugins = [ pkgs.vimPlugins.nvim-various-textobjs ];
 
               extraConfigLua = ''
                 require("fzf-lua").register_ui_select()
