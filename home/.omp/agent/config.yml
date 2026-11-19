@@ -2,16 +2,17 @@ disabledProviders:
   - opencode
 setupVersion: 3
 shellPath: /etc/nu-with-config/nu
+personality: friendly
 modelRoles:
-  default: openai-codex/gpt-6.2-astra:medium
-  slow: openai-codex/gpt-6.2-astra:max
-  plan: openai-codex/gpt-6.2-astra:high
+  default: anthropic/claude-opus-5-5:high
+  slow: anthropic/claude-fable-5-2:high
+  plan: anthropic/claude-opus-5-5:high
   task: anthropic/claude-opus-5-5:high
-  vision: openai-codex/gpt-6.2-astra:medium
-  advisor: openai-codex/gpt-6.2-sol:high
-  smol: openai-codex/gpt-6.2-sol:medium
-  commit: openai-codex/gpt-6.2-sol:low
-  tiny: openai-codex/gpt-6.2-sol:low
+  vision: "@default"
+  advisor: openai-codex/gpt-6.2-astra:high
+  smol: anthropic/claude-sonnet-5-5:medium
+  commit: anthropic/claude-haiku-5-5:low
+  tiny: anthropic/claude-haiku-5-5:low
   web: web/exa
 retry:
   fallbackChains:
@@ -52,6 +53,7 @@ display:
   shimmer: classic
   showTurnTime: true
   showTokenUsage: true
+  shellVisualization: false
 bash:
   direnv: "off"
 edit:
@@ -62,11 +64,12 @@ symbolPreset: nerd
 terminal:
   showProgress: false
 tui:
+  completeScrollback: true
   textSizing: false
   tight: false
 task:
   agentModelOverrides:
-    reviewer: openai-codex/gpt-6.2-astra:high
+    reviewer: anthropic/claude-opus-5-5:high
     security-reviewer: openai-codex/gpt-6.2-astra:max
   showResolvedModelBadge: false
   eager: preferred

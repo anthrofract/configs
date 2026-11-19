@@ -43,7 +43,7 @@
                   ${inputs.omp}/packages/coding-agent/src/prompts/agents/reviewer.md \
                   "$out" \
                   --replace-fail 'name: reviewer' 'name: reviewer-secondary' \
-                  --replace-fail 'model: "@slow"' 'model: anthropic/claude-opus-5-5:high'
+                  --replace-fail 'model: "@slow"' 'model: openai-codex/gpt-6.2-astra:high'
               '';
         }
       ];
