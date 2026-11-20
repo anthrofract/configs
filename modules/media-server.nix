@@ -1,7 +1,7 @@
 { inputs, ... }:
 {
   flake.nixosModules.media-server =
-    { config, pkgs, ... }:
+    { config, ... }:
     {
       imports = [ inputs.nixarr.nixosModules.default ];
 
@@ -45,15 +45,7 @@
 
         bazarr.enable = true;
 
-        seerr = {
-          enable = true;
-          package = pkgs.seerr.overrideAttrs (oldAttrs: {
-            postInstall = (oldAttrs.postInstall or "") + ''
-              cp next.config.ts $out/share/next.config.ts
-              ln -s ${config.nixarr.stateDir}/seerr/cache/next $out/share/.next/cache
-            '';
-          });
-        };
+        seerr.enable = true;
 
         recyclarr = {
           enable = true;
@@ -253,10 +245,6 @@
           };
         };
       };
-
-      systemd.tmpfiles.rules = [
-        "d ${config.nixarr.stateDir}/seerr/cache/next 0750 seerr media -"
-      ];
 
       users.users.jellyfin.extraGroups = [
         "render"
