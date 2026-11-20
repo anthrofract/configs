@@ -5,20 +5,6 @@ in
 {
   flake.nixosModules.xremap =
     { pkgs, ... }:
-    let
-      xremapPackages = inputs.xremap.packages.${pkgs.stdenv.hostPlatform.system};
-      xremapSession = pkgs.writeShellApplication {
-        name = "xremap-session";
-        text = ''
-          desktop="''${XDG_CURRENT_DESKTOP:-}"
-          if [[ "''${desktop,,}" == *niri* ]]; then
-            exec ${xremapPackages.xremap-niri}/bin/xremap "$@"
-          else
-            exec ${xremapPackages.xremap-kde}/bin/xremap "$@"
-          fi
-        '';
-      };
-    in
     {
       imports = [ inputs.xremap.nixosModules.default ];
 
@@ -52,7 +38,7 @@ in
           "--ignore"
           ''"Yubico YubiKey OTP+FIDO+CCID"''
         ];
-        package = xremapSession;
+        package = inputs.xremap.packages.${pkgs.stdenv.hostPlatform.system}.xremap-kde;
         serviceMode = "user";
         userName = id.userName;
         config = {

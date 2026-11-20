@@ -1,4 +1,4 @@
-{ config, inputs, ... }:
+{ config, ... }:
 {
   flake.nixosModules.wallpapers =
     { pkgs, ... }:
@@ -6,7 +6,6 @@
       userName = config.secrets.identities.personal.userName;
       wallpaperDir = "/home/${userName}/Pictures/wallpapers/Spyro_Skyboxes";
       sddmWallpaper = "/var/lib/sddm/spyro-wallpaper/current-wallpaper";
-      dmsPackage = inputs.dms.packages.${pkgs.stdenv.hostPlatform.system}.default;
       syncSpyroWallpaper = pkgs.writers.writeNuBin "sync-spyro-wallpaper" ''
         def selected-wallpaper [] {
           let wallpaper_dir = "${wallpaperDir}"
@@ -32,12 +31,6 @@
           $wallpapers | get $index
         }
 
-        def sync-dms [] {
-          let wallpaper = selected-wallpaper
-
-          ${dmsPackage}/bin/dms ipc call wallpaper set $wallpaper
-        }
-
         def sync-plasma [] {
           let wallpaper = selected-wallpaper
 
@@ -57,7 +50,6 @@
 
         def main [target: string] {
           match $target {
-            "dms" => { sync-dms }
             "plasma" => { sync-plasma }
             "sddm" => { sync-sddm }
             _ => { error make { msg: $"Unknown wallpaper sync target: ($target)" } }
@@ -96,37 +88,6 @@
         (
           { ... }:
           {
-            systemd.user.services.spyro-niri-wallpaper = {
-              Unit = {
-                Description = "Sync Spyro Skyboxes DMS wallpaper";
-                PartOf = [ "niri.service" ];
-                After = [ "dms.service" ];
-                Wants = [ "dms.service" ];
-                StartLimitIntervalSec = 60;
-                StartLimitBurst = 30;
-              };
-              Service = {
-                Type = "oneshot";
-                ExecStart = "${syncSpyroWallpaper}/bin/sync-spyro-wallpaper dms";
-                Restart = "on-failure";
-                RestartSec = 1;
-              };
-              Install.WantedBy = [ "niri.service" ];
-            };
-
-            systemd.user.timers.spyro-niri-wallpaper = {
-              Unit = {
-                Description = "Daily Spyro Skyboxes DMS wallpaper sync";
-                PartOf = [ "niri.service" ];
-              };
-              Timer = {
-                OnCalendar = "daily";
-                Persistent = true;
-                Unit = "spyro-niri-wallpaper.service";
-              };
-              Install.WantedBy = [ "niri.service" ];
-            };
-
             systemd.user.services.spyro-plasma-wallpaper = {
               Unit = {
                 Description = "Sync Spyro Skyboxes Plasma wallpaper";

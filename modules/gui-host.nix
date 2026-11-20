@@ -11,7 +11,6 @@
         self.nixosModules.gaming
         self.nixosModules.gui-programs
         self.nixosModules.gui-system
-        self.nixosModules.niri
         self.nixosModules.plasma
         self.nixosModules.wallpapers
         self.nixosModules.encryption
