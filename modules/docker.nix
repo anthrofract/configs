@@ -1,7 +1,7 @@
 { ... }:
 {
   flake.nixosModules.docker =
-    { lib, ... }:
+    { config, lib, ... }:
     {
       virtualisation.docker = {
         enable = lib.mkDefault false;
@@ -9,6 +9,12 @@
           enable = lib.mkDefault true;
           setSocketVariable = lib.mkDefault true;
         };
+      };
+
+      # The rootless user service starts for every user, so skip system users such as SDDM's greeter.
+      # This replaces nixpkgs' "!root", since root is a system user too.
+      systemd.user.services = lib.mkIf config.virtualisation.docker.rootless.enable {
+        docker.unitConfig.ConditionUser = lib.mkForce "!@system";
       };
     };
 }
