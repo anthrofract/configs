@@ -38,6 +38,9 @@ switch: decrypt
 boot: decrypt
   nh os boot path:. -H {{host}}
 
+deploy target: decrypt
+  nh os switch path:. -H {{target}} --target-host {{target}} --use-substitutes
+
 update: decrypt
   nix flake update
 

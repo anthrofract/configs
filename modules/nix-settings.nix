@@ -32,22 +32,27 @@
     };
   };
 
-  flake.nixosModules.nix-settings = {
-    imports = [ self.commonModules.nix-settings ];
+  flake.nixosModules.nix-settings =
+    { pkgs, ... }:
+    {
+      imports = [ self.commonModules.nix-settings ];
 
-    programs.nh = {
-      enable = true;
-      flake = "/home/${config.secrets.identities.personal.userName}/configs";
+      # nh needs dix on a remote --target-host to diff against its current system.
+      environment.systemPackages = [ pkgs.dix ];
 
-      clean = {
+      programs.nh = {
         enable = true;
-        dates = "daily";
-        extraArgs = "--keep-since 3d --keep 2";
-      };
-    };
+        flake = "/home/${config.secrets.identities.personal.userName}/configs";
 
-    programs.nix-ld.enable = true;
-  };
+        clean = {
+          enable = true;
+          dates = "daily";
+          extraArgs = "--keep-since 3d --keep 2";
+        };
+      };
+
+      programs.nix-ld.enable = true;
+    };
 
   flake.darwinModules.nix-settings =
     { pkgs, ... }:
