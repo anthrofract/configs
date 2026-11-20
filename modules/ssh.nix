@@ -1,12 +1,26 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  self,
+  ...
+}:
 let
   hostNames = config.machines |> lib.attrNames;
   foreignHostPattern = ([ "*" ] ++ map (host: "!${host}") hostNames) |> lib.concatStringsSep " ";
 in
 {
+  flake.commonModules.ssh-known-hosts = {
+    programs.ssh.knownHosts =
+      config.machines
+      |> lib.filterAttrs (_: machine: machine.ssh.hostKey != null)
+      |> lib.mapAttrs (_: machine: { publicKey = machine.ssh.hostKey; });
+  };
+
   flake.nixosModules.ssh =
     { pkgs, ... }:
     {
+      imports = [ self.commonModules.ssh-known-hosts ];
+
       services.openssh = {
         enable = true;
         ports = [ 22 ];

@@ -66,6 +66,12 @@ in
               default = [ ];
               description = "Syncthing folders shared with this device.";
             };
+
+            ssh.hostKey = mkOption {
+              type = nullOr str;
+              default = null;
+              description = "Public SSH host key, trusted for this machine's name on every host.";
+            };
           };
         }
       )
