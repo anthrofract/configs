@@ -1,7 +1,10 @@
-{ config, ... }:
+{ config, lib, ... }:
 let
   id = config.secrets.identities.personal;
-  hosts = config.secrets.hosts;
+  devices = config.machines |> lib.filterAttrs (_: machine: machine.syncthing.id != null);
+  devicesSharing =
+    folder:
+    devices |> lib.filterAttrs (_: machine: lib.elem folder machine.syncthing.folders) |> lib.attrNames;
 in
 {
   flake.nixosModules.syncthing =
@@ -17,51 +20,11 @@ in
         configDir = "/home/${id.userName}/.config/syncthing";
         openDefaultPorts = true;
         settings = {
-          devices = {
-            "valhalla" = {
-              id = hosts.valhalla.syncthingId;
-              addresses = [ "tcp://valhalla" ];
-            };
-            "asgard" = {
-              id = hosts.asgard.syncthingId;
-              addresses = [ "tcp://asgard" ];
-            };
-            "nidavellir" = {
-              id = hosts.nidavellir.syncthingId;
-              addresses = [ "tcp://nidavellir" ];
-            };
-            "zfold7" = {
-              id = hosts.zfold7.syncthingId;
-              addresses = [ "tcp://zfold7" ];
-            };
-            "work-mbp" = {
-              id = hosts.work-mbp.syncthingId;
-              addresses = [ "tcp://work-mbp" ];
-            };
-            "graphene-tablet" = {
-              id = hosts.graphene-tablet.syncthingId;
-              addresses = [ "tcp://graphene-tablet" ];
-            };
-            "steam-deck" = {
-              id = hosts.steam-deck.syncthingId;
-              addresses = [ "dynamic" ];
-            };
-            "ayn-thor" = {
-              id = hosts.ayn-thor.syncthingId;
-              addresses = [ "dynamic" ];
-            };
-          };
+          devices = devices |> lib.mapAttrs (_: machine: { inherit (machine.syncthing) id addresses; });
           folders = {
             "notes" = {
               path = "/home/${id.userName}/notes";
-              devices = [
-                "valhalla"
-                "asgard"
-                "nidavellir"
-                "zfold7"
-                "work-mbp"
-                "graphene-tablet"
-              ];
+              devices = devicesSharing "notes";
               versioning = {
                 type = "staggered";
                 params = {
@@ -72,14 +35,7 @@ in
             };
             "pictures" = {
               path = "/home/${id.userName}/Pictures";
-              devices = [
-                "valhalla"
-                "asgard"
-                "nidavellir"
-                "zfold7"
-                "work-mbp"
-                "graphene-tablet"
-              ];
+              devices = devicesSharing "pictures";
               versioning = {
                 type = "trashcan";
                 params = {
@@ -89,15 +45,7 @@ in
             };
             "keepass" = {
               path = "/home/${id.userName}/keepass";
-              devices = [
-                "valhalla"
-                "asgard"
-                "nidavellir"
-                "zfold7"
-                "work-mbp"
-                "graphene-tablet"
-                "ayn-thor"
-              ];
+              devices = devicesSharing "keepass";
               versioning = {
                 type = "staggered";
                 params = {
@@ -108,13 +56,7 @@ in
             };
             "emulation" = {
               path = "/home/${id.userName}/Emulation";
-              devices = [
-                "valhalla"
-                "asgard"
-                "nidavellir"
-                "steam-deck"
-                "ayn-thor"
-              ];
+              devices = devicesSharing "emulation";
               type = "sendreceive";
               versioning = {
                 type = "staggered";

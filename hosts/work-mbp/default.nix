@@ -1,25 +1,13 @@
+{ self, ... }:
 {
-  self,
-  config,
-  inputs,
-  ...
-}:
-{
-  flake.darwinConfigurations.${config.secrets.hosts.work-mbp.localHostName} =
-    inputs.nix-darwin.lib.darwinSystem
+  machines.work-mbp.darwin = {
+    imports = [ self.darwinModules.darwin ];
+
+    system.stateVersion = 6;
+    home-manager.sharedModules = [
       {
-        system = "aarch64-darwin";
-        specialArgs = { inherit inputs; };
-        modules = [
-          self.darwinModules.darwin
-          {
-            system.stateVersion = 6;
-            home-manager.sharedModules = [
-              {
-                home.stateVersion = "25.05";
-              }
-            ];
-          }
-        ];
-      };
+        home.stateVersion = "25.05";
+      }
+    ];
+  };
 }

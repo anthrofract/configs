@@ -1,6 +1,6 @@
 { config, lib, ... }:
 let
-  hostNames = config.secrets.hosts |> lib.attrNames;
+  hostNames = config.machines |> lib.attrNames;
   foreignHostPattern = ([ "*" ] ++ map (host: "!${host}") hostNames) |> lib.concatStringsSep " ";
 in
 {
