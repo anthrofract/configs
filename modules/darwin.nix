@@ -17,6 +17,7 @@ in
         self.commonModules.development
         self.commonModules.encryption
         self.commonModules.env
+        self.commonModules.flake-inputs
         self.commonModules.ghostty
         self.commonModules.home-dirs
         self.commonModules.home-symlinks

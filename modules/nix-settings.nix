@@ -48,6 +48,8 @@ in
         ];
       };
 
+      nix.channel.enable = false;
+
       programs.nh = {
         enable = true;
         flake = "/home/${config.secrets.identities.personal.userName}/configs";

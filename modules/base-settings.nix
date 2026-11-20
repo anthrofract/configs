@@ -39,5 +39,12 @@
           Defaults timestamp_timeout=480
         '';
       };
+
+      documentation.nixos.enable = false;
+      documentation.doc.enable = false;
+      documentation.info.enable = false;
+
+      environment.defaultPackages = [ ];
+      programs.nano.enable = false;
     };
 }

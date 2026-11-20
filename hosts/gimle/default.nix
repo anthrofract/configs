@@ -22,6 +22,7 @@ in
       nixpkgs.hostPlatform = "x86_64-linux";
       system.stateVersion = "26.11";
       time.timeZone = "UTC";
+      nix.channel.enable = false;
 
       # Disable networking
       networking = {

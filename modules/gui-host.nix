@@ -6,6 +6,7 @@
       imports = [
         self.commonModules.development
         self.nixosModules.base-host
+        self.nixosModules.flake-inputs
         self.nixosModules.flatpak
         self.nixosModules.fonts
         self.nixosModules.gaming
