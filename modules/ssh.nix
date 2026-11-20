@@ -44,6 +44,11 @@ in
             programs.ssh = {
               enable = true;
               enableDefaultConfig = false;
+              settings."*" = {
+                ControlMaster = "auto";
+                ControlPath = "~/.ssh/control-%C";
+                ControlPersist = "10m";
+              };
               # Keep the default TERM for known hosts that have Ghostty terminfo installed,
               # and force a broadly supported fallback for everything else.
               settings.work-mbp.SetEnv = {
