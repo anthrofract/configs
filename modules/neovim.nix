@@ -17,6 +17,7 @@
           {
             programs.nixvim = {
               enable = true;
+              defaultEditor = true;
               package = inputs.neovim-nightly.packages.${pkgs.stdenv.hostPlatform.system}.default;
               nixpkgs.source = inputs.nixpkgs;
 
@@ -94,33 +95,6 @@
                   '';
                   desc = "Briefly highlight yanked and put text";
                 }
-                # {
-                #   event = [
-                #     "BufEnter"
-                #     "BufWinEnter"
-                #     "WinEnter"
-                #   ];
-                #   callback.__raw = ''
-                #     function()
-                #       vim.schedule(function()
-                #         local current_win = vim.api.nvim_get_current_win()
-                #         local current_buf = vim.api.nvim_win_get_buf(current_win)
-                #         local current_is_aerial = vim.bo[current_buf].filetype == "aerial"
-                #
-                #         for _, win in ipairs(vim.api.nvim_list_wins()) do
-                #           if vim.api.nvim_win_is_valid(win) then
-                #             if vim.w[win].codediff_restore then
-                #               vim.wo[win].cursorline = false
-                #             else
-                #               vim.wo[win].cursorline = current_is_aerial or win == current_win
-                #             end
-                #           end
-                #         end
-                #       end)
-                #     end
-                #   '';
-                #   desc = "Update cursorline visibility";
-                # }
                 {
                   event = "FileChangedShellPost";
                   callback.__raw = ''

@@ -140,7 +140,6 @@ in
             "bin/c".source = ../../home/bin/c;
             "bin/tms".source = ../../home/bin/tms;
             ".config/helix".source = ../../home/.config/helix;
-            ".config/nushell/config.nu".source = ../../home/.config/nushell/config.nu;
             ".config/starship.toml".source = ../../home/.config/starship.toml;
           };
           home.activation.mkDirs = lib.hm.dag.entryAfter [ "writeBoundary" ] ''

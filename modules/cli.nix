@@ -12,11 +12,9 @@
       environment.systemPackages = [
         pkgs.bc
         pkgs.btop
-        pkgs.carapace
         pkgs.difftastic
         pkgs.fastfetch
         pkgs.fd
-        pkgs.fzf
         pkgs.gnumake
         pkgs.inetutils
         pkgs.jc
@@ -32,7 +30,6 @@
         pkgs.rclone
         pkgs.ripgrep
         pkgs.sd
-        pkgs.starship
         pkgs.tokei
         pkgs.tree-sitter
         pkgs.unzip
@@ -41,7 +38,6 @@
         pkgs.watchman
         pkgs.wget
         pkgs.wireguard-tools
-        pkgs.zoxide
       ];
 
       home-manager.sharedModules = [
@@ -54,6 +50,23 @@
             };
 
             programs.helix.enable = true;
+
+            programs.fzf = {
+              enable = true;
+              enableNushellIntegration = false;
+              defaultOptions = [
+                "--pointer='>'"
+                "--gutter=' '"
+              ];
+              colors = {
+                "bg+" = "#30363F";
+                "fg+" = "white";
+                gutter = "-1";
+                hl = "#C98E56";
+                "hl+" = "#C98E56";
+                pointer = "#C98E56";
+              };
+            };
           }
         )
       ];
