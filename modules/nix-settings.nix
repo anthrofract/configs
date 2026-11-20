@@ -1,35 +1,35 @@
-{ config, self, ... }:
+{
+  config,
+  lib,
+  self,
+  ...
+}:
+let
+  settings = {
+    download-buffer-size = 268435456;
+
+    experimental-features = [
+      "nix-command"
+      "flakes"
+      "pipe-operators"
+    ];
+
+    substituters = [
+      "https://nix-community.cachix.org/"
+    ];
+
+    trusted-public-keys = [
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+    ];
+
+    http-connections = 50;
+    use-xdg-base-directories = true;
+    warn-dirty = false;
+  };
+in
 {
   flake.commonModules.nix-settings = {
     nixpkgs.config.allowUnfree = true;
-
-    nix.settings = {
-      auto-optimise-store = true;
-      download-buffer-size = 268435456;
-
-      experimental-features = [
-        "nix-command"
-        "flakes"
-        "pipe-operators"
-      ];
-
-      substituters = [
-        "https://nix-community.cachix.org/"
-      ];
-
-      trusted-public-keys = [
-        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-      ];
-
-      trusted-users = [
-        "root"
-        "@wheel"
-      ];
-
-      http-connections = 50;
-      use-xdg-base-directories = true;
-      warn-dirty = false;
-    };
   };
 
   flake.nixosModules.nix-settings =
@@ -39,6 +39,14 @@
 
       # nh needs dix on a remote --target-host to diff against its current system.
       environment.systemPackages = [ pkgs.dix ];
+
+      nix.settings = settings // {
+        auto-optimise-store = true;
+        trusted-users = [
+          "root"
+          "@wheel"
+        ];
+      };
 
       programs.nh = {
         enable = true;
@@ -58,6 +66,20 @@
     { pkgs, ... }:
     {
       imports = [ self.commonModules.nix-settings ];
+
+      environment.etc."nix/nix.custom.conf" = {
+        knownSha256Hashes = [ "3bd68ef979a42070a44f8d82c205cfd8e8cca425d91253ec2c10a88179bb34aa" ];
+        text =
+          settings // { trusted-users = [ "@admin" ]; }
+          |> lib.mapAttrsToList (
+            name: value:
+            if lib.isList value then
+              "extra-${name} = ${lib.concatStringsSep " " value}"
+            else
+              "${name} = ${if lib.isBool value then lib.boolToString value else toString value}"
+          )
+          |> lib.concatLines;
+      };
 
       environment.systemPackages = [ pkgs.nh ];
 
