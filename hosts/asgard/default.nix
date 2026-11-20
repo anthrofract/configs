@@ -1,7 +1,12 @@
 { self, ... }:
 {
   machines.asgard.nixos =
-    { pkgs, ... }:
+    {
+      config,
+      lib,
+      pkgs,
+      ...
+    }:
     {
       imports = [
         ./hardware.nix
@@ -13,15 +18,16 @@
       services.automatic-timezoned.enable = true;
       services.geoclue2.geoProviderUrl = "https://api.beacondb.net/v1/geolocate";
 
-      # Fingerprint reader
-      # For some reason this seems to cause a problem with kdewallet sometimes. If you keep getting
-      # annoying popups asking for access to kdewallet, you can solve this by deleting the wallet:
-      # rm -rf ~/.local/share/kwalletd/
-      # systemd.services.fprintd = {
-      #   wantedBy = [ "multi-user.target" ];
-      #   serviceConfig.Type = "simple";
-      # };
-      # services.fprintd.enable = true;
+      # Fingerprint reader. SDDM logs in with the password only, so KDE Wallet always unlocks;
+      # the lock screen accepts either, since Plasma checks both at the same time.
+      services.fprintd.enable = true;
+      security.pam.services = {
+        login.fprintAuth = false;
+      }
+      # Ask for the password first; an empty password falls through to the fingerprint reader.
+      // lib.genAttrs [ "sudo" "sudo-i" "su" "polkit-1" ] (name: {
+        rules.auth.fprintd.order = config.security.pam.services.${name}.rules.auth.unix.order + 10;
+      });
 
       # Intel Quick Sync Video
       hardware.graphics.extraPackages = [ pkgs.vpl-gpu-rt ];
