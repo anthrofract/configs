@@ -23,7 +23,6 @@
           self.nixosModules.electrs
           self.nixosModules.encryption
           self.nixosModules.gitea
-          # self.nixosModules.hermes
           self.nixosModules.media-server
           self.nixosModules.mempool
           self.nixosModules.reverse-proxy
