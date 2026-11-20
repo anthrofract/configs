@@ -35,6 +35,9 @@ test: decrypt
 switch: decrypt
   nh os switch path:. -H {{host}}
 
+switch-remote builder="valhalla": decrypt
+  nh os switch path:. -H {{host}} --build-host {{builder}} --use-substitutes
+
 boot: decrypt
   nh os boot path:. -H {{host}}
 
