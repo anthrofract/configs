@@ -1,19 +1,17 @@
 { config, inputs, ... }:
 let
-  sshKey = config.secrets.identities.personal.sshKey;
+  identityPath = home: "${home}/.ssh/${config.secrets.identities.personal.sshKey}";
 in
 {
-  flake.commonModules.agenix = {
-    home-manager.sharedModules = [
-      (
-        { config, ... }:
-        {
-          imports = [ inputs.agenix.homeManagerModules.default ];
+  flake.nixosModules.agenix = {
+    imports = [ inputs.agenix.nixosModules.default ];
 
-          age.identityPaths = [ "${config.home.homeDirectory}/.ssh/${sshKey}" ];
-          age.secretsDir = "${config.xdg.stateHome}/agenix";
-        }
-      )
-    ];
+    age.identityPaths = [ (identityPath "/home/${config.secrets.identities.personal.userName}") ];
+  };
+
+  flake.darwinModules.agenix = {
+    imports = [ inputs.agenix.darwinModules.default ];
+
+    age.identityPaths = [ (identityPath "/Users/${config.secrets.identities.personal.userName}") ];
   };
 }

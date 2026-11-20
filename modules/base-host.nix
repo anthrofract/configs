@@ -10,6 +10,7 @@
         self.commonModules.home-symlinks
         self.commonModules.latest-pkgs
         self.commonModules.vcs
+        self.nixosModules.agenix
         self.nixosModules.base-settings
         self.nixosModules.docker
         self.nixosModules.home-manager
