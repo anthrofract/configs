@@ -21,6 +21,7 @@ in
         self.commonModules.home-dirs
         self.commonModules.home-symlinks
         self.commonModules.latest-pkgs
+        self.commonModules.pki
         self.commonModules.vcs
         self.darwinModules.helium
         self.darwinModules.nix-settings

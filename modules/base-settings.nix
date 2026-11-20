@@ -26,13 +26,6 @@
       networking.networkmanager.enable = true;
       services.resolved.enable = true;
       services.resolved.settings.Resolve.DNSOverTLS = "opportunistic";
-      # Trust the NextDNS Root CA so block pages can be served over HTTPS
-      security.pki.certificateFiles = [
-        (pkgs.fetchurl {
-          url = "https://nextdns.io/ca";
-          hash = "sha256-yl+2q4H/a8SLGv4Mt+g8+03uy9ihZxACbsj3uCTog34=";
-        })
-      ];
 
       environment.shells = [
         pkgs.bash

@@ -17,6 +17,7 @@
           { pkgs, latestPkgs, ... }:
           {
             home.packages = [
+              latestPkgs.slack
               latestPkgs.sparrow
               latestPkgs.zed-editor-fhs
               pkgs.chromium
@@ -43,7 +44,6 @@
               pkgs.obsidian
               pkgs.qalculate-qt
               pkgs.signal-desktop
-              pkgs.slack
               pkgs.spotify
               pkgs.timg
               pkgs.tor-browser

@@ -14,6 +14,7 @@
         self.nixosModules.docker
         self.nixosModules.home-manager
         self.nixosModules.nix-settings
+        self.nixosModules.pki
         self.nixosModules.ssh
         self.nixosModules.syncthing
         self.nixosModules.tailscale
