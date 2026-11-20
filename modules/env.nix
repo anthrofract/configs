@@ -1,30 +1,23 @@
-{ config, lib, ... }:
-let
-  tokens = config.secrets.tokens;
-
-  # Env vars made available in every shell.
-  # POSIX shells pick them up via ~/.nix-profile/etc/profile.d/hm-session-vars.sh.
-  # Nushell doesn't source POSIX profile scripts, so we also create a nu autoload file.
-  vars = {
-    GITHUB_TOKEN = tokens.github;
-    GRAFANA_TOKEN = tokens.grafana;
-  };
-
-  nuAutoload =
-    lib.mapAttrsToList (name: value: ''
-      $env.${name} = "${value}"
-    '') vars
-    |> lib.concatStrings;
-
-in
+# Env vars for nushell, read from agenix-decrypted secrets in ../secrets.
+{ self, ... }:
 {
   flake.commonModules.env = {
+    imports = [ self.commonModules.agenix ];
+
     home-manager.sharedModules = [
-      {
-        home.sessionVariables = vars;
-        xdg.dataFile."nushell/vendor/autoload/secrets.nu".text = nuAutoload;
-      }
+      (
+        { config, ... }:
+        {
+          age.secrets.github-token.file = ../secrets/github-token.age;
+          age.secrets.grafana-token.file = ../secrets/grafana-token.age;
+
+          xdg.dataFile."nushell/vendor/autoload/secrets.nu".text = ''
+            $env.GITHUB_TOKEN = open --raw "${config.age.secrets.github-token.path}"
+            $env.GRAFANA_TOKEN = open --raw "${config.age.secrets.grafana-token.path}"
+            $env.NIX_CONFIG = $"access-tokens = github.com=($env.GITHUB_TOKEN)"
+          '';
+        }
+      )
     ];
   };
-
 }

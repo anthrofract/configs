@@ -26,10 +26,6 @@
         "@wheel"
       ];
 
-      access-tokens = [
-        "github.com=${config.secrets.tokens.github}"
-      ];
-
       http-connections = 50;
       use-xdg-base-directories = true;
       warn-dirty = false;
