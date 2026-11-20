@@ -1,7 +1,12 @@
-{ self, inputs, ... }:
+{
+  config,
+  self,
+  inputs,
+  ...
+}:
 {
   flake.commonModules.neovim =
-    { ... }:
+    host@{ ... }:
     {
       imports = [
         self.commonModules.neovim-keys
@@ -9,6 +14,11 @@
         self.commonModules.neovim-langs
         self.commonModules.neovim-lualine
       ];
+
+      # Root shells don't have the user profile on PATH, so point at the same nixvim build directly.
+      environment.variables.EDITOR = "${
+        host.config.home-manager.users.${config.secrets.identities.personal.userName}.programs.nixvim.build.package
+      }/bin/nvim";
 
       home-manager.sharedModules = [
         inputs.nixvim.homeModules.nixvim
@@ -18,6 +28,7 @@
             programs.nixvim = {
               enable = true;
               defaultEditor = true;
+              wrapRc = true;
               package = inputs.neovim-nightly.packages.${pkgs.stdenv.hostPlatform.system}.default;
               nixpkgs.source = inputs.nixpkgs;
 
