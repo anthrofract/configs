@@ -25,6 +25,7 @@ in
         self.commonModules.pki
         self.commonModules.ssh-client
         self.commonModules.vcs
+        self.darwinModules.agenix
         self.darwinModules.helium
         self.darwinModules.nix-settings
       ];
