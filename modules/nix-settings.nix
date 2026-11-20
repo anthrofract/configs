@@ -81,6 +81,16 @@ in
           |> lib.concatLines;
       };
 
+      system.activationScripts.postActivation.text = ''
+        if ! diff /etc/nix/nix.custom.conf /run/current-system/etc/nix/nix.custom.conf &> /dev/null; then
+          echo "restarting nix-daemon..." >&2
+          launchctl kickstart -k system/systems.determinate.nix-daemon
+          while ! ${pkgs.nix}/bin/nix-store --store daemon -q --hash ${pkgs.stdenv.shell} &> /dev/null; do
+            sleep 0.2
+          done
+        fi
+      '';
+
       environment.systemPackages = [ pkgs.nh ];
 
       launchd.daemons.nh-clean = {
