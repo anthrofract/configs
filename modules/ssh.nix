@@ -9,17 +9,41 @@ let
   foreignHostPattern = ([ "*" ] ++ map (host: "!${host}") hostNames) |> lib.concatStringsSep " ";
 in
 {
-  flake.commonModules.ssh-known-hosts = {
+  flake.commonModules.ssh-client = {
     programs.ssh.knownHosts =
       config.machines
       |> lib.filterAttrs (_: machine: machine.ssh.hostKey != null)
       |> lib.mapAttrs (_: machine: { publicKey = machine.ssh.hostKey; });
+
+    home-manager.sharedModules = [
+      {
+        programs.ssh = {
+          enable = true;
+          enableDefaultConfig = false;
+          settings."*" = {
+            ControlMaster = "auto";
+            ControlPath = "~/.ssh/control-%C";
+            ControlPersist = "10m";
+          };
+          # Keep the default TERM for known hosts that have Ghostty terminfo installed,
+          # and force a broadly supported fallback for everything else.
+          settings.work-mbp.SetEnv = {
+            TERMINFO = "/run/current-system/sw/share/terminfo";
+          };
+          settings."${foreignHostPattern}" = {
+            SetEnv = {
+              TERM = "xterm-256color";
+            };
+          };
+        };
+      }
+    ];
   };
 
   flake.nixosModules.ssh =
     { pkgs, ... }:
     {
-      imports = [ self.commonModules.ssh-known-hosts ];
+      imports = [ self.commonModules.ssh-client ];
 
       services.openssh = {
         enable = true;
@@ -35,33 +59,6 @@ in
 
       environment.systemPackages = [
         pkgs.ghostty.terminfo
-      ];
-
-      home-manager.sharedModules = [
-        (
-          { ... }:
-          {
-            programs.ssh = {
-              enable = true;
-              enableDefaultConfig = false;
-              settings."*" = {
-                ControlMaster = "auto";
-                ControlPath = "~/.ssh/control-%C";
-                ControlPersist = "10m";
-              };
-              # Keep the default TERM for known hosts that have Ghostty terminfo installed,
-              # and force a broadly supported fallback for everything else.
-              settings.work-mbp.SetEnv = {
-                TERMINFO = "/run/current-system/sw/share/terminfo";
-              };
-              settings."${foreignHostPattern}" = {
-                SetEnv = {
-                  TERM = "xterm-256color";
-                };
-              };
-            };
-          }
-        )
       ];
     };
 }
