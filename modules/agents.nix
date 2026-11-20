@@ -7,7 +7,7 @@
         latestPkgs.claude-code
         latestPkgs.codex
         inputs.autolith.packages.${pkgs.stdenv.hostPlatform.system}.default
-        inputs.omp.packages.${pkgs.stdenv.hostPlatform.system}.default
+        latestPkgs.omp
       ];
 
       home-manager.sharedModules = [
@@ -16,7 +16,7 @@
             pkgs.runCommand "reviewer-secondary.md" { }
               ''
                 substitute \
-                  ${inputs.omp}/packages/coding-agent/src/prompts/agents/reviewer.md \
+                  ${latestPkgs.omp.src}/packages/coding-agent/src/prompts/agents/reviewer.md \
                   "$out" \
                   --replace-fail 'name: reviewer' 'name: reviewer-secondary' \
                   --replace-fail 'model: "@slow"' 'model: openai-codex/gpt-6.2-astra:high'
