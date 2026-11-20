@@ -28,6 +28,7 @@ in
         self.darwinModules.agenix
         self.darwinModules.helium
         self.darwinModules.nix-settings
+        self.darwinModules.tailscale
       ];
 
       nix.enable = false; # For determinate nix
@@ -70,7 +71,6 @@ in
           "signal"
           "slack"
           "syncthing-app"
-          "tailscale-app"
         ];
       };
 
