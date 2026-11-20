@@ -173,7 +173,7 @@
                 lt2 = "lsd --color always -A --date relative --group-directories-first --tree --depth 2";
                 lt3 = "lsd --color always -A --date relative --group-directories-first --tree --depth 3";
                 m = "just-make";
-                mj = "~/projects/majjit/target/release/majjit";
+                mj = "majjit";
                 ns = "nix-shell --command nu";
                 nsc = "nix develop ~/configs/home/shells/rust-c --command nu";
                 p = "omp";

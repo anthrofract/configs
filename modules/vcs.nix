@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, inputs, ... }:
 let
   ids = config.secrets.identities;
 in
@@ -8,6 +8,7 @@ in
     {
       environment.systemPackages = [
         pkgs.git
+        inputs.majjit.packages.${pkgs.stdenv.hostPlatform.system}.default
       ];
 
       home-manager.sharedModules = [
