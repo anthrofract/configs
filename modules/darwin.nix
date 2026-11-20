@@ -23,7 +23,7 @@ in
         self.commonModules.home-symlinks
         self.commonModules.latest-pkgs
         self.commonModules.pki
-        self.commonModules.ssh-known-hosts
+        self.commonModules.ssh-client
         self.commonModules.vcs
         self.darwinModules.helium
         self.darwinModules.nix-settings
