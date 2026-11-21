@@ -2,16 +2,14 @@ disabledProviders:
   - opencode
 setupVersion: 3
 shellPath: /etc/nu-with-config/nu
-personality: friendly
+personality: none
 modelRoles:
   default: anthropic/claude-opus-5-5:high
   slow: anthropic/claude-fable-5-2:high
   plan: anthropic/claude-opus-5-5:high
   task: anthropic/claude-opus-5-5:high
   vision: "@default"
-  advisor: openai-codex/gpt-6.2-astra:high
   smol: anthropic/claude-sonnet-5-5:medium
-  commit: anthropic/claude-haiku-5-5:low
   tiny: anthropic/claude-haiku-5-5:low
   web: web/exa
 retry:
@@ -74,11 +72,18 @@ task:
   eager: preferred
 treeFilterMode: no-tools
 marketplace:
-  autoUpdate: auto
+  autoUpdate: "off"
 git:
   enabled: true
 branchSummary:
   enabled: false
+recap:
+  enabled: false
+todo:
+  reminders: false
+model:
+  loopGuard:
+    toolCallReminder: false
 startup:
   quiet: false
   showSplash: false
@@ -93,5 +98,4 @@ extendedContext: true
 browser:
   relay: true
 ttsr:
-  disabledRules:
-    - rs-parking-lot
+  builtinRules: false

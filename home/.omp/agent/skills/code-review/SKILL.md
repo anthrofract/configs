@@ -44,7 +44,7 @@ Run this workflow directly rather than through OMP's built-in `/review` command,
 
 ## Output
 
-Order findings by impact and distinguish correctness or security issues from optional maintainability improvements. Consolidate findings with the same root cause unless they require different fixes. If there are no actionable findings, say so without inventing suggestions.
+Order findings by impact using the reviewers' P0–P3 priority scale: start from the priorities they assigned, adjust them to match what your verification showed, and place findings from your own analysis on the same scale. Distinguish correctness or security issues from optional maintainability improvements. Consolidate findings with the same root cause unless they require different fixes. If there are no actionable findings, say so without inventing suggestions.
 
 1. Start with a summary, followed by findings. Write the summary for a reader who knows the language but not this area of the codebase. This section is an exception to any general instruction to be terse: use full sentences and define terms instead of assuming context. Cover, in order:
    - **Purpose**: the problem or requirement the change addresses and why it matters, from the PR description or linked issues. Say so if the motivation is unclear.
@@ -55,6 +55,7 @@ Order findings by impact and distinguish correctness or security issues from opt
    Scale the length to the change: a few sentences for trivial changes, several paragraphs for changes that span subsystems. Use a short mermaid diagram when a flow or interaction among several components is easier to see than to read.
    Include a brief diff-size line in the summary, e.g. `Diff: +120 / −45 lines`, measured over the exact base-to-head diff reviewed.
 2. For each finding:
+   - Label it with its priority (P0–P3).
    - Explain the issue briefly for a reader unfamiliar with the changed code.
    - Provide a paste-ready PR comment stating the trigger or relevant context, concrete consequence, and suggested fix.
    - Include the relevant file path and line number in both.
