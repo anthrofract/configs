@@ -29,6 +29,9 @@ encrypt:
 build: decrypt
   nh os build path:. -H {{host}}
 
+build-remote builder="valhalla": decrypt
+  nh os build path:. -H {{host}} --build-host {{builder}} --use-substitutes
+
 test: decrypt
   nh os test path:. -H {{host}}
 
