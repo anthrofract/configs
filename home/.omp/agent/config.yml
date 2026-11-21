@@ -11,12 +11,7 @@ modelRoles:
   vision: "@default"
   smol: anthropic/claude-sonnet-5-5:medium
   tiny: anthropic/claude-haiku-5-5:low
-  web: web/exa
-retry:
-  fallbackChains:
-    web:
-      - web/perplexity
-      - web/duckduckgo
+  web: web/keenable
 advisor:
   enabled: false
 theme:
