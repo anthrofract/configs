@@ -21,6 +21,11 @@
                   --replace-fail 'name: reviewer' 'name: reviewer-secondary' \
                   --replace-fail 'model: "@slow"' 'model: openai-codex/gpt-6.2-astra:high'
               '';
+          home.file.".omp/agent/SYSTEM_TEMPLATE.md".source = pkgs.runCommand "omp-system-template.md" { } ''
+            patch --fuzz=0 -o "$out" \
+              ${latestPkgs.omp.src}/packages/coding-agent/src/prompts/system/system-prompt.md \
+              < ${./agents/omp-system-prompt.patch}
+          '';
           home.file.".omp/agent/skills/nushell".source = pkgs.runCommand "nushell-skill" { } ''
             cp -r ${inputs.nu-scripts}/skills/nushell "$out"
             chmod -R u+w "$out"
