@@ -74,20 +74,41 @@ in
         ];
       };
 
+      security.pam.services.sudo_local = {
+        touchIdAuth = true;
+        reattach = true;
+      };
+
+      system.defaults.CustomUserPreferences."com.apple.AdLib".allowIdentifierForAdvertising = false;
+      system.defaults.CustomUserPreferences."com.apple.desktopservices" = {
+        DSDontWriteNetworkStores = true;
+        DSDontWriteUSBStores = true;
+      };
+      system.defaults.LaunchServices.LSQuarantine = false;
+      system.defaults.NSGlobalDomain.ApplePressAndHoldEnabled = false;
       system.defaults.NSGlobalDomain.AppleShowScrollBars = "Always";
+      system.defaults.NSGlobalDomain.NSAutomaticDashSubstitutionEnabled = false;
+      system.defaults.NSGlobalDomain.NSAutomaticQuoteSubstitutionEnabled = false;
+      system.defaults.NSGlobalDomain.NSAutomaticSpellingCorrectionEnabled = false;
       system.defaults.NSGlobalDomain.NSAutomaticWindowAnimationsEnabled = false;
+      system.defaults.NSGlobalDomain.NSDocumentSaveNewDocumentsToCloud = false;
+      system.defaults.NSGlobalDomain.NSNavPanelExpandedStateForSaveMode = true;
       system.defaults.NSGlobalDomain.NSWindowShouldDragOnGesture = true;
+      system.defaults.WindowManager.EnableStandardClickToShowDesktop = false;
       system.defaults.controlcenter.Bluetooth = true;
       system.defaults.controlcenter.Sound = true;
       system.defaults.dock.autohide = true;
       system.defaults.dock.expose-group-apps = true;
+      system.defaults.dock.mru-spaces = false;
       system.defaults.dock.orientation = "right";
       system.defaults.dock.show-recents = false;
       system.defaults.finder.AppleShowAllExtensions = true;
       system.defaults.finder.AppleShowAllFiles = true;
+      system.defaults.finder.FXEnableExtensionChangeWarning = false;
       system.defaults.finder.FXRemoveOldTrashItems = true;
       system.defaults.finder._FXShowPosixPathInTitle = true;
       system.defaults.finder._FXSortFoldersFirst = true;
+      system.defaults.screencapture.disable-shadow = true;
       system.defaults.spaces.spans-displays = true;
       system.keyboard.enableKeyMapping = true;
       system.keyboard.remapCapsLockToEscape = true;
