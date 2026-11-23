@@ -60,36 +60,6 @@ in
               };
             }
           ];
-          experimental_map = [
-            {
-              name = "Backtick alt-number chords";
-              chords =
-                map
-                  (number: {
-                    keys = [
-                      "grave"
-                      number
-                    ];
-                    actions = [
-                      "Alt_L"
-                      number
-                    ];
-                    timeout = 30;
-                  })
-                  [
-                    "1"
-                    "2"
-                    "3"
-                    "4"
-                    "5"
-                    "6"
-                    "7"
-                    "8"
-                    "9"
-                    "0"
-                  ];
-            }
-          ];
           keymap = [
             {
               name = "Mac-like shortcuts";
