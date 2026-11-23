@@ -15,6 +15,10 @@
 - Prefer the matching Just recipe when one exists; recipes that evaluate the main flake handle decryption.
 - If a task explicitly changes `config/secrets.nix`, run `just encrypt` so the tracked encrypted file is updated.
 
+## Remote builds
+
+When not on valhalla, build x86_64-linux outputs there if `ssh -o BatchMode=yes -o ConnectTimeout=5 valhalla true` succeeds; otherwise build locally and say so. Use `just build-remote` for system configurations and add `--store ssh-ng://valhalla --eval-store auto` to `nix build`.
+
 ## Updating the flake
 
 When asked to update the flake, follow these steps. If an update, package build, or configuration build fails, stop and report the error and suggested fixes. Do not attempt fixes unless asked.
@@ -25,6 +29,6 @@ Follow these instructions directly and efficiently. Stay focused on the update; 
 2. Run `just update` (which runs `nix flake update`).
 3. Check upstream online and update all pinned software under `packages/` to the latest version on its existing release channel. Edit the package Nix files, updating versions, URLs, revisions, and source/dependency hashes for all platforms. Stop if an update cannot be determined reliably.
 4. After both flake-input and local-package updates, if the working-copy diff is empty, stop and report that there are no updates; do not build or commit.
-5. Build all version-changed local packages supported on the current platform with `nix build --no-link path:.#<package>`, then run `just build`. Report any packages that could not be built. Do not activate the configuration.
+5. Build all version-changed local packages supported on the current platform with `nix build --no-link path:.#<package>`, then run `just build`, following "Remote builds". Report any packages that could not be built. Do not activate the configuration.
 6. If the required builds succeed, run `jj commit -m "Update flake"`.
 7. Summarize changed flake-input revisions and all user-facing package version changes, additions, and removals by comparing pre-update and post-update configurations. Group components of the same application and omit dependency-only changes unless they have a notable user-facing impact. Identify supplying inputs where verified. Read and link upstream release notes covering the old-to-new version range. Briefly highlight concrete features, behavior changes, and fixes for each changed package, prioritizing relevance to this configuration, breaking changes, required actions, and security impact. Give major releases more detail.
