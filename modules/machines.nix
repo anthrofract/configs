@@ -85,7 +85,10 @@ in
     inputs.nixpkgs.lib.nixosSystem {
       modules = [
         machine.nixos
-        { networking.hostName = machine.hostName; }
+        {
+          _module.args.hostName = machine.hostName;
+          networking.hostName = machine.hostName;
+        }
       ];
     }
   );
@@ -93,7 +96,10 @@ in
   config.flake.darwinConfigurations = configurationsOf "darwin" (
     machine:
     inputs.nix-darwin.lib.darwinSystem {
-      modules = [ machine.darwin ];
+      modules = [
+        machine.darwin
+        { _module.args.hostName = machine.hostName; }
+      ];
     }
   );
 }

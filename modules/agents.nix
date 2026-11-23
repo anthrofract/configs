@@ -1,7 +1,13 @@
 { inputs, ... }:
 {
   flake.commonModules.agents =
-    { pkgs, latestPkgs, ... }:
+    {
+      pkgs,
+      lib,
+      latestPkgs,
+      hostName,
+      ...
+    }:
     {
       environment.systemPackages = [
         latestPkgs.claude-code
@@ -25,6 +31,7 @@
             patch --fuzz=0 -o "$out" \
               ${latestPkgs.omp.src}/packages/coding-agent/src/prompts/system/system-prompt.md \
               < ${./agents/omp-system-prompt.patch}
+            printf '\n# Host\nHostname: %s\n' ${lib.escapeShellArg hostName} >> "$out"
           '';
           home.file.".omp/agent/skills/nushell".source = pkgs.runCommand "nushell-skill" { } ''
             cp -r ${inputs.nu-scripts}/skills/nushell "$out"
