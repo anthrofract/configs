@@ -10,6 +10,7 @@
     }:
     {
       environment.systemPackages = [
+        latestPkgs.antigravity-cli
         latestPkgs.claude-code
         latestPkgs.codex
         inputs.autolith.packages.${pkgs.stdenv.hostPlatform.system}.default
