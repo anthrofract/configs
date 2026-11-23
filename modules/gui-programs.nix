@@ -1,7 +1,7 @@
 { self, ... }:
 {
   flake.nixosModules.gui-programs =
-    { ... }:
+    { pkgs, ... }:
     {
       imports = [
         # self.nixosModules.emacs
@@ -11,6 +11,14 @@
 
       # Zoom
       programs.zoom-us.enable = true;
+
+      # polkitd only reads actions from the system profile; KeePassXC Quick Unlock needs this one
+      environment.systemPackages = [
+        (pkgs.runCommand "keepassxc-polkit-action" { } ''
+          mkdir -p $out/share/polkit-1/actions
+          ln -s ${pkgs.keepassxc}/share/polkit-1/actions/*.policy $out/share/polkit-1/actions/
+        '')
+      ];
 
       home-manager.sharedModules = [
         (
