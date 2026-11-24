@@ -32,6 +32,7 @@
               pkgs.chromium
               pkgs.discord
               pkgs.google-chrome
+              pkgs.fastmail-desktop
               pkgs.haruna
               pkgs.kdePackages.ark
               pkgs.kdePackages.discover
