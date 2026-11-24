@@ -25,6 +25,7 @@
           { pkgs, latestPkgs, ... }:
           {
             home.packages = [
+              latestPkgs.ladybird
               latestPkgs.slack
               latestPkgs.sparrow
               latestPkgs.zed-editor-fhs
