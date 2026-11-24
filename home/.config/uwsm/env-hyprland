@@ -1,0 +1,9 @@
+# Chromium and Electron apps choose KWallet only when the desktop list includes KDE.
+# Hyprland must stay first so that NotShowIn=Hyprland autostart entries are skipped.
+export XDG_CURRENT_DESKTOP=Hyprland:KDE
+export KDE_SESSION_VERSION=6
+# Lets KDE apps find installed applications, e.g. Dolphin's "Open with" menu.
+export XDG_MENU_PREFIX=plasma-
+# Makes nixpkgs-wrapped Chromium/Electron apps run natively on Wayland, e.g. Spotify, which
+# otherwise runs through XWayland and is blurry at fractional scales.
+export NIXOS_OZONE_WL=1

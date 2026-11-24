@@ -4,7 +4,7 @@ let
 in
 {
   flake.nixosModules.xremap =
-    { pkgs, ... }:
+    { config, pkgs, ... }:
     {
       imports = [ inputs.xremap.nixosModules.default ];
 
@@ -38,7 +38,8 @@ in
           "--ignore"
           ''"Yubico YubiKey OTP+FIDO+CCID"''
         ];
-        package = inputs.xremap.packages.${pkgs.stdenv.hostPlatform.system}.xremap-kde;
+        withKDE = config.services.desktopManager.plasma6.enable;
+        withHypr = config.programs.hyprland.enable;
         serviceMode = "user";
         userName = id.userName;
         config = {
@@ -111,8 +112,6 @@ in
                 "Super-Shift-j" = "C-Shift-j";
                 "Super-u" = "C-u";
                 "Super-Shift-u" = "C-Shift-u";
-                "Super-comma" = "C-comma";
-                "Super-Shift-comma" = "C-Shift-comma";
                 "Super-equal" = "C-equal";
                 "Super-minus" = "C-minus";
                 "Super-leftbrace" = "C-leftbrace";

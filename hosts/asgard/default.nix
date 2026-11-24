@@ -44,6 +44,14 @@
           programs.plasma.powerdevil.battery.powerProfile = "balanced";
           programs.plasma.powerdevil.lowBattery.powerProfile = "powerSaving";
         }
+        (
+          { config, ... }:
+          {
+            # Dux merges config.d files over settings.json; live link so its settings screen can edit it
+            xdg.configFile."dms/config.d/asgard.json".source =
+              config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/configs/hosts/asgard/dms.json";
+          }
+        )
       ];
     };
 }

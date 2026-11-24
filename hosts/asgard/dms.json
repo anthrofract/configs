@@ -1,0 +1,8 @@
+{
+  "acMonitorTimeout": 600,
+  "acLockTimeout": 600,
+  "acSuspendTimeout": 1800,
+  "batteryMonitorTimeout": 300,
+  "batteryLockTimeout": 300,
+  "batterySuspendTimeout": 900
+}
