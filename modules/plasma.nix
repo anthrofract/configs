@@ -96,7 +96,7 @@
                   "MoveMouseToFocus" = [ ]; # Free up Meta+F5
                   "Overview" = [ "Meta+0" ]; # Moved from Meta+W
                   "Window Close" = [ "Meta+Q" ]; # Mac-like quit
-                  "Toggle Grid View" = [ ]; # Free up Meta+G
+                  "Grid View" = [ ]; # Free up Meta+G
                   "Show Desktop" = [ ]; # Free up Meta+D
                 };
                 plasmashell = {
