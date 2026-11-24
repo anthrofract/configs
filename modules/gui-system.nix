@@ -25,7 +25,7 @@
         enable = true;
         wayland.enable = true;
       };
-      services.displayManager.defaultSession = "plasma";
+      services.displayManager.defaultSession = "hyprland-uwsm";
 
       # Wayland tooling
       environment.systemPackages = [

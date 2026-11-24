@@ -4,6 +4,9 @@ export XDG_CURRENT_DESKTOP=Hyprland:KDE
 export KDE_SESSION_VERSION=6
 # Lets KDE apps find installed applications, e.g. Dolphin's "Open with" menu.
 export XDG_MENU_PREFIX=plasma-
+# Dux defaults these to gtk3 for apps it launches, which mixes GTK and Breeze colors in KDE apps.
+export QT_QPA_PLATFORMTHEME=kde
+export QT_QPA_PLATFORMTHEME_QT6=kde
 # Makes nixpkgs-wrapped Chromium/Electron apps run natively on Wayland, e.g. Spotify, which
 # otherwise runs through XWayland and is blurry at fractional scales.
 export NIXOS_OZONE_WL=1

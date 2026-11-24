@@ -1,17 +1,9 @@
 { config, ... }:
-let
-  userName = config.secrets.identities.personal.userName;
-in
 {
   flake.nixosModules.wallpapers =
-    {
-      config,
-      lib,
-      pkgs,
-      ...
-    }:
+    { pkgs, ... }:
     let
-      dux = config.programs.dux-shell;
+      userName = config.secrets.identities.personal.userName;
       wallpaperDir = "/home/${userName}/Pictures/wallpapers/Spyro_Skyboxes";
       sddmWallpaper = "/var/lib/sddm/spyro-wallpaper/current-wallpaper";
       syncSpyroWallpaper = pkgs.writers.writeNuBin "sync-spyro-wallpaper" ''
@@ -56,17 +48,10 @@ in
           ${pkgs.coreutils}/bin/chmod 0644 $sddm_wallpaper
         }
 
-        def sync-dux [] {
-          let wallpaper = selected-wallpaper
-
-          ${dux.package}/bin/dms ipc call wallpaper set $wallpaper
-        }
-
         def main [target: string] {
           match $target {
             "plasma" => { sync-plasma }
             "sddm" => { sync-sddm }
-            "dux" => { sync-dux }
             _ => { error make { msg: $"Unknown wallpaper sync target: ($target)" } }
           }
         }
@@ -127,32 +112,6 @@ in
                 Unit = "spyro-plasma-wallpaper.service";
               };
               Install.WantedBy = [ "plasma-workspace.target" ];
-            };
-
-            systemd.user.services.spyro-dux-wallpaper = lib.mkIf dux.enable {
-              Unit = {
-                Description = "Sync Spyro Skyboxes Dux Shell wallpaper";
-                PartOf = [ dux.systemd.target ];
-                After = [ "dms.service" ];
-              };
-              Service = {
-                Type = "oneshot";
-                ExecStart = "${syncSpyroWallpaper}/bin/sync-spyro-wallpaper dux";
-              };
-              Install.WantedBy = [ dux.systemd.target ];
-            };
-
-            systemd.user.timers.spyro-dux-wallpaper = lib.mkIf dux.enable {
-              Unit = {
-                Description = "Daily Spyro Skyboxes Dux Shell wallpaper sync";
-                PartOf = [ dux.systemd.target ];
-              };
-              Timer = {
-                OnCalendar = "daily";
-                Persistent = true;
-                Unit = "spyro-dux-wallpaper.service";
-              };
-              Install.WantedBy = [ dux.systemd.target ];
             };
           }
         )
