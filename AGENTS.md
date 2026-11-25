@@ -5,7 +5,7 @@
 - `flake.nix` automatically imports every `.nix` file under `config/`, `modules/`, and `packages/`. Do not place scratch files, backups, fixtures, or standalone Nix expressions in those directories.
 - Everything under `home/` is deployed to the corresponding path in the user's home directory using live out-of-store symlinks. Do not place unrelated artifacts in this directory; edits to existing files may take effect without a rebuild.
 - Keep platform boundaries explicit. Shared modules belong in `flake.commonModules` and must evaluate on both NixOS and nix-darwin. Platform-specific options belong in `flake.nixosModules` or `flake.darwinModules`.
-- Treat `hosts/*/hardware.nix` as generated, machine-specific configuration. Put deliberate host configuration in the host's `default.nix` or a reusable module unless the task specifically requires regenerating hardware configuration.
+- Treat `hosts/*/hardware.nix` as generated, machine-specific configuration. Put deliberate host configuration in the host's `default.nix` or a reusable module unless the task specifically requires regenerating hardware configuration. Disko declares host disks, so regenerate with `--no-filesystems`.
 - This repository uses an allowlist `.gitignore`. When adding a new top-level file or directory, add the corresponding exception to `.gitignore`.
 
 ## Local configuration

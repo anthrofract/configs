@@ -10,8 +10,18 @@
     {
       imports = [
         ./hardware.nix
+        self.nixosModules.disko-ext4
         self.nixosModules.gui-host
       ];
+
+      disko.devices.disk.main = {
+        device = "/dev/disk/by-id/nvme-SKHynix_HFS001TEJ9X162N_AYCBN02871CB9BP2D";
+        content.partitions = {
+          ESP.uuid = "4cd9665e-cfea-4869-b720-2b86f6cf0b72";
+          root.uuid = "48ba4768-2fd0-479f-bd94-7e93076c4380";
+          swap.uuid = "77a10c1e-66a6-41c2-8097-59fc440f7ec2";
+        };
+      };
 
       system.stateVersion = "24.11";
       boot.kernelPackages = pkgs.linuxPackages_latest;

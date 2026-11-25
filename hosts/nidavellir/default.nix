@@ -1,10 +1,17 @@
-{ config, self, ... }:
+{
+  config,
+  inputs,
+  self,
+  ...
+}:
 {
   machines.nidavellir.nixos =
     { pkgs, ... }:
     {
       imports = [
         ./hardware.nix
+        ./disko.nix
+        inputs.disko.nixosModules.disko
         self.nixosModules.base-host
         self.nixosModules.bitcoind
         self.nixosModules.electrs
@@ -19,6 +26,11 @@
       time.timeZone = "America/Chicago";
       boot.kernelPackages = pkgs.linuxPackages_latest;
       boot.kernelParams = [ "i915.enable_guc=2" ];
+
+      fileSystems."/data" = {
+        device = "/dev/disk/by-uuid/d83d8680-41e4-445b-9147-94ec3699803b";
+        fsType = "ext4";
+      };
 
       hardware.graphics = {
         enable = true;

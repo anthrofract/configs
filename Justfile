@@ -26,14 +26,14 @@ encrypt:
     rage --armor --recipients-file {{ssh-key}}.pub --output ($f ++ ".age") $f
   } | ignore
 
+test: decrypt
+  nh os test path:. -H {{host}}
+
 build: decrypt
   nh os build path:. -H {{host}}
 
 build-remote builder="valhalla": decrypt
   nh os build path:. -H {{host}} --build-host {{builder}} --use-substitutes
-
-test: decrypt
-  nh os test path:. -H {{host}}
 
 switch: decrypt
   nh os switch path:. -H {{host}}
@@ -47,14 +47,12 @@ boot: decrypt
 deploy target: decrypt
   nh os switch path:. -H {{target}} --target-host {{target}} --use-substitutes
 
+deploy-boot target: decrypt
+  nh os boot path:. -H {{target}} --target-host {{target}} --use-substitutes
+  ssh -t {{target}} sudo systemctl reboot
+
 update: decrypt
   nix flake update
-
-update-test: update test
-
-update-switch: update switch
-
-update-boot: update boot
 
 darwin-switch: decrypt
   nh darwin switch path:. -H {{host}}
