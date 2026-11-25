@@ -10,6 +10,8 @@ in
       users.users.${id.userName} = {
         isNormalUser = true;
         description = id.userName;
+        # Lets a fresh install log in; `passwd` changes still persist
+        initialHashedPassword = id.initialHashedPassword;
         extraGroups = [
           "networkmanager"
           "wheel"
