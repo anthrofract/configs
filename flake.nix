@@ -22,8 +22,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixarr = {
-      url = "github:nix-media-server/nixarr";
+    dux-shell = {
+      url = "github:duxlabs-dev/dux-shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -38,11 +38,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    majjit = {
-      url = "github:anthrofract/majjit";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nixvim = {
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -53,6 +48,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    majjit = {
+      url = "github:anthrofract/majjit";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nu-scripts = {
       url = "github:nushell/nu_scripts";
       flake = false;
@@ -60,6 +60,11 @@
 
     helium = {
       url = "github:amaanq/helium-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nixarr = {
+      url = "github:nix-media-server/nixarr";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

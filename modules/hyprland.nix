@@ -1,4 +1,4 @@
-{ ... }:
+{ inputs, ... }:
 {
   flake.nixosModules.hyprland =
     { lib, pkgs, ... }:
@@ -27,6 +27,7 @@
 
       programs.dux-shell = {
         enable = true;
+        package = inputs.dux-shell.packages.${pkgs.stdenv.hostPlatform.system}.dms-shell;
         # Plasma also reaches graphical-session.target, so start Dux only with this Hyprland
         # session target. dms.service is After=graphical-session.target, and a target is ordered
         # after the units it wants; wayland-session@ is Before=graphical-session.target and would
