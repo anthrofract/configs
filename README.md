@@ -55,7 +55,7 @@ This wipes the target's disks, builds and installs the host's system, copies the
 
 ## Gimle: ephemeral offline system
 
-Gimle is a live system for sensitive offline work. Networking, Bluetooth, and audio are disabled, and nothing persists after shutdown. It boots into a Plasma desktop with YubiKey and OpenPGP tools, KeePassXC, and Sparrow.
+Gimle is a live system for sensitive offline work. Networking, Bluetooth, and audio are disabled, and nothing persists after shutdown. It boots into the Hyprland desktop with Dux, and includes YubiKey and OpenPGP tools, KeePassXC, and Sparrow.
 
 Plug in a USB drive, then build the ISO and flash it:
 
@@ -63,4 +63,4 @@ Plug in a USB drive, then build the ISO and flash it:
 just flash-gimle-iso
 ```
 
-Boot from the USB drive and choose the "Gimle Live" entry. It logs in automatically.
+Boot from the USB drive and choose "Gimle Live Hyprland", or "Gimle Live Plasma". It logs in automatically.

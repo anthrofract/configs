@@ -40,6 +40,26 @@
         "type": "github"
       }
     },
+    "bip39gen": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1795665760,
+        "narHash": "sha256-L7C+BGhsYrpy2JxFYKOkNrFsO1T3VKOtgVX3gsy4NLs=",
+        "owner": "anthrofract",
+        "repo": "bip39gen",
+        "rev": "6ce9d20f7c517c921f0195357f78e6d9da9249ed",
+        "type": "github"
+      },
+      "original": {
+        "owner": "anthrofract",
+        "repo": "bip39gen",
+        "type": "github"
+      }
+    },
     "crane": {
       "locked": {
         "lastModified": 1791754810,
@@ -163,28 +183,6 @@
       "original": {
         "owner": "duxlabs-dev",
         "repo": "dux-shell",
-        "type": "github"
-      }
-    },
-    "fenix": {
-      "inputs": {
-        "nixpkgs": [
-          "majjit",
-          "nixpkgs"
-        ],
-        "rust-analyzer-src": "rust-analyzer-src"
-      },
-      "locked": {
-        "lastModified": 1786900242,
-        "narHash": "sha256-52Fj2HDnEeW13PAjZJiSuTqzDbCBKu4841O6WLJKcig=",
-        "owner": "nix-community",
-        "repo": "fenix",
-        "rev": "27a7186cfd33b512c0bfe5e60c385cb5938323fc",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "fenix",
         "type": "github"
       }
     },
@@ -345,17 +343,16 @@
     },
     "majjit": {
       "inputs": {
-        "fenix": "fenix",
         "nixpkgs": [
           "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1794518763,
-        "narHash": "sha256-UMmTSw/h3xbD+5Njah3zUx/w/naw6vtkp6a1nKDT06Y=",
+        "lastModified": 1795665760,
+        "narHash": "sha256-IXsqcsM0asQam0kpjz8GxuURNYGnU7EACQA/fI0jE9Y=",
         "owner": "anthrofract",
         "repo": "majjit",
-        "rev": "c2037ace4dc033266e801614c2019ee7d4508062",
+        "rev": "83e01235beb7e7b8473aa3e4e111a81802daa016",
         "type": "github"
       },
       "original": {
@@ -588,6 +585,7 @@
       "inputs": {
         "agenix": "agenix",
         "autolith": "autolith",
+        "bip39gen": "bip39gen",
         "dank-calculator": "dank-calculator",
         "disko": "disko",
         "dux-shell": "dux-shell",
@@ -604,23 +602,6 @@
         "nu-scripts": "nu-scripts",
         "plasma-manager": "plasma-manager",
         "xremap": "xremap"
-      }
-    },
-    "rust-analyzer-src": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1786775975,
-        "narHash": "sha256-IepgRMQrv3ycKp/FRDYMErByu1kD7DH2+ZOW1z3UYWo=",
-        "owner": "rust-lang",
-        "repo": "rust-analyzer",
-        "rev": "2d6e364110e162f271f9c3198722bf2e98e53088",
-        "type": "github"
-      },
-      "original": {
-        "owner": "rust-lang",
-        "ref": "nightly",
-        "repo": "rust-analyzer",
-        "type": "github"
       }
     },
     "systems": {

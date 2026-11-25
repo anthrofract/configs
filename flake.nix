@@ -63,6 +63,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    bip39gen = {
+      url = "github:anthrofract/bip39gen";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nu-scripts = {
       url = "github:nushell/nu_scripts";
       flake = false;

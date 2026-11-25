@@ -1,8 +1,7 @@
 -- == Settings ==
 
+-- Hosts add rules for their own monitors in hosts/<host>/hypr.lua
 hl.monitor({ output = "", mode = "highrr", position = "auto", scale = "auto" })
-hl.monitor({ output = "eDP-1", mode = "highrr", position = "auto", scale = 1.8 })
-hl.monitor({ output = "desc:Samsung Electric Company Odyssey G8", mode = "highrr", position = "auto", scale = 1.25 })
 
 -- Dux "blue" theme colors
 local activeColor = "rgb(42474e)"
@@ -90,119 +89,16 @@ local function playerctl(args)
   return hl.dsp.exec_cmd("playerctl " .. args)
 end
 
--- == Stacking ==
-
--- Groups the tiled windows on a workspace, joining an existing group if there is one
-local function stackWorkspace(workspace, anchor)
-  local windows, group = {}, nil
-  for _, window in ipairs(hl.get_workspace_windows(workspace)) do
-    if not window.floating then
-      table.insert(windows, window)
-      group = group or window.group
-    end
-  end
-  if #windows < 2 then
-    return
-  end
-
-  if not group then
-    anchor = anchor or windows[1]
-    hl.dispatch(hl.dsp.group.toggle({ window = anchor }))
-    group = anchor.group
-  end
-
-  for _, window in ipairs(windows) do
-    if not window.group then
-      group:add(window)
-    end
-  end
-end
+local stackWorkspace = require("stack")
 
 -- == Login ==
 
--- Started at login, each on its workspace
-local startupApps = {
-  { workspace = 1, desktop = "helium.desktop" },
-  { workspace = 2, desktop = "com.mitchellh.ghostty.desktop", class = "com.mitchellh.ghostty" },
-  { workspace = 3, desktop = "slack.desktop", class = "slack" },
-  { workspace = 4, desktop = "fastmail.desktop", class = "com.fastmail.Fastmail" },
-  { workspace = 4, desktop = "signal.desktop", class = "signal" },
-  { workspace = 5, desktop = "spotify.desktop", class = "spotify" },
-  { workspace = 6, desktop = "org.keepassxc.KeePassXC.desktop", class = "org.keepassxc.KeePassXC" },
-}
-
-local persistentWorkspaces = {}
-for _, startupApp in ipairs(startupApps) do
-  persistentWorkspaces[startupApp.workspace] = true
-end
-for workspace in pairs(persistentWorkspaces) do
-  hl.workspace_rule({ workspace = tostring(workspace), persistent = true })
-end
-
--- Fastmail and Signal share a workspace; whichever window opens first ends up left
-local function keepFastmailLeftOfSignal(workspace)
-  local fastmail, signal
-  for _, window in ipairs(hl.get_workspace_windows(workspace)) do
-    if window.class == "com.fastmail.Fastmail" then
-      fastmail = window
-    elseif window.class == "signal" then
-      signal = window
-    end
-  end
-  if fastmail and signal and fastmail.at.x > signal.at.x then
-    hl.dispatch(hl.dsp.window.swap({ window = fastmail, target = signal }))
-  end
-end
-
--- One-shot rules: moving a window from window.open doesn't stick
-local startupRules = {}
--- Helium restores several windows at login, so its rule stays on for a while instead
-local startupHeliumRule
-
+-- Host configs start their own apps through startup.lua
 hl.on("hyprland.start", function()
   -- KWallet's PAM unlock only autostarts in Plasma
   hl.exec_cmd("systemctl --user start plasma-kwallet-pam.service")
 
   hl.dispatch(hl.dsp.focus({ workspace = 2 }))
-
-  startupHeliumRule = hl.window_rule({ match = { class = "^helium$" }, workspace = "1 silent" })
-  hl.timer(function()
-    startupHeliumRule:set_enabled(false)
-    startupHeliumRule = nil
-  end, { timeout = 30000, type = "oneshot" })
-
-  for _, startupApp in ipairs(startupApps) do
-    if startupApp.class then
-      startupRules[startupApp.class] = hl.window_rule({
-        match = { class = "^" .. startupApp.class .. "$" },
-        workspace = startupApp.workspace .. " silent",
-      })
-    end
-    hl.dispatch(app(startupApp.desktop))
-  end
-end)
-
-hl.on("window.open", function(window)
-  local rule = startupRules[window.class]
-  if rule then
-    startupRules[window.class] = nil
-    rule:set_enabled(false)
-  end
-  -- Stack the Helium windows restored at login
-  local stack = startupHeliumRule and window.class == "helium"
-
-  if rule or stack then
-    local workspace = window.workspace
-    -- Wait until the window is placed
-    hl.timer(function()
-      if rule then
-        keepFastmailLeftOfSignal(workspace)
-      end
-      if stack then
-        stackWorkspace(workspace)
-      end
-    end, { timeout = 100, type = "oneshot" })
-  end
 end)
 
 -- == Binds ==
@@ -400,3 +296,9 @@ hl.on("input.keyboard.key", function(keycode, _, state)
     markUsed(hl.get_active_workspace())
   end
 end)
+
+-- == Host ==
+
+-- Per-host config from hosts/<host>/hypr.lua, linked to ~/.config/hypr/host.lua. It runs
+-- last, so it can override anything above.
+pcall(require, "host")

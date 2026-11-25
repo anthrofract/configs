@@ -1,7 +1,12 @@
 { inputs, ... }:
 {
   flake.nixosModules.hyprland =
-    { lib, pkgs, ... }:
+    {
+      hostName,
+      lib,
+      pkgs,
+      ...
+    }:
     let
       # The Hyprland session also lists KDE in XDG_CURRENT_DESKTOP, which would start these
       # KDE-only autostart entries. A copy in ~/.config/autostart replaces the system entry;
@@ -50,6 +55,14 @@
             }
           ) kdeAutostarts;
         }
+        (
+          { config, ... }:
+          {
+            # Per-host config loaded at the end of hyprland.lua; live link so edits apply without a rebuild
+            xdg.configFile."hypr/host.lua".source =
+              config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/configs/hosts/${hostName}/hypr.lua";
+          }
+        )
       ];
     };
 }

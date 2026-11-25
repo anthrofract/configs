@@ -1,15 +1,26 @@
-{ config, self, ... }:
+{
+  config,
+  inputs,
+  self,
+  ...
+}:
 let
   userName = config.secrets.identities.personal.userName;
 in
 {
   machines.gimle.nixos =
-    { modulesPath, pkgs, ... }:
+    {
+      lib,
+      modulesPath,
+      pkgs,
+      ...
+    }:
     {
       imports = [
         "${modulesPath}/profiles/minimal.nix"
         "${modulesPath}/installer/cd-dvd/iso-image.nix"
         self.nixosModules.home-manager
+        self.nixosModules.hyprland
         self.nixosModules.plasma
         self.nixosModules.fonts
         self.nixosModules.xremap
@@ -84,18 +95,26 @@ in
       isoImage.makeEfiBootable = true;
       isoImage.makeUsbBootable = true;
       isoImage.appendToMenuLabel = " Gimle Live";
+      isoImage.configurationName = "Hyprland";
       isoImage.edition = "gimle";
       system.disableInstallerTools = true;
 
       # Desktop and input
       services.displayManager = {
         sddm.enable = true;
+        defaultSession = "hyprland-uwsm";
         autoLogin = {
           enable = true;
           user = userName;
         };
       };
+      # Plasma gets its own boot menu entry
+      specialisation.plasma.configuration = {
+        isoImage.configurationName = lib.mkForce "Plasma";
+        services.displayManager.defaultSession = lib.mkForce "plasma";
+      };
       environment.systemPackages = [
+        inputs.bip39gen.packages.${pkgs.stdenv.hostPlatform.system}.default
         pkgs.wl-clipboard-rs
         pkgs.keepassxc
         pkgs.sparrow
@@ -137,10 +156,21 @@ in
             createDirectories = true;
             projects = "${config.home.homeDirectory}/scratch";
           };
+          # No repo on the live system, so ship a copy instead of the live link
+          xdg.configFile."hypr/host.lua".source = lib.mkForce ./hypr.lua;
           home.file = {
             "bin/c".source = ../../home/bin/c;
             "bin/tms".source = ../../home/bin/tms;
             ".config/helix".source = ../../home/.config/helix;
+            ".config/hypr" = {
+              source = ../../home/.config/hypr;
+              recursive = true;
+            };
+            ".config/uwsm".source = ../../home/.config/uwsm;
+            ".config/dms/settings.json".source = ../../home/.config/dms/settings.json;
+            ".config/dms/plugin_settings.json".source = ../../home/.config/dms/plugin_settings.json;
+            # The live user has no password, so a lock screen could never be unlocked
+            ".config/dms/config.d/gimle.json".text = builtins.toJSON { lockBeforeSuspend = false; };
             ".config/starship.toml".source = ../../home/.config/starship.toml;
           };
           home.activation.mkDirs = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
