@@ -1,0 +1,7 @@
+{
+  "calculator": {
+    "enabled": true,
+    "trigger": "",
+    "noTrigger": false
+  }
+}

@@ -69,24 +69,24 @@
 
                 set-option -s theme terminal
                 set-option -g status-position bottom
-                set-option -g status-style bg="#2e2e30",fg="#dee3e4"
+                set-option -g status-style bg="#2e2e2e",fg="#dee3e4"
 
-                set-option -g window-status-style bg="#2e2e30",fg="#a09d9c"
+                set-option -g window-status-style bg="#2e2e2e",fg="#a09d9c"
                 set-option -g window-status-format " #{window_index}:#W#F"
 
-                set-option -g window-status-current-style bg="#2e2e30",fg="#dee3e4"
+                set-option -g window-status-current-style bg="#2e2e2e",fg="#dee3e4"
                 set-option -g window-status-current-format " (#W#{?#{==:#F,*},,#F})"
 
-                set-option -g mode-style bg="#dee3e4",fg="#2e2e30",bold
-                set-option -g message-style bg="#dee3e4",fg="#2e2e30"
-                set-option -g message-command-style bg="#dee3e4",fg="#2e2e30"
+                set-option -g mode-style bg="#dee3e4",fg="#2e2e2e",bold
+                set-option -g message-style bg="#dee3e4",fg="#2e2e2e"
+                set-option -g message-command-style bg="#dee3e4",fg="#2e2e2e"
 
                 set-option -g pane-active-border-style fg="colour242"
                 set-option -g pane-border-style fg="colour242"
 
                 set-option -g status-right-length 50
                 set-option -g status-left-length 50
-                set-option -g status-left "#[bg=#2e2e30,fg=#dee3e4] [#{session_name}] "
+                set-option -g status-left "#[bg=#2e2e2e,fg=#dee3e4] [#{session_name}] "
                 set-option -g status-right "#H #{?#{==:#{pane_mode},copy-mode},#[bg=#dee3e4]#[fg=black],}#{?client_prefix,#[bg=green]#[fg=black]  ,  }"
 
                 set-environment -g TIMG_PIXELATION kitty

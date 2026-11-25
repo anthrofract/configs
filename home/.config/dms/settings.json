@@ -34,7 +34,7 @@
           "workspaceActiveAppHighlightEnabled": false,
           "showOccupiedWorkspacesOnly": false,
           "workspaceUnfocusedColorMode": "schh",
-          "workspaceColorMode": "default"
+          "workspaceColorMode": "secondary"
         },
         {
           "id": "focusedWindow",
@@ -56,7 +56,7 @@
         {
           "id": "music",
           "enabled": true,
-          "mediaStyle": "activity",
+          "mediaStyle": "controls",
           "mediaAdaptiveWidthEnabled": true,
           "mediaShowCoverArt": true,
           "audioScrollMode": "nothing",
@@ -122,10 +122,10 @@
       "attachToScreenEdge": false,
       "followInterfaceStyle": true,
       "transparency": 1,
-      "surfaceColor": "sc",
+      "surfaceColor": "default",
       "surfaceCustomColor": "#6750A4",
-      "widgetFollowInterfaceStyle": true,
-      "widgetTransparency": 1,
+      "widgetFollowInterfaceStyle": false,
+      "widgetTransparency": 0,
       "squareCorners": true,
       "noBackground": false,
       "widgetStyle": "pills",
@@ -320,7 +320,7 @@
   "dmsWindowsFloatingSeeded": [
     "hyprland"
   ],
-  "currentThemeName": "blue",
+  "currentThemeName": "monochrome",
   "useFahrenheit": true,
   "weatherEnabled": true,
   "dashOptions": {
@@ -358,6 +358,10 @@
     },
     {
       "id": "settings",
+      "enabled": false
+    },
+    {
+      "id": "profiles",
       "enabled": false
     }
   ],
@@ -856,24 +860,17 @@
       "enabled": true,
       "w": 2,
       "h": 1,
-      "col": 2,
-      "row": 4
-    },
-    {
-      "id": "idleInhibitor",
-      "enabled": true,
-      "w": 2,
-      "h": 1,
       "col": 4,
       "row": 4
     },
     {
       "id": "battery",
       "enabled": true,
-      "w": 2,
+      "w": 4,
       "h": 1,
       "col": 0,
-      "row": 4
+      "row": 4,
+      "small": false
     },
     {
       "id": "runningApps",
@@ -905,5 +902,13 @@
   "widgetColorMode": "default",
   "widgetBackgroundColor": "default",
   "motionDuration": 0,
-  "controlCenterColumns": 8
+  "controlCenterColumns": 8,
+  "launcherPluginVisibility": {
+    "dms_qr_generator": {
+      "allowWithoutTrigger": false
+    },
+    "dms_vpn": {
+      "allowWithoutTrigger": false
+    }
+  }
 }

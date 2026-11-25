@@ -24,6 +24,14 @@
           home.stateVersion = "24.11";
           programs.plasma.powerdevil.AC.powerProfile = "performance";
         }
+        (
+          { config, ... }:
+          {
+            # Dux merges config.d files over settings.json; live link so its settings screen can edit it
+            xdg.configFile."dms/config.d/valhalla.json".source =
+              config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/configs/hosts/valhalla/dms.json";
+          }
+        )
       ];
     };
 }

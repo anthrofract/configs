@@ -34,6 +34,7 @@
         # form a cycle, while this one already comes after graphical-session.target.
         systemd.target = "wayland-session-xdg-autostart@hyprland.desktop.target";
         excludePackages = [ pkgs.matugen ];
+        plugins.Calculator.src = inputs.dank-calculator;
       };
 
       environment.systemPackages = [ pkgs.playerctl ];
