@@ -89,6 +89,9 @@ let
     ];
 
     ExtensionInstallSources = [ "${lib.removeSuffix "/ext" heliumExtensionUpdateUrl}/*" ];
+
+    # Only the hosts in /etc/chromium/native-messaging-hosts; other programs write stale manifests to the user-level directory
+    NativeMessagingUserLevelHosts = false;
   };
 
 in
@@ -163,6 +166,17 @@ in
         type = "stdio";
         allowed_origins = [ "chrome-extension://${ompBrowserRelayExtensionId}/" ];
       };
+
+      # KeePassXC writes its own manifest only to the user-level directory, which the policy ignores
+      environment.etc."chromium/native-messaging-hosts/org.keepassxc.keepassxc_browser.json".text =
+        lib.toJSON
+          {
+            name = "org.keepassxc.keepassxc_browser";
+            description = "KeePassXC integration with native messaging support";
+            path = "${pkgs.keepassxc}/bin/keepassxc-proxy";
+            type = "stdio";
+            allowed_origins = [ "chrome-extension://${extensionIds.keepassxcBrowser}/" ];
+          };
     };
 
   flake.darwinModules.helium =
