@@ -24,6 +24,11 @@
 
       # Networking
       networking.networkmanager.enable = true;
+      # Keeps the router from registering our hostnames in its LAN DNS, where they shadow the Tailscale names
+      networking.networkmanager.settings.connection = {
+        "ipv4.dhcp-send-hostname" = false;
+        "ipv6.dhcp-send-hostname" = false;
+      };
       services.resolved.enable = true;
       services.resolved.settings.Resolve.DNSOverTLS = "opportunistic";
 

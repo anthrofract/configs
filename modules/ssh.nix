@@ -7,13 +7,22 @@
 let
   hostNames = config.machines |> lib.attrNames;
   foreignHostPattern = ([ "*" ] ++ map (host: "!${host}") hostNames) |> lib.concatStringsSep " ";
+  sshHosts = config.machines |> lib.filterAttrs (_: machine: machine.ssh.hostKey != null);
+  tailnetName = name: "${name}.${config.secrets.tailnetDomain}";
 in
 {
   flake.commonModules.ssh-client = {
     programs.ssh.knownHosts =
-      config.machines
-      |> lib.filterAttrs (_: machine: machine.ssh.hostKey != null)
-      |> lib.mapAttrs (_: machine: { publicKey = machine.ssh.hostKey; });
+      sshHosts
+      |> lib.mapAttrs (
+        name: machine: {
+          hostNames = [
+            name
+            (tailnetName name)
+          ];
+          publicKey = machine.ssh.hostKey;
+        }
+      );
 
     home-manager.sharedModules = [
       {
@@ -36,6 +45,10 @@ in
             };
           };
         };
+      }
+      {
+        # A bare name can also resolve to the router's LAN record, which bypasses Tailscale SSH
+        programs.ssh.settings = sshHosts |> lib.mapAttrs (name: _: { HostName = tailnetName name; });
       }
     ];
   };
