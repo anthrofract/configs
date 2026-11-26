@@ -26,6 +26,6 @@
 ## Workflow
 
 - Make small changes and iterate. Discuss plans and design decisions with me before substantial implementation unless I explicitly authorize proceeding.
-- Keep commit and `jj describe` messages brief: a single short line. Capitalize the first letter and use lowercase everywhere else. For numbers use actual digits instead of words, "12" instead of "twelve". Prefer abbreviations that are standard in developer writing, but don't invent or stretch them.
+- Keep commit and `jj describe` messages brief: a single short line. Capitalize only the first letter, and always write every other letter in lowercase. Never capitalize anything after the first letter, not even proper nouns or acronyms. For numbers use actual digits instead of words, "12" instead of "twelve". Prefer abbreviations that are standard in developer writing, but don't invent or stretch them.
 - After substantial edits, run the project's `fmt` or `format` recipe from its Justfile or Makefile, if available. Skip formatting for small changes only when confident formatting is unaffected.
 - After substantial Rust edits, run Clippy and fix its warnings before formatting. Skip Clippy for small changes only when confident they introduce no warnings.
