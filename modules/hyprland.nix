@@ -63,6 +63,15 @@
             }
           ) kdeAutostarts;
         }
+        {
+          # Its scripts are hardcoded to the user plugin dir, so it can't go in programs.dux-shell.plugins
+          xdg.configFile."dms/plugins/dankCalendarAgenda".source = pkgs.applyPatches {
+            name = "dms-dankcalendar";
+            src = inputs.dms-dankcalendar;
+            # Join opens links through `dms open`, which always shows the browser picker
+            patches = [ ./hyprland/dank-calendar-agenda-xdg-open.patch ];
+          };
+        }
         (
           { config, ... }:
           {

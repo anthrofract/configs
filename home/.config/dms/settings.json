@@ -74,6 +74,10 @@
           "mediaVisualizerMode": "always"
         },
         {
+          "id": "dankCalendarAgenda",
+          "enabled": true
+        },
+        {
           "id": "clipboard",
           "enabled": false
         },

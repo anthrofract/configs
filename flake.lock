@@ -158,6 +158,22 @@
         "type": "github"
       }
     },
+    "dms-dankcalendar": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1795588153,
+        "narHash": "sha256-6TFzJjyj4QbBg3D/Q9LCADTJkfF/JNFyxzQPP4g96e4=",
+        "owner": "arqueon",
+        "repo": "dms-dankcalendar",
+        "rev": "287c09577471564400532e8eea4f081afe3d0ea7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "arqueon",
+        "repo": "dms-dankcalendar",
+        "type": "github"
+      }
+    },
     "dux-calendar": {
       "inputs": {
         "dank-qml-common": "dank-qml-common",
@@ -616,6 +632,7 @@
         "bip39gen": "bip39gen",
         "dank-calculator": "dank-calculator",
         "disko": "disko",
+        "dms-dankcalendar": "dms-dankcalendar",
         "dux-calendar": "dux-calendar",
         "dux-shell": "dux-shell",
         "flake-parts": "flake-parts_2",

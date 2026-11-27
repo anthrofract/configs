@@ -47,6 +47,11 @@
       flake = false;
     };
 
+    dms-dankcalendar = {
+      url = "github:arqueon/dms-dankcalendar";
+      flake = false;
+    };
+
     plasma-manager = {
       url = "github:nix-community/plasma-manager";
       inputs.nixpkgs.follows = "nixpkgs";

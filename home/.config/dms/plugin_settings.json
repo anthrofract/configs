@@ -3,5 +3,11 @@
     "enabled": true,
     "trigger": "",
     "noTrigger": false
+  },
+  "dankCalendarAgenda": {
+    "enabled": true,
+    "refreshInterval": 60,
+    "dynamicWidth": true,
+    "lookAheadDays": 1
   }
 }
