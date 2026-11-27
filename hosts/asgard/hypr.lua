@@ -1,6 +1,6 @@
 -- Hyprland config for asgard, loaded at the end of home/.config/hypr/hyprland.lua
 
-hl.monitor({ output = "eDP-1", mode = "highrr", position = "auto", scale = 1.8 })
+hl.monitor({ output = "eDP-1", mode = "highrr", position = "auto", scale = "1.67" })
 
 require("startup").launch({
   { workspace = 1, desktop = "helium.desktop" },
