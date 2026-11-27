@@ -21,7 +21,12 @@
       };
 
       services.displayManager.plasma-login-manager.enable = true;
-      services.displayManager.defaultSession = "hyprland-uwsm";
+      # nixpkgs bakes PreselectedSession=plasma.desktop into the greeter's defaults, which beats the
+      # remembered last session. Only /etc/plasmalogin.conf outranks it; .conf.d files don't
+      environment.etc."plasmalogin.conf".text = ''
+        [Greeter]
+        PreselectedSession=
+      '';
 
       # Wayland tooling
       environment.systemPackages = [
