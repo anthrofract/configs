@@ -1,7 +1,7 @@
 { inputs, ... }:
 {
-  # Single disk with an ESP, ext4 root, and swap partition. Hosts set the disk's
-  # `device` and pin each partition's `uuid`, so disko mounts by PARTUUID.
+  # Single disk with an ESP, LUKS-encrypted ext4 root, and randomly encrypted swap partition. Hosts
+  # set the disk's `device` and pin each partition's `uuid`, so disko mounts by PARTUUID.
   flake.nixosModules.disko-ext4 = {
     imports = [ inputs.disko.nixosModules.disko ];
 
@@ -25,14 +25,22 @@
           };
           swap = {
             size = "9G";
-            content.type = "swap";
+            content = {
+              type = "swap";
+              randomEncryption = true;
+            };
           };
           root = {
             size = "100%";
             content = {
-              type = "filesystem";
-              format = "ext4";
-              mountpoint = "/";
+              type = "luks";
+              name = "crypted";
+              settings.allowDiscards = true;
+              content = {
+                type = "filesystem";
+                format = "ext4";
+                mountpoint = "/";
+              };
             };
           };
         };
