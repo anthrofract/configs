@@ -11,6 +11,10 @@
         file = ../secrets/grafana-token.age;
         owner = config.secrets.identities.personal.userName;
       };
+      age.secrets.gemini-api-key = {
+        file = ../secrets/gemini-api-key.age;
+        owner = config.secrets.identities.personal.userName;
+      };
       age.secrets.keenable-api-key = {
         file = ../secrets/keenable-api-key.age;
         owner = config.secrets.identities.personal.userName;
@@ -20,6 +24,7 @@
         {
           programs.nushell.extraEnv = ''
             $env.GITHUB_TOKEN = open --raw "${host.config.age.secrets.github-token.path}"
+            $env.GEMINI_API_KEY = open --raw "${host.config.age.secrets.gemini-api-key.path}"
             $env.GRAFANA_TOKEN = open --raw "${host.config.age.secrets.grafana-token.path}"
             $env.KEENABLE_API_KEY = open --raw "${host.config.age.secrets.keenable-api-key.path}"
             $env.NIX_CONFIG = $"access-tokens = github.com=($env.GITHUB_TOKEN)"
