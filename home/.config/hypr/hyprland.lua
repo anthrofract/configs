@@ -48,12 +48,15 @@ hl.config({
     repeat_rate = 30,
   },
   misc = {
-    vrr = 2, -- fullscreen only
+    vrr = 1,
     focus_on_activate = true,
     -- XDG_CURRENT_DESKTOP is Hyprland:KDE on purpose (uwsm/env-hyprland)
     disable_xdg_env_checks = true,
     disable_hyprland_logo = true,
     disable_splash_rendering = true,
+  },
+  render = {
+    cm_auto_hdr = 0,
   },
   -- Keep X11 apps sharp; they scale themselves (Steam: Accessibility settings)
   xwayland = {

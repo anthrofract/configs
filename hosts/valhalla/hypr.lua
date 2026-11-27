@@ -1,6 +1,6 @@
 -- Hyprland config for valhalla, loaded at the end of home/.config/hypr/hyprland.lua
 
-hl.monitor({ output = "desc:Samsung Electric Company Odyssey G8", mode = "highrr", position = "auto", scale = 1.25 })
+hl.monitor({ output = "desc:Samsung Electric Company Odyssey G8", mode = "highrr", position = "auto", scale = 1.25, vrr = 0 })
 
 require("startup").launch({
   { workspace = 1, desktop = "helium.desktop" },
