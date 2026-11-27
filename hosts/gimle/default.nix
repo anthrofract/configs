@@ -101,7 +101,7 @@ in
 
       # Desktop and input
       services.displayManager = {
-        sddm.enable = true;
+        plasma-login-manager.enable = true;
         defaultSession = "hyprland-uwsm";
         autoLogin = {
           enable = true;

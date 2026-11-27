@@ -20,11 +20,7 @@
         ];
       };
 
-      # Enable SDDM
-      services.displayManager.sddm = {
-        enable = true;
-        wayland.enable = true;
-      };
+      services.displayManager.plasma-login-manager.enable = true;
       services.displayManager.defaultSession = "hyprland-uwsm";
 
       # Wayland tooling

@@ -9,7 +9,6 @@
       environment.systemPackages = [
         pkgs.kdePackages.plasma-browser-integration
         pkgs.kdePackages.plasma-workspace-wallpapers
-        pkgs.kdePackages.sddm-kcm
       ];
 
       home-manager.sharedModules = [

@@ -28,7 +28,7 @@
       services.automatic-timezoned.enable = true;
       services.geoclue2.geoProviderUrl = "https://api.beacondb.net/v1/geolocate";
 
-      # Fingerprint reader. SDDM logs in with the password only, so KDE Wallet always unlocks;
+      # Fingerprint reader. The login screen takes the password only, so KDE Wallet always unlocks;
       # the lock screen accepts either, since Plasma checks both at the same time.
       services.fprintd.enable = true;
       security.pam.services = {

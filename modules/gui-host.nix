@@ -14,7 +14,6 @@
         self.nixosModules.gui-system
         self.nixosModules.hyprland
         self.nixosModules.plasma
-        self.nixosModules.wallpapers
         self.nixosModules.encryption
         self.nixosModules.xremap
       ];
