@@ -31,7 +31,8 @@ in
           enableDefaultConfig = false;
           settings."*" = {
             ControlMaster = "auto";
-            ControlPath = "~/.ssh/control-%C";
+            # %C hashes the resolved HostName, so %n keeps aliases of one host on separate sockets
+            ControlPath = "~/.ssh/control-%n-%C";
             ControlPersist = "10m";
           };
           # Keep the default TERM for known hosts that have Ghostty terminfo installed,

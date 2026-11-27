@@ -22,6 +22,20 @@ in
               PLAN.md
             '';
 
+            # One SSH alias per GitHub identity, so each identity gets its own shared connection
+            programs.ssh.settings = {
+              github-personal = {
+                HostName = "github.com";
+                IdentityFile = "~/.ssh/${ids.personal.sshKey}";
+                IdentitiesOnly = "yes";
+              };
+              github-work = {
+                HostName = "github.com";
+                IdentityFile = "~/.ssh/${ids.work.sshKey}";
+                IdentitiesOnly = "yes";
+              };
+            };
+
             # Git
             programs.git = {
               enable = true;
@@ -30,7 +44,6 @@ in
                   name = ids.personal.name;
                   email = ids.personal.email;
                 };
-                core.sshCommand = "ssh -i ~/.ssh/${ids.personal.sshKey} -o IdentitiesOnly=yes";
                 push.autoSetupRemote = true;
                 pull.rebase = true;
               };
@@ -42,10 +55,12 @@ in
                       name = ids.work.name;
                       email = ids.work.email;
                     };
-                    core.sshCommand = "ssh -i ~/.ssh/${ids.work.sshKey} -o IdentitiesOnly=yes";
+                    url."git@github-work:".insteadOf = "git@github.com:";
                     core.excludesFile = "~/.config/git/ignore-work";
                   };
                 }
+                # Git uses the first of equally long insteadOf matches, so this must follow the work include
+                { contents.url."git@github-personal:".insteadOf = "git@github.com:"; }
               ];
               ignores = [
                 ".direnv"
