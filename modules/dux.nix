@@ -1,7 +1,12 @@
 { inputs, ... }:
 {
   flake.nixosModules.dux =
-    { pkgs, ... }:
+    {
+      config,
+      lib,
+      pkgs,
+      ...
+    }:
     let
       sessionTarget = "wayland-session-xdg-autostart@hyprland.desktop.target";
     in
@@ -13,7 +18,12 @@
         package = inputs.dux-shell.packages.${pkgs.stdenv.hostPlatform.system}.dms-shell;
         systemd.target = sessionTarget;
         excludePackages = [ pkgs.matugen ];
-        plugins.Calculator.src = inputs.dank-calculator;
+        plugins = {
+          Calculator.src = inputs.dank-calculator;
+          DankKDEConnect = lib.mkIf config.programs.kdeconnect.enable {
+            src = "${inputs.dux-plugins}/DankKDEConnect";
+          };
+        };
       };
 
       programs.dank-calendar = {

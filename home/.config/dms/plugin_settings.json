@@ -9,5 +9,10 @@
     "refreshInterval": 60,
     "dynamicWidth": true,
     "lookAheadDays": 1
+  },
+  "dankKDEConnect": {
+    "enabled": true,
+    "selectedDeviceId": "8dfc2dd197394e74ac92c0063370e007",
+    "showDevicePlaceholder": false
   }
 }

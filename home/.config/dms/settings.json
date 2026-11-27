@@ -870,8 +870,8 @@
       "enabled": true,
       "w": 2,
       "h": 1,
-      "col": 4,
-      "row": 4
+      "col": 0,
+      "row": 5
     },
     {
       "id": "battery",
@@ -889,7 +889,7 @@
       "h": 1,
       "small": true,
       "col": 0,
-      "row": 5
+      "row": 6
     },
     {
       "id": "edit",
@@ -898,15 +898,39 @@
       "h": 1,
       "small": true,
       "col": 7,
+      "row": 6
+    },
+    {
+      "id": "plugin_dankKDEConnect",
+      "enabled": true,
+      "w": 4,
+      "h": 1,
+      "col": 4,
+      "row": 4
+    },
+    {
+      "id": "airplaneMode",
+      "enabled": true,
+      "w": 2,
+      "h": 1,
+      "col": 2,
       "row": 5
     },
     {
-      "id": "builtin_tailscale",
+      "id": "idleInhibitor",
+      "enabled": true,
+      "w": 2,
+      "h": 1,
+      "col": 4,
+      "row": 5
+    },
+    {
+      "id": "doNotDisturb",
       "enabled": true,
       "w": 2,
       "h": 1,
       "col": 6,
-      "row": 4
+      "row": 5
     }
   ],
   "widgetColorMode": "default",

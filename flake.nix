@@ -52,6 +52,11 @@
       flake = false;
     };
 
+    dux-plugins = {
+      url = "github:duxlabs-dev/dux-plugins";
+      flake = false;
+    };
+
     plasma-manager = {
       url = "github:nix-community/plasma-manager";
       inputs.nixpkgs.follows = "nixpkgs";

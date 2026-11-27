@@ -199,6 +199,22 @@
         "type": "github"
       }
     },
+    "dux-plugins": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1795337582,
+        "narHash": "sha256-9JQCQBKdGr+t1lzYttda/NUXdyGA2oq7CSE/3nHkWdE=",
+        "owner": "duxlabs-dev",
+        "repo": "dux-plugins",
+        "rev": "a486ffcf15f81d578710fae31d6129b3a210d3f5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "duxlabs-dev",
+        "repo": "dux-plugins",
+        "type": "github"
+      }
+    },
     "dux-qt-base": {
       "inputs": {
         "nixpkgs": [
@@ -634,6 +650,7 @@
         "disko": "disko",
         "dms-dankcalendar": "dms-dankcalendar",
         "dux-calendar": "dux-calendar",
+        "dux-plugins": "dux-plugins",
         "dux-shell": "dux-shell",
         "flake-parts": "flake-parts_2",
         "helium": "helium",
