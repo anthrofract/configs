@@ -321,7 +321,7 @@
   "configVersion": 48,
   "clockFormat": "auto",
   "padHours12Hour": false,
-  "firstDayOfWeek": -1,
+  "firstDayOfWeek": 1,
   "clockDateFormat": "ddd MMM d",
   "dmsWindowsFloatingSeeded": [
     "hyprland"
@@ -389,14 +389,14 @@
     {
       "id": "notifications",
       "w": 3,
-      "h": 3,
+      "h": 4,
       "col": 3,
       "row": 3
     },
     {
       "id": "calendar",
       "w": 3,
-      "h": 3,
+      "h": 4,
       "col": 0,
       "row": 1
     },
@@ -405,7 +405,7 @@
       "w": 3,
       "h": 2,
       "col": 0,
-      "row": 4
+      "row": 5
     },
     {
       "id": "sysmon",

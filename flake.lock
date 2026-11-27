@@ -109,6 +109,22 @@
     "dank-qml-common": {
       "flake": false,
       "locked": {
+        "lastModified": 1795139913,
+        "narHash": "sha256-RYLCGIA8CuAIsmWUA1y8Ml+5bs8yIFNDQqOjeOlBr6A=",
+        "owner": "duxlabs-dev",
+        "repo": "dux-qml-common",
+        "rev": "e268d71117173d0934dbe773d3e2ed6efe11afda",
+        "type": "github"
+      },
+      "original": {
+        "owner": "duxlabs-dev",
+        "repo": "dux-qml-common",
+        "type": "github"
+      }
+    },
+    "dank-qml-common_2": {
+      "flake": false,
+      "locked": {
         "lastModified": 1795764551,
         "narHash": "sha256-VtvfFyMBL+Zqi4iX6xgEZkxEpA7yekxvEHhSJKT5zxU=",
         "owner": "duxlabs-dev",
@@ -142,6 +158,31 @@
         "type": "github"
       }
     },
+    "dux-calendar": {
+      "inputs": {
+        "dank-qml-common": "dank-qml-common",
+        "dux-qt-base": [
+          "dux-shell",
+          "dux-qt-base"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1795625425,
+        "narHash": "sha256-FMhDSkWikcFSa4ceIZHQOePr+7dYfgKOGVld4cGf9pU=",
+        "owner": "duxlabs-dev",
+        "repo": "dux-calendar",
+        "rev": "dfbed6979f61186876140270aa78b164c9a01aa7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "duxlabs-dev",
+        "repo": "dux-calendar",
+        "type": "github"
+      }
+    },
     "dux-qt-base": {
       "inputs": {
         "nixpkgs": [
@@ -165,7 +206,7 @@
     },
     "dux-shell": {
       "inputs": {
-        "dank-qml-common": "dank-qml-common",
+        "dank-qml-common": "dank-qml-common_2",
         "dux-qt-base": "dux-qt-base",
         "flake-compat": "flake-compat",
         "nixpkgs": [
@@ -575,6 +616,7 @@
         "bip39gen": "bip39gen",
         "dank-calculator": "dank-calculator",
         "disko": "disko",
+        "dux-calendar": "dux-calendar",
         "dux-shell": "dux-shell",
         "flake-parts": "flake-parts_2",
         "helium": "helium",

@@ -18,6 +18,8 @@
       };
     in
     {
+      imports = [ inputs.dux-calendar.nixosModules.default ];
+
       programs.hyprland = {
         enable = true;
         withUWSM = true;
@@ -40,6 +42,12 @@
         systemd.target = "wayland-session-xdg-autostart@hyprland.desktop.target";
         excludePackages = [ pkgs.matugen ];
         plugins.Calculator.src = inputs.dank-calculator;
+      };
+
+      programs.dank-calendar = {
+        enable = true;
+        systemd.enable = true;
+        systemd.target = "wayland-session-xdg-autostart@hyprland.desktop.target";
       };
 
       environment.systemPackages = [ pkgs.playerctl ];

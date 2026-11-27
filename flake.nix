@@ -36,6 +36,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    dux-calendar = {
+      url = "github:duxlabs-dev/dux-calendar";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.dux-qt-base.follows = "dux-shell/dux-qt-base";
+    };
+
     dank-calculator = {
       url = "github:rochacbruno/DankCalculator";
       flake = false;
