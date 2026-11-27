@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ self, ... }:
 {
   flake.nixosModules.hyprland =
     {
@@ -18,7 +18,8 @@
       };
     in
     {
-      imports = [ inputs.dux-calendar.nixosModules.default ];
+      # hyprland.lua routes the launcher, lock, OSD keys and more through Dux
+      imports = [ self.nixosModules.dux ];
 
       programs.hyprland = {
         enable = true;
@@ -32,24 +33,6 @@
         "kde"
       ];
 
-      programs.dux-shell = {
-        enable = true;
-        package = inputs.dux-shell.packages.${pkgs.stdenv.hostPlatform.system}.dms-shell;
-        # Plasma also reaches graphical-session.target, so start Dux only with this Hyprland
-        # session target. dms.service is After=graphical-session.target, and a target is ordered
-        # after the units it wants; wayland-session@ is Before=graphical-session.target and would
-        # form a cycle, while this one already comes after graphical-session.target.
-        systemd.target = "wayland-session-xdg-autostart@hyprland.desktop.target";
-        excludePackages = [ pkgs.matugen ];
-        plugins.Calculator.src = inputs.dank-calculator;
-      };
-
-      programs.dank-calendar = {
-        enable = true;
-        systemd.enable = true;
-        systemd.target = "wayland-session-xdg-autostart@hyprland.desktop.target";
-      };
-
       environment.systemPackages = [ pkgs.playerctl ];
 
       home-manager.sharedModules = [
@@ -62,15 +45,6 @@
               '';
             }
           ) kdeAutostarts;
-        }
-        {
-          # Its scripts are hardcoded to the user plugin dir, so it can't go in programs.dux-shell.plugins
-          xdg.configFile."dms/plugins/dankCalendarAgenda".source = pkgs.applyPatches {
-            name = "dms-dankcalendar";
-            src = inputs.dms-dankcalendar;
-            # Join opens links through `dms open`, which always shows the browser picker
-            patches = [ ./hyprland/dank-calendar-agenda-xdg-open.patch ];
-          };
         }
         (
           { config, ... }:
