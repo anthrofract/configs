@@ -7,11 +7,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1792507013,
-        "narHash": "sha256-8tKjSQajD3mUND1GaAuaWTcuyUpgcGsh5V+l4ibzC7U=",
+        "lastModified": 1795823210,
+        "narHash": "sha256-yPlK2RCDORlzdflKxIudPZ1fspEGTvHxrdUl54R1mOk=",
         "owner": "ryantm",
         "repo": "agenix",
-        "rev": "5e5b88a0c8e56f291a108c2fe9934054d9745b2e",
+        "rev": "60b6a60f2503f93d131b74c2f7f8600dc6ffbb28",
         "type": "github"
       },
       "original": {
@@ -27,11 +27,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1795794539,
-        "narHash": "sha256-zqNhXm4AvqVMeAEBfQA+3I19KqzDBzSw2jjBpgAAcZA=",
+        "lastModified": 1795812975,
+        "narHash": "sha256-OLNZP8NM97Ax0GOE26PXkU/JeAf3YXv91L5r5VWsoRc=",
         "owner": "lambda-symbolics",
         "repo": "autolith",
-        "rev": "b55f476dfe385d7384e370bfdf52e63dd4a54217",
+        "rev": "8532bc6b96c64d3f707044eb8079520b6f8733fd",
         "type": "github"
       },
       "original": {
@@ -125,11 +125,11 @@
     "dank-qml-common_2": {
       "flake": false,
       "locked": {
-        "lastModified": 1795764551,
-        "narHash": "sha256-VtvfFyMBL+Zqi4iX6xgEZkxEpA7yekxvEHhSJKT5zxU=",
+        "lastModified": 1795803062,
+        "narHash": "sha256-LoYIjf+0kQ10FSg1Qvdr3aEoA4SBI/rmsrTZUMuIe9Q=",
         "owner": "duxlabs-dev",
         "repo": "dux-qml-common",
-        "rev": "cfd1daa02e437ea9b18db50873d3796f7861f93b",
+        "rev": "140e4c2dc2137fa536874db9b2782fe6be71cdaa",
         "type": "github"
       },
       "original": {
@@ -223,11 +223,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1795774145,
-        "narHash": "sha256-Vzjb2NN6ya+K1ff1uW+ShxeXuTpDaoolJQf4lgIO1WY=",
+        "lastModified": 1795775157,
+        "narHash": "sha256-Xie/ePtpGW/uM+9X0gQKc5JcAfvT+TxVRnobxhzf9rc=",
         "owner": "duxlabs-dev",
         "repo": "dux-qt-base",
-        "rev": "1ac5206575a823d5ad8458a8a2de45133d86d3e6",
+        "rev": "3a8054f83cea41dd8d8e742af388ed898520a43a",
         "type": "github"
       },
       "original": {
@@ -246,11 +246,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1795774260,
-        "narHash": "sha256-DivZwEg1ELagWe4z9Rz+KuSHlJfj3/VKvtgVWliuMKw=",
+        "lastModified": 1795803719,
+        "narHash": "sha256-HPmjZRvxk9i8LjFWSBcogqf/KjXFspObP2bnPBCC2lM=",
         "owner": "duxlabs-dev",
         "repo": "dux-shell",
-        "rev": "ce9b7f2c67741c015540bad06856e415627a47e0",
+        "rev": "c876cc7e8934d1fc0345c7e6b0c6a8e6e18edc79",
         "type": "github"
       },
       "original": {

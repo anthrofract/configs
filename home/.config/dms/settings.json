@@ -82,12 +82,30 @@
           "enabled": false
         },
         {
-          "id": "cpuUsage",
-          "enabled": false
+          "id": "sysmon",
+          "enabled": false,
+          "popout": "processes",
+          "metrics": [
+            {
+              "device": "cpu",
+              "vals": [
+                "usage"
+              ]
+            }
+          ]
         },
         {
-          "id": "memUsage",
-          "enabled": false
+          "id": "sysmon",
+          "enabled": false,
+          "popout": "processes",
+          "metrics": [
+            {
+              "device": "memory",
+              "vals": [
+                "used"
+              ]
+            }
+          ]
         },
         {
           "id": "notificationButton",
@@ -231,12 +249,30 @@
           "enabled": false
         },
         {
-          "id": "cpuUsage",
-          "enabled": false
+          "id": "sysmon",
+          "enabled": false,
+          "popout": "processes",
+          "metrics": [
+            {
+              "device": "cpu",
+              "vals": [
+                "usage"
+              ]
+            }
+          ]
         },
         {
-          "id": "memUsage",
-          "enabled": false
+          "id": "sysmon",
+          "enabled": false,
+          "popout": "processes",
+          "metrics": [
+            {
+              "device": "memory",
+              "vals": [
+                "used"
+              ]
+            }
+          ]
         },
         "notificationButton",
         "systemTray",
@@ -322,7 +358,7 @@
       "islandSatelliteGap": 12
     }
   ],
-  "configVersion": 48,
+  "configVersion": 49,
   "clockFormat": "auto",
   "padHours12Hour": false,
   "firstDayOfWeek": 1,
@@ -339,6 +375,105 @@
     },
     "clock": {
       "tone": ""
+    },
+    "weather": {
+      "widgets": [
+        {
+          "id": "conditions",
+          "w": 2,
+          "h": 2,
+          "tone": "primary",
+          "city": true,
+          "col": 0,
+          "row": 0
+        },
+        {
+          "id": "hourly",
+          "w": 4,
+          "h": 2,
+          "forecast": "chart",
+          "col": 0,
+          "row": 6
+        },
+        {
+          "id": "daily",
+          "w": 4,
+          "h": 2,
+          "forecast": "chart",
+          "col": 0,
+          "row": 8
+        },
+        {
+          "id": "sun",
+          "w": 2,
+          "h": 2,
+          "tone": "",
+          "col": 0,
+          "row": 4
+        },
+        {
+          "id": "moon",
+          "w": 2,
+          "h": 2,
+          "tone": "",
+          "col": 2,
+          "row": 4
+        },
+        {
+          "id": "precipitation",
+          "w": 1,
+          "h": 2,
+          "graphics": true,
+          "tone": "",
+          "col": 2,
+          "row": 0
+        },
+        {
+          "id": "humidity",
+          "w": 1,
+          "h": 2,
+          "graphics": true,
+          "tone": "",
+          "col": 0,
+          "row": 2
+        },
+        {
+          "id": "wind",
+          "w": 1,
+          "h": 2,
+          "graphics": true,
+          "tone": "",
+          "col": 3,
+          "row": 0
+        },
+        {
+          "id": "visibility",
+          "w": 1,
+          "h": 2,
+          "graphics": true,
+          "tone": "",
+          "col": 3,
+          "row": 2
+        },
+        {
+          "id": "uv",
+          "w": 1,
+          "h": 2,
+          "graphics": true,
+          "tone": "",
+          "col": 2,
+          "row": 2
+        },
+        {
+          "id": "pressure",
+          "w": 1,
+          "h": 2,
+          "graphics": true,
+          "tone": "",
+          "col": 1,
+          "row": 2
+        }
+      ]
     }
   },
   "dashTabs": [
@@ -415,69 +550,53 @@
       "id": "sysmon",
       "w": 3,
       "h": 1,
+      "instanceId": "mwznlmvqxeelvtej7wk",
       "col": 3,
       "row": 0,
-      "instanceId": "cpu-5",
       "config": {
         "layout": "tiles",
-        "style": "icon",
-        "graphInterval": 300,
-        "metrics": [
-          {
-            "device": "cpu",
-            "vals": [
-              "usage",
-              "temp"
-            ],
-            "graph": true,
-            "on": true
-          }
-        ]
+        "style": "graph"
       }
     },
     {
       "id": "sysmon",
       "w": 3,
       "h": 1,
+      "instanceId": "mwznlo6j9tjfig4sgprdb89gzx8v6a",
       "col": 3,
       "row": 1,
-      "instanceId": "memory-6",
       "config": {
-        "layout": "tiles",
-        "style": "icon",
-        "graphInterval": 300,
         "metrics": [
           {
             "device": "memory",
+            "graph": false,
+            "on": true,
             "vals": [
               "used"
-            ],
-            "graph": true,
-            "on": true
+            ]
           }
-        ]
+        ],
+        "style": "graph",
+        "layout": "tiles"
       }
     },
     {
       "id": "sysmon",
       "w": 3,
       "h": 1,
+      "instanceId": "mwznlp191wr598tgpmno9uf4wzpwx9",
       "col": 3,
       "row": 2,
-      "instanceId": "network-7",
       "config": {
-        "layout": "tiles",
-        "style": "icon",
-        "graphInterval": 300,
+        "style": "graph",
         "metrics": [
           {
             "device": "net",
+            "graph": false,
+            "on": true,
             "vals": [
-              "down",
-              "up"
-            ],
-            "graph": true,
-            "on": true
+              "down"
+            ]
           }
         ]
       }
@@ -945,5 +1064,6 @@
       "allowWithoutTrigger": false
     }
   },
-  "fontScale": 1.25
+  "fontScale": 1.25,
+  "useAutoLocation": false
 }
